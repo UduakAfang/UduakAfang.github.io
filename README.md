@@ -1,6 +1,5 @@
 # HELLO 🙋‍♀️
 
-![Data Analyst Image](images/data_analyst_image.png)
 
 ## Introduction
 
