@@ -1,7 +1,7 @@
 # HELLO 🙋‍♀️
 
 
-## Introduction
+<b> Introduction <b>
 
 I am a  data analyst with a strong background in extracting insights and making data-driven decisions. I have experience in data cleaning, data visualization, statistical analysis, and machine learning. This portfolio serves as a showcase of my skills and the projects I have completed.
 Welcome.
