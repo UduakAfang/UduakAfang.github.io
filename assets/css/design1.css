@@ -1,0 +1,221 @@
+:root {
+    --bg-color: #1a1a2e;
+    --card-bg: #16213e;
+    --accent-color: #0f3460;
+    --text-primary: #e94560;
+    --text-secondary: #a2a2a2;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--white);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Sidebar / Profile Widget */
+.profile-widget {
+    grid-row: 1 / -1;
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--text-primary);
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.profile-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: var(--white);
+}
+
+.profile-title {
+    color: var(--text-primary);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+.skills-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.skills-list li {
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.skills-list li span.level {
+    color: var(--text-primary);
+}
+
+/* Header Widget */
+.header-widget {
+    grid-column: 2;
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.stats-container {
+    display: flex;
+    gap: 40px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+/* Main Content Area */
+.main-content {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-title {
+    margin: 0;
+    font-size: 18px;
+    color: var(--white);
+}
+
+.project-tags {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 10px;
+    background-color: var(--accent-color);
+    padding: 3px 8px;
+    border-radius: 10px;
+    color: var(--white);
+}
+
+.card-body {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.project-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.card-footer {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    text-decoration: none;
+    color: var(--white);
+    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: var(--accent-color);
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--text-primary);
+}
+
+@media (max-width: 900px) {
+    .dashboard-container {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-widget {
+        grid-row: auto;
+    }
+
+    .header-widget {
+        grid-column: auto;
+    }
+
+    .main-content {
+        grid-column: auto;
+    }
+}
