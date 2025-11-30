@@ -290,7 +290,7 @@ a {
 }
 
 .social-link:hover {
-    background: var(--text-main);
+    background: var(--accent-purple);
     color: #fff;
     transform: translateY(-2px);
 }
