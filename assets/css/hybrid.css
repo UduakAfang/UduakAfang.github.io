@@ -179,6 +179,10 @@ a {
     font-weight: 700;
 }
 
+.title-purple {
+    color: var(--accent-purple);
+}
+
 .hero-company {
     display: flex;
     align-items: center;
