@@ -834,10 +834,18 @@ a {
 .bento-grid .project-card.empty-card {
     background: #fff;
     border: 2px dashed #E5E5E5;
+    cursor: default;
+}
+
+.bento-grid .project-card.empty-card:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .bento-grid .project-card.empty-card .project-image {
     background: #FAFAFA;
+    aspect-ratio: unset;
+    height: 100%;
 }
 
 .bento-grid .project-image {
