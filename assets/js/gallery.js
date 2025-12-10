@@ -1,4 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Dark Mode Toggle - Default to Dark Mode
+    const themeToggle = document.getElementById('theme-toggle');
+    const sunIcon = document.querySelector('.sun-icon');
+    const moonIcon = document.querySelector('.moon-icon');
+    const htmlElement = document.documentElement;
+
+    // Check for saved theme preference or default to DARK mode
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    htmlElement.setAttribute('data-theme', currentTheme);
+
+    // Update icon based on current theme
+    if (currentTheme === 'dark') {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+    } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+    }
+
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+
+        // Toggle icons
+        if (newTheme === 'dark') {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        } else {
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+        }
+    });
+
+    // Gallery Toggle
     const toggleButtons = document.querySelectorAll('.toggle-btn');
     const projectsLayout = document.querySelector('.projects-layout');
     const projectGrid = document.querySelector('.project-grid');
