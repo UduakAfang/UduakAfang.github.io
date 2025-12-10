@@ -1,20 +1,15 @@
 :root {
-    /* Theme Colors */
+    /* Theme Colors - Light Mode */
     --bg-color: #F8F8F8;
-    /* Light gray background for hero */
     --bg-projects: #F9F6F4;
-    /* Warm beige for projects section */
     --text-main: #111111;
     --text-secondary: #666666;
     --accent-green: #00CC66;
-    /* Open to work dot */
     --accent-purple: #9B87F5;
-    /* Purple accent color */
     --accent-orange: #FF6B35;
-    /* Orange accent for hero */
     --border-color: #E5E5E5;
 
-    /* Tag Colors (inspired by Chloe Louise) */
+    /* Tag Colors */
     --tag-bg-purple: #E8E3FF;
     --tag-bg-yellow: #FFF4CC;
     --tag-bg-green: #E3F9D7;
@@ -22,10 +17,97 @@
     --tag-bg-blue: #D4EDFF;
     --tag-bg-gray: #F0F0F0;
 
+    /* Card and UI Elements */
+    --card-bg: #FFFFFF;
+    --card-shadow: rgba(0, 0, 0, 0.04);
+    --card-hover-shadow: rgba(0, 0, 0, 0.08);
+    --toggle-bg: #F4F4F4;
+    --toggle-hover: #ECECEC;
+    --about-row-bg: #FAFAFA;
+    --btn-gallery-bg: #F5F5F5;
+    --btn-message-bg: #000000;
+    --btn-message-hover: #222222;
+    --status-badge-bg: #FFFFFF;
+    --social-link-bg: rgba(0, 0, 0, 0.05);
+    --title-light: #D0D0D0;
+    --dashed-border: #E5E5E5;
+    --project-image-bg: #FAFAFA;
+    --project-image-color: rgba(0, 0, 0, 0.3);
+    --profile-pic-bg: #E5E5E5;
+
     /* Typography */
     --font-main: 'Montserrat', sans-serif;
     --font-display: 'TW Cen MT', 'Century Gothic', 'Futura', sans-serif;
     --font-projects: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Dark Mode Theme */
+[data-theme="dark"] {
+    --bg-color: #0F0F0F;
+    --bg-projects: #1A1A1A;
+    --text-main: #EFEFEF;
+    --text-secondary: #A0A0A0;
+    --border-color: #2A2A2A;
+
+    /* Tag Colors - Dark Mode */
+    --tag-bg-purple: #2E2547;
+    --tag-bg-yellow: #3D3520;
+    --tag-bg-green: #1F3321;
+    --tag-bg-pink: #3D2534;
+    --tag-bg-blue: #1E2F3D;
+    --tag-bg-gray: #2A2A2A;
+
+    /* Card and UI Elements */
+    --card-bg: #1E1E1E;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --card-hover-shadow: rgba(255, 255, 255, 0.05);
+    --toggle-bg: #2A2A2A;
+    --toggle-hover: #333333;
+    --about-row-bg: #252525;
+    --btn-gallery-bg: #2A2A2A;
+    --btn-message-bg: #FFFFFF;
+    --btn-message-hover: #E0E0E0;
+    --status-badge-bg: #1E1E1E;
+    --social-link-bg: rgba(255, 255, 255, 0.05);
+    --title-light: #4A4A4A;
+    --dashed-border: #2A2A2A;
+    --project-image-bg: #252525;
+    --project-image-color: rgba(255, 255, 255, 0.3);
+    --profile-pic-bg: #2A2A2A;
+}
+
+[data-theme="dark"] .hero::before {
+    background-image:
+        radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(135deg, transparent 48%, rgba(155, 135, 245, 0.05) 48%, rgba(155, 135, 245, 0.05) 52%, transparent 52%),
+        linear-gradient(45deg, transparent 48%, rgba(0, 204, 102, 0.04) 48%, rgba(0, 204, 102, 0.04) 52%, transparent 52%);
+}
+
+[data-theme="dark"] .btn-primary {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    background-color: #E0E0E0;
+}
+
+[data-theme="dark"] .btn-message {
+    background: var(--btn-message-bg);
+    color: #000000;
+}
+
+[data-theme="dark"] .btn-message:hover {
+    background: var(--btn-message-hover);
+}
+
+[data-theme="dark"] .gallery-welcome-btn {
+    background: #FFFFFF;
+    color: #000000;
+}
+
+[data-theme="dark"] .gallery-welcome-btn:hover {
+    background: #E0E0E0;
 }
 
 * {
@@ -40,6 +122,7 @@ body {
     font-family: var(--font-main);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -63,12 +146,44 @@ a {
 .nav-content {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .nav-left {
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Dark Mode Toggle Button */
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--toggle-bg);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    color: var(--text-main);
+}
+
+.theme-toggle:hover {
+    background: var(--toggle-hover);
+    transform: translateY(-1px);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
 }
 
 .nav-logo {
@@ -362,9 +477,30 @@ a {
     grid-template-columns: 400px 1fr;
     gap: 50px;
     align-items: start;
+    grid-template-areas:
+        "sidebar projects";
 }
 
-/* Left Column: Profile */
+.profile-card-wrapper {
+    grid-area: sidebar;
+}
+
+.project-grid {
+    grid-area: projects;
+}
+
+.sidebar-content {
+    grid-area: sidebar;
+}
+
+/* Left Column: Profile Card Wrapper and Sidebar Content */
+.profile-card-wrapper,
+.sidebar-content {
+    position: sticky;
+    top: 40px;
+}
+
+/* Legacy support for old profile-column class */
 .profile-column {
     position: sticky;
     top: 40px;
@@ -965,6 +1101,59 @@ a {
 
     .hero-actions-row {
         justify-content: center;
+    }
+
+    /* Toggle buttons mobile responsive */
+    .view-toggle {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .toggle-btn {
+        flex: 1 1 auto;
+        min-width: 120px;
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+
+    .toggle-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Mobile layout ordering for Selected Works */
+    .projects-layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Profile card first, projects second, rest of sidebar last */
+    .profile-card-wrapper {
+        order: 1;
+        margin-bottom: 24px;
+    }
+
+    .project-grid {
+        order: 2;
+        margin-bottom: 24px;
+    }
+
+    .sidebar-content {
+        order: 3;
+    }
+
+    /* Legacy support */
+    .profile-column {
+        order: 1;
+        margin-bottom: 24px;
+    }
+
+    /* Hide sidebar in gallery views */
+    .gallery-view .profile-card-wrapper,
+    .gallery-view .sidebar-content,
+    .gallery-view .profile-column {
+        display: none;
     }
 
     .project-grid {

@@ -108,14 +108,6 @@
                     </svg>
                     Selected Works
                 </button>
-                <button class="toggle-btn" data-view="gallery">
-                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                        <polyline points="21 15 16 10 5 21"></polyline>
-                    </svg>
-                    Gallery
-                </button>
                 <button class="toggle-btn" data-view="visualizations">
                     <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -132,13 +124,21 @@
                     </svg>
                     Web Apps
                 </button>
+                <button class="toggle-btn" data-view="gallery">
+                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                        <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                    Gallery
+                </button>
             </div>
 
             <h2 class="section-title">Selected Works</h2>
 
             <div class="projects-layout">
-                <!-- Left Column: Profile Info -->
-                <aside class="profile-column">
+                <!-- Profile Card Wrapper (shows first on mobile) -->
+                <aside class="profile-card-wrapper">
                     <div class="profile-card">
                         <img src="images/profile.jpg" alt="Uduak Afang" class="profile-card-pic">
                         <div class="profile-card-content">
@@ -156,7 +156,10 @@
                             </p>
                         </div>
                     </div>
+                </aside>
 
+                <!-- Sidebar Content (shows last on mobile) -->
+                <aside class="sidebar-content">
                     <h4 class="section-header">About</h4>
                     <div class="about-card">
                         <div class="about-row">
@@ -292,22 +295,6 @@
                     <div class="project-image"></div>
                 </article>
 
-                <!-- Gallery Welcome Card -->
-                <div class="gallery-welcome" style="display: none;">
-                    <div class="gallery-welcome-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="gallery-welcome-title">Welcome to my gallery</h3>
-                    <p class="gallery-welcome-text">A collection of ideas, inspirations, and works in progress. This is my creative space where concepts take shape.</p>
-                    <button class="gallery-welcome-btn" onclick="document.querySelector('.project-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })">
-                        Explore Ideas
-                    </button>
-                </div>
-
                 <!-- Visualizations Welcome Card -->
                 <div class="visualizations-welcome" style="display: none;">
                     <div class="gallery-welcome-icon">
@@ -317,10 +304,10 @@
                             <line x1="6" y1="20" x2="6" y2="14"></line>
                         </svg>
                     </div>
-                    <h3 class="gallery-welcome-title">Data Visualizations</h3>
-                    <p class="gallery-welcome-text">Interactive dashboards and visual analytics created with Tableau, Power BI, and Excel. Transforming complex data into compelling stories.</p>
+                    <h3 class="gallery-welcome-title">My Dashboards</h3>
+                    <p class="gallery-welcome-text">I love bringing data to life through visual storytelling. Here's where I showcase my dashboards built with Tableau, Power BI, and Excel—turning numbers into insights that actually make sense.</p>
                     <button class="gallery-welcome-btn" onclick="document.querySelector('.project-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })">
-                        View Dashboards
+                        See the visuals
                     </button>
                 </div>
 
@@ -333,13 +320,88 @@
                             <line x1="12" y1="17" x2="12" y2="21"></line>
                         </svg>
                     </div>
-                    <h3 class="gallery-welcome-title">Analytics Web Apps</h3>
-                    <p class="gallery-welcome-text">Custom-built web applications focused on data analytics and business intelligence. Interactive tools for data-driven decision making.</p>
+                    <h3 class="gallery-welcome-title">Web Apps I've Built</h3>
+                    <p class="gallery-welcome-text">Sometimes dashboards aren't enough—so I build custom web apps that make working with data easier. These are tools I've created to solve real analytics challenges.</p>
                     <button class="gallery-welcome-btn" onclick="document.querySelector('.project-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })">
-                        Explore Apps
+                        Check them out
                     </button>
                 </div>
 
+                <!-- Gallery Welcome Card -->
+                <div class="gallery-welcome" style="display: none;">
+                    <div class="gallery-welcome-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="gallery-welcome-title">My Creative Space</h3>
+                    <p class="gallery-welcome-text">This is where I experiment, sketch out ideas, and keep things that inspire me. Not everything here is polished—some are still cooking, but that's the fun part!</p>
+                    <button class="gallery-welcome-btn" onclick="document.querySelector('.project-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })">
+                        Take a peek
+                    </button>
+                </div>
+
+                <!-- Visualizations Placeholder Cards (6) -->
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <!-- Web Apps Placeholder Cards (6) -->
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <!-- Gallery Placeholder Cards (6) -->
+                <article class="project-card gallery-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card gallery-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card gallery-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card gallery-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card gallery-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+                <article class="project-card gallery-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
 
                 </div>
             </div>
