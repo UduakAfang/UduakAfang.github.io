@@ -1137,11 +1137,13 @@ a {
     }
 
     .project-card {
-        min-height: 320px;
+        min-height: 280px;
     }
 
     .project-image {
-        min-height: 320px;
+        height: auto;
+        min-height: 280px;
+        padding-bottom: 0;
     }
 
     .project-content {
