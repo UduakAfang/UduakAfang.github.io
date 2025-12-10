@@ -796,7 +796,7 @@ a {
 
 .project-image {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    min-height: 300px;
     position: relative;
     display: flex;
     align-items: center;
