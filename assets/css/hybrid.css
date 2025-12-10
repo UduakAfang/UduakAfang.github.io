@@ -110,6 +110,21 @@
     background: #E0E0E0;
 }
 
+[data-theme="dark"] .toggle-btn.active {
+    background: var(--accent-purple);
+    color: #000000;
+}
+
+[data-theme="dark"] .theme-toggle {
+    background: rgba(155, 135, 245, 0.15);
+    border-color: rgba(155, 135, 245, 0.3);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background: rgba(155, 135, 245, 0.25);
+    border-color: var(--accent-purple);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -166,18 +181,19 @@ a {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--toggle-bg);
-    border: 1px solid var(--border-color);
+    background: rgba(155, 135, 245, 0.1);
+    border: 1px solid rgba(155, 135, 245, 0.2);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    color: var(--text-main);
+    color: var(--accent-purple);
 }
 
 .theme-toggle:hover {
-    background: var(--toggle-hover);
+    background: rgba(155, 135, 245, 0.2);
+    border-color: var(--accent-purple);
     transform: translateY(-1px);
 }
 
@@ -441,18 +457,20 @@ a {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--toggle-bg);
-    border: none;
+    background: rgba(155, 135, 245, 0.08);
+    border: 1px solid transparent;
     cursor: pointer;
 }
 
 .toggle-btn:hover {
-    background: var(--toggle-hover);
+    background: rgba(155, 135, 245, 0.15);
+    border-color: rgba(155, 135, 245, 0.2);
 }
 
 .toggle-btn.active {
-    background: var(--tag-bg-purple);
-    color: var(--text-main);
+    background: var(--accent-purple);
+    color: #FFFFFF;
+    border-color: var(--accent-purple);
 }
 
 .toggle-icon {
@@ -1143,7 +1161,8 @@ a {
     .project-image {
         height: auto;
         min-height: 280px;
-        padding-bottom: 0;
+        padding-bottom: 0 !important;
+        aspect-ratio: 16 / 9;
     }
 
     .project-content {
