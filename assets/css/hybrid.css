@@ -274,7 +274,7 @@ a {
     object-fit: cover;
     display: inline-block;
     vertical-align: middle;
-    background-color: #E5E5E5;
+    background-color: var(--profile-pic-bg);
 }
 
 .hero-title {
@@ -286,7 +286,7 @@ a {
 }
 
 .title-light {
-    color: #D0D0D0;
+    color: var(--title-light);
     font-weight: 300;
 }
 
@@ -321,7 +321,7 @@ a {
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    background: #fff;
+    background: var(--status-badge-bg);
     border: 1px solid var(--border-color);
     border-radius: 20px;
     font-size: 0.9rem;
@@ -400,14 +400,14 @@ a {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--social-link-bg);
     color: var(--text-main);
     transition: all 0.2s ease;
 }
 
 .social-link:hover {
     background: var(--accent-purple);
-    color: #fff;
+    color: #FFFFFF;
     transform: translateY(-2px);
 }
 
@@ -441,13 +441,13 @@ a {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #F4F4F4;
+    background: var(--toggle-bg);
     border: none;
     cursor: pointer;
 }
 
 .toggle-btn:hover {
-    background: #ECECEC;
+    background: var(--toggle-hover);
 }
 
 .toggle-btn.active {
@@ -477,33 +477,17 @@ a {
     grid-template-columns: 400px 1fr;
     gap: 50px;
     align-items: start;
-    grid-template-areas:
-        "sidebar projects";
 }
 
-.profile-card-wrapper {
-    grid-area: sidebar;
-}
-
-.project-grid {
-    grid-area: projects;
-}
-
-.sidebar-content {
-    grid-area: sidebar;
-}
-
-/* Left Column: Profile Card Wrapper and Sidebar Content */
-.profile-card-wrapper,
-.sidebar-content {
-    position: sticky;
-    top: 40px;
-}
-
-/* Legacy support for old profile-column class */
+/* Left Column: Profile */
 .profile-column {
     position: sticky;
     top: 40px;
+}
+
+/* Hide sidebar in gallery views */
+.gallery-view .profile-column {
+    display: none;
 }
 
 .section-header {
@@ -515,12 +499,12 @@ a {
 }
 
 .profile-card {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 20px;
     padding: 32px;
     margin-bottom: 0;
     border: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px var(--card-shadow);
 }
 
 .profile-card-pic {
@@ -553,8 +537,8 @@ a {
 }
 
 .btn-message {
-    background: #000;
-    color: #fff;
+    background: var(--btn-message-bg);
+    color: #FFFFFF;
     padding: 10px 18px;
     border-radius: 8px;
     font-size: 0.85rem;
@@ -565,12 +549,12 @@ a {
 }
 
 .btn-message:hover {
-    background: #222;
+    background: var(--btn-message-hover);
     transform: translateY(-1px);
 }
 
 .btn-gallery {
-    background: #F5F5F5;
+    background: var(--btn-gallery-bg);
     color: var(--text-main);
     padding: 10px 18px;
     border-radius: 8px;
@@ -582,7 +566,7 @@ a {
 }
 
 .btn-gallery:hover {
-    background: #ECECEC;
+    background: var(--toggle-hover);
     transform: translateY(-1px);
 }
 
@@ -604,11 +588,11 @@ a {
 }
 
 .about-card {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 20px;
     padding: 20px;
     border: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px var(--card-shadow);
     margin-bottom: 0;
     display: flex;
     flex-direction: column;
@@ -621,7 +605,7 @@ a {
     align-items: center;
     gap: 12px;
     padding: 16px;
-    background: #FAFAFA;
+    background: var(--about-row-bg);
     border-radius: 12px;
     margin-bottom: 8px;
 }
@@ -638,7 +622,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 8px;
     color: var(--text-main);
 }
@@ -673,7 +657,7 @@ a {
     align-items: center;
     gap: 12px;
     padding: 14px 16px;
-    background: #FAFAFA;
+    background: var(--about-row-bg);
     border-radius: 12px;
     margin-bottom: 8px;
 }
@@ -690,7 +674,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 8px;
     color: var(--text-main);
 }
@@ -710,11 +694,11 @@ a {
 
 /* Diary Card */
 .diary-card {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 20px;
     padding: 32px;
     border: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px var(--card-shadow);
     margin-bottom: 0;
 }
 
@@ -761,11 +745,11 @@ a {
 
 /* Experience Card */
 .experience-card {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 20px;
     padding: 32px;
     border: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px var(--card-shadow);
     margin-bottom: 0;
 }
 
@@ -789,25 +773,25 @@ a {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-    background: #fff;
+    background: var(--card-bg);
     padding: 32px;
     border-radius: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px var(--card-shadow);
 }
 
 .project-card {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 16px;
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px var(--card-shadow);
     border: none;
 }
 
 .project-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 16px var(--card-hover-shadow);
 }
 
 .project-image {
@@ -818,7 +802,7 @@ a {
     align-items: center;
     justify-content: center;
     font-size: 0.85rem;
-    color: rgba(0, 0, 0, 0.3);
+    color: var(--project-image-color);
     font-weight: 500;
 }
 
@@ -902,19 +886,20 @@ a {
 }
 
 .bento-grid .project-card {
-    height: 100%;
-    min-height: 320px;
-    background: #fff;
+    min-height: 400px;
+    background: var(--card-bg);
+    display: flex;
+    flex-direction: column;
 }
 
 /* Welcome Cards */
 .gallery-welcome,
 .visualizations-welcome,
 .webapps-welcome {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 16px;
     padding: 32px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px var(--card-shadow);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -929,7 +914,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #FFFFFF;
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -950,8 +935,8 @@ a {
 }
 
 .gallery-welcome-btn {
-    background: #000;
-    color: #fff;
+    background: #000000;
+    color: #FFFFFF;
     padding: 12px 24px;
     border-radius: 8px;
     font-size: 0.9rem;
@@ -965,7 +950,7 @@ a {
 }
 
 .gallery-welcome-btn:hover {
-    background: #333;
+    background: #333333;
     transform: translateY(-1px);
 }
 
@@ -973,8 +958,8 @@ a {
 .bento-grid .project-card.selected-works-card,
 .bento-grid .project-card.visualizations-card,
 .bento-grid .project-card.webapps-card {
-    background: #fff;
-    border: 2px dashed #E5E5E5;
+    background: var(--card-bg);
+    border: 2px dashed var(--dashed-border);
     cursor: default;
 }
 
@@ -982,33 +967,35 @@ a {
 .bento-grid .project-card.visualizations-card:hover,
 .bento-grid .project-card.webapps-card:hover {
     transform: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px var(--card-shadow);
 }
 
 .bento-grid .project-card.selected-works-card .project-image,
 .bento-grid .project-card.visualizations-card .project-image,
 .bento-grid .project-card.webapps-card .project-image {
-    background: #FAFAFA;
-    aspect-ratio: unset;
-    height: 100%;
+    background: var(--project-image-bg);
+    min-height: 400px;
+    flex: 1;
+    aspect-ratio: 4 / 3;
 }
 
 /* Gallery Cards */
 .bento-grid .project-card.gallery-card {
-    background: #fff;
-    border: 2px dashed #E5E5E5;
+    background: var(--card-bg);
+    border: 2px dashed var(--dashed-border);
     cursor: default;
 }
 
 .bento-grid .project-card.gallery-card:hover {
     transform: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px var(--card-shadow);
 }
 
 .bento-grid .project-card.gallery-card .project-image {
-    background: #FAFAFA;
-    aspect-ratio: unset;
-    height: 100%;
+    background: var(--project-image-bg);
+    min-height: 400px;
+    flex: 1;
+    aspect-ratio: 4 / 3;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1016,7 +1003,7 @@ a {
 
 .coming-soon-badge {
     background: var(--accent-purple);
-    color: #fff;
+    color: #FFFFFF;
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -1122,36 +1109,22 @@ a {
         height: 16px;
     }
 
-    /* Mobile layout ordering for Selected Works */
+    /* Mobile layout: Projects first, then sidebar */
     .projects-layout {
         display: flex;
         flex-direction: column;
     }
 
-    /* Profile card first, projects second, rest of sidebar last */
-    .profile-card-wrapper {
-        order: 1;
-        margin-bottom: 24px;
-    }
-
     .project-grid {
-        order: 2;
-        margin-bottom: 24px;
-    }
-
-    .sidebar-content {
-        order: 3;
-    }
-
-    /* Legacy support */
-    .profile-column {
         order: 1;
         margin-bottom: 24px;
+    }
+
+    .profile-column {
+        order: 2;
     }
 
     /* Hide sidebar in gallery views */
-    .gallery-view .profile-card-wrapper,
-    .gallery-view .sidebar-content,
     .gallery-view .profile-column {
         display: none;
     }
@@ -1182,6 +1155,18 @@ a {
     .bento-grid {
         grid-template-columns: 1fr !important;
         gap: 20px;
+    }
+
+    .bento-grid .project-card {
+        min-height: 320px;
+    }
+
+    .bento-grid .project-card.selected-works-card .project-image,
+    .bento-grid .project-card.visualizations-card .project-image,
+    .bento-grid .project-card.webapps-card .project-image,
+    .bento-grid .project-card.gallery-card .project-image {
+        min-height: 320px;
+        aspect-ratio: 16 / 9;
     }
 
     .gallery-welcome,
