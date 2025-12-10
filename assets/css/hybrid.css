@@ -1136,12 +1136,11 @@ a {
     }
 
     .project-card {
-        min-height: 280px;
+        min-height: 320px;
     }
 
     .project-image {
-        min-height: 280px;
-        aspect-ratio: 4 / 3;
+        min-height: 320px;
     }
 
     .project-content {
