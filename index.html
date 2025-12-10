@@ -275,7 +275,7 @@
                 <!-- Right Column: Project Grid -->
                 <div class="project-grid">
 
-                <!-- Selected Works Cards -->
+                <!-- Selected Works Cards (4 most recent) -->
                 <article class="project-card selected-works-card">
                     <div class="project-image"></div>
                 </article>
@@ -292,23 +292,7 @@
                     <div class="project-image"></div>
                 </article>
 
-                <article class="project-card selected-works-card">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card selected-works-card">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card selected-works-card">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card selected-works-card">
-                    <div class="project-image"></div>
-                </article>
-
-                <!-- Gallery Cards -->
+                <!-- Gallery Welcome Card -->
                 <div class="gallery-welcome" style="display: none;">
                     <div class="gallery-welcome-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -318,234 +302,44 @@
                         </svg>
                     </div>
                     <h3 class="gallery-welcome-title">Welcome to my gallery</h3>
-                    <p class="gallery-welcome-text">Explore my collection of data analysis and visualization projects showcasing skills in Python, SQL, Tableau, and PowerBI.</p>
+                    <p class="gallery-welcome-text">A collection of ideas, inspirations, and works in progress. This is my creative space where concepts take shape.</p>
                     <button class="gallery-welcome-btn" onclick="document.querySelector('.project-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })">
-                        View Projects
+                        Explore Ideas
                     </button>
                 </div>
 
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image">
-                        <span class="coming-soon-badge">Coming Soon</span>
+                <!-- Visualizations Welcome Card -->
+                <div class="visualizations-welcome" style="display: none;">
+                    <div class="gallery-welcome-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
                     </div>
-                </article>
+                    <h3 class="gallery-welcome-title">Data Visualizations</h3>
+                    <p class="gallery-welcome-text">Interactive dashboards and visual analytics created with Tableau, Power BI, and Excel. Transforming complex data into compelling stories.</p>
+                    <button class="gallery-welcome-btn" onclick="document.querySelector('.project-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })">
+                        View Dashboards
+                    </button>
+                </div>
 
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image">
-                        <span class="coming-soon-badge">Coming Soon</span>
+                <!-- Web Apps Welcome Card -->
+                <div class="webapps-welcome" style="display: none;">
+                    <div class="gallery-welcome-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
                     </div>
-                </article>
+                    <h3 class="gallery-welcome-title">Analytics Web Apps</h3>
+                    <p class="gallery-welcome-text">Custom-built web applications focused on data analytics and business intelligence. Interactive tools for data-driven decision making.</p>
+                    <button class="gallery-welcome-btn" onclick="document.querySelector('.project-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })">
+                        Explore Apps
+                    </button>
+                </div>
 
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image">
-                        <span class="coming-soon-badge">Coming Soon</span>
-                    </div>
-                </article>
-
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image">
-                        <span class="coming-soon-badge">Coming Soon</span>
-                    </div>
-                </article>
-
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image">
-                        <span class="coming-soon-badge">Coming Soon</span>
-                    </div>
-                </article>
-
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image">
-                        <span class="coming-soon-badge">Coming Soon</span>
-                    </div>
-                </article>
-
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image">
-                        <span class="coming-soon-badge">Coming Soon</span>
-                    </div>
-                </article>
-
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image">
-                        <span class="coming-soon-badge">Coming Soon</span>
-                    </div>
-                </article>
-
-                <!-- Visualizations Cards -->
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <!-- Web Apps Cards -->
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <!-- Old Dashboard Projects (Hidden) -->
-                <article class="project-card" onclick="window.open('https://github.com/UduakAfang/Portfolio/blob/main/Maven%20Environmental%20Challenge/Apple\'s%20Environmental%20Goals%20Report.pdf', '_blank')">
-                    <div class="project-image">
-                        <img src="images/no_co2.svg" alt="Apple Emissions" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag green">Python</span>
-                            <span class="tag gray">EDA</span>
-                        </div>
-                        <h3 class="project-title">Apple Emissions</h3>
-                        <p class="project-description">Visualizing progress towards carbon neutrality</p>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="window.open('https://public.tableau.com/views/MavenHealthCareChallenge_16917906652240/HCAHPSPatientDashboard2?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link', '_blank')">
-                    <div class="project-image">
-                        <img src="images/HCAHPS Patient Dashboard (2).png" alt="HCAHPS Survey" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag blue">Tableau</span>
-                            <span class="tag purple">SQL</span>
-                        </div>
-                        <h3 class="project-title">HCAHPS Survey</h3>
-                        <p class="project-description">Evaluating hospital incentives via patient scores</p>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="window.open('https://github.com/UduakAfang/Portfolio/blob/main/Statistical%20Analysis/AB%20Test%20Analysis.ipynb', '_blank')">
-                    <div class="project-image" style="background: var(--tag-bg-blue);"></div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag green">Python</span>
-                            <span class="tag yellow">Stats</span>
-                        </div>
-                        <h3 class="project-title">A/B Analysis</h3>
-                        <p class="project-description">Statistical significance testing for ad campaigns</p>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="window.open('https://1drv.ms/x/s!AhmybT3U1U8cqShjPXrHPqI7Lhwj', '_blank')">
-                    <div class="project-image">
-                        <img src="images/Salesdashboard1.png.PNG" alt="Adidas Sales" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag green">Excel</span>
-                            <span class="tag gray">Dashboard</span>
-                        </div>
-                        <h3 class="project-title">Adidas Sales</h3>
-                        <p class="project-description">Interactive dashboard for 2020-2021 sales data</p>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="window.open('https://github.com/UduakAfang/Portfolio/blob/main/Demsco%20Performance%20Analysis%20Slide.pdf', '_blank')">
-                    <div class="project-image" style="background: var(--tag-bg-yellow);"></div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag yellow">PowerBI</span>
-                            <span class="tag purple">SQL</span>
-                        </div>
-                        <h3 class="project-title">Demsco Analysis</h3>
-                        <p class="project-description">Company performance review (2018-2021)</p>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="window.open('https://github.com/UduakAfang/Portfolio/blob/main/Access%20to%20Drinking%20Water%20in%20Nigeria.pdf', '_blank')">
-                    <div class="project-image">
-                        <img src="images/Access to Drinking Water in Nigeria.PNG" alt="Water Services" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag pink">Viz</span>
-                            <span class="tag gray">Social</span>
-                        </div>
-                        <h3 class="project-title">Water Services</h3>
-                        <p class="project-description">Tracking access to drinking water in Nigeria</p>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="window.open('https://github.com/UduakAfang/Portfolio/blob/main/Web%20scraping%20NBA%20stats.ipynb', '_blank')">
-                    <div class="project-image">
-                        <img src="images/basketball.jpeg" alt="NBA Scraper" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag green">Python</span>
-                            <span class="tag gray">Scraping</span>
-                        </div>
-                        <h3 class="project-title">NBA Scraper</h3>
-                        <p class="project-description">Web scraping basketball stats for 2022/23</p>
-                    </div>
-                </article>
-
-                <article class="project-card" onclick="window.open('https://github.com/UduakAfang/Portfolio/blob/main/Music%26Mental%20Health%20EDA%20Visualization.pdf', '_blank')">
-                    <div class="project-image">
-                        <img src="images/music_x_mental_health_6 (1).png" alt="Music & Health" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag purple">EDA</span>
-                            <span class="tag blue">Viz</span>
-                        </div>
-                        <h3 class="project-title">Music & Health</h3>
-                        <p class="project-description">Correlating music taste with mental health</p>
-                    </div>
-                </article>
 
                 </div>
             </div>

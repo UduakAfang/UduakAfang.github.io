@@ -771,8 +771,10 @@ a {
     background: #fff;
 }
 
-/* Welcome Card (First Card) */
-.gallery-welcome {
+/* Welcome Cards */
+.gallery-welcome,
+.visualizations-welcome,
+.webapps-welcome {
     background: #fff;
     border-radius: 16px;
     padding: 32px;
@@ -993,7 +995,9 @@ a {
         gap: 20px;
     }
 
-    .gallery-welcome {
+    .gallery-welcome,
+    .visualizations-welcome,
+    .webapps-welcome {
         min-height: 280px;
     }
 }
