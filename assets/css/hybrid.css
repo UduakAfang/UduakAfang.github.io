@@ -1135,8 +1135,13 @@ a {
         padding: 24px;
     }
 
+    .project-card {
+        min-height: 280px;
+    }
+
     .project-image {
-        height: 180px;
+        min-height: 280px;
+        aspect-ratio: 4 / 3;
     }
 
     .project-content {
