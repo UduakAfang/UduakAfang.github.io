@@ -831,23 +831,43 @@ a {
     transform: translateY(-1px);
 }
 
-/* Empty Gallery Cards */
-.project-card.empty-card {
-    display: none;
-}
-
-.bento-grid .project-card.empty-card {
+/* Selected Works, Visualizations, and Web Apps Cards */
+.bento-grid .project-card.selected-works-card,
+.bento-grid .project-card.visualizations-card,
+.bento-grid .project-card.webapps-card {
     background: #fff;
     border: 2px dashed #E5E5E5;
     cursor: default;
 }
 
-.bento-grid .project-card.empty-card:hover {
+.bento-grid .project-card.selected-works-card:hover,
+.bento-grid .project-card.visualizations-card:hover,
+.bento-grid .project-card.webapps-card:hover {
     transform: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.bento-grid .project-card.empty-card .project-image {
+.bento-grid .project-card.selected-works-card .project-image,
+.bento-grid .project-card.visualizations-card .project-image,
+.bento-grid .project-card.webapps-card .project-image {
+    background: #FAFAFA;
+    aspect-ratio: unset;
+    height: 100%;
+}
+
+/* Gallery Cards */
+.bento-grid .project-card.gallery-card {
+    background: #fff;
+    border: 2px dashed #E5E5E5;
+    cursor: default;
+}
+
+.bento-grid .project-card.gallery-card:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.bento-grid .project-card.gallery-card .project-image {
     background: #FAFAFA;
     aspect-ratio: unset;
     height: 100%;

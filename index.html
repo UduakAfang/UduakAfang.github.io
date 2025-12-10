@@ -98,19 +98,39 @@
 
     <section class="projects-section">
         <div class="container">
-            <!-- Dashboard/Gallery Toggle -->
+            <!-- View Toggle -->
             <div class="view-toggle">
-                <button class="toggle-btn active" data-view="dashboard">
-                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M8.125 3.125H4.375C4.04348 3.125 3.72554 3.2567 3.49112 3.49112C3.2567 3.72554 3.125 4.04348 3.125 4.375V8.125C3.125 8.45652 3.2567 8.77446 3.49112 9.00888C3.72554 9.2433 4.04348 9.375 4.375 9.375H8.125C8.45652 9.375 8.77446 9.2433 9.00888 9.00888C9.2433 8.77446 9.375 8.45652 9.375 8.125V4.375C9.375 4.04348 9.2433 3.72554 9.00888 3.49112C8.77446 3.2567 8.45652 3.125 8.125 3.125ZM8.125 8.125H4.375V4.375H8.125V8.125ZM15.625 3.125H11.875C11.5435 3.125 11.2255 3.2567 10.9911 3.49112C10.7567 3.72554 10.625 4.04348 10.625 4.375V8.125C10.625 8.45652 10.7567 8.77446 10.9911 9.00888C11.2255 9.2433 11.5435 9.375 11.875 9.375H15.625C15.9565 9.375 16.2745 9.2433 16.5089 9.00888C16.7433 8.77446 16.875 8.45652 16.875 8.125V4.375C16.875 4.04348 16.7433 3.72554 16.5089 3.49112C16.2745 3.2567 15.9565 3.125 15.625 3.125ZM15.625 8.125H11.875V4.375H15.625V8.125ZM8.125 10.625H4.375C4.04348 10.625 3.72554 10.7567 3.49112 10.9911C3.2567 11.2255 3.125 11.5435 3.125 11.875V15.625C3.125 15.9565 3.2567 16.2745 3.49112 16.5089C3.72554 16.7433 4.04348 16.875 4.375 16.875H8.125C8.45652 16.875 8.77446 16.7433 9.00888 16.5089C9.2433 16.2745 9.375 15.9565 9.375 15.625V11.875C9.375 11.5435 9.2433 11.2255 9.00888 10.9911C8.77446 10.7567 8.45652 10.625 8.125 10.625ZM8.125 15.625H4.375V11.875H8.125V15.625ZM15.625 10.625H11.875C11.5435 10.625 11.2255 10.7567 10.9911 10.9911C10.7567 11.2255 10.625 11.5435 10.625 11.875V15.625C10.625 15.9565 10.7567 16.2745 10.9911 16.5089C11.2255 16.7433 11.5435 16.875 11.875 16.875H15.625C15.9565 16.875 16.2745 16.7433 16.5089 16.5089C16.7433 16.2745 16.875 15.9565 16.875 15.625V11.875C16.875 11.5435 16.7433 11.2255 16.5089 10.9911C16.2745 10.7567 15.9565 10.625 15.625 10.625ZM15.625 15.625H11.875V11.875H15.625V15.625Z" fill="currentColor"/>
+                <button class="toggle-btn active" data-view="selected-works">
+                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
                     </svg>
-                    Dashboard
+                    Selected Works
                 </button>
                 <button class="toggle-btn" data-view="gallery">
-                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M17.7593 2.2406C17.6021 2.08352 17.4059 1.97118 17.1909 1.91515C16.9758 1.85912 16.7497 1.86144 16.5359 1.92185H16.5242L1.52884 6.47185C1.2854 6.54201 1.06903 6.68449 0.908388 6.8804C0.747752 7.07631 0.650437 7.31641 0.629342 7.56888C0.608246 7.82135 0.664365 8.07427 0.790262 8.29413C0.916158 8.51398 1.10589 8.69039 1.33431 8.79998L7.96869 12.0312L11.1952 18.6617C11.2956 18.8759 11.4552 19.0568 11.6551 19.1832C11.855 19.3096 12.0869 19.3762 12.3234 19.375C12.3593 19.375 12.3952 19.3734 12.4312 19.3703C12.6835 19.3499 12.9234 19.2528 13.1189 19.092C13.3144 18.9313 13.4561 18.7146 13.5249 18.4711L18.0718 3.47576C18.0718 3.47185 18.0718 3.46795 18.0718 3.46404C18.133 3.25073 18.1363 3.02497 18.0814 2.80996C18.0265 2.59495 17.9153 2.39843 17.7593 2.2406ZM12.3304 18.1133L12.3265 18.1242V18.1187L9.19681 11.689L12.9468 7.93904C13.0591 7.82088 13.1207 7.66353 13.1186 7.50056C13.1166 7.33758 13.0509 7.18187 12.9356 7.06662C12.8204 6.95137 12.6647 6.8857 12.5017 6.88361C12.3387 6.88152 12.1814 6.94318 12.0632 7.05545L8.31322 10.8054L1.88119 7.67576H1.87572H1.88665L16.8749 3.12498L12.3304 18.1133Z" fill="currentColor"/>
+                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                        <polyline points="21 15 16 10 5 21"></polyline>
                     </svg>
                     Gallery
+                </button>
+                <button class="toggle-btn" data-view="visualizations">
+                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                    Visualizations
+                </button>
+                <button class="toggle-btn" data-view="webapps">
+                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    Web Apps
                 </button>
             </div>
 
@@ -255,7 +275,40 @@
                 <!-- Right Column: Project Grid -->
                 <div class="project-grid">
 
-                <!-- Welcome Card (Gallery View Only) -->
+                <!-- Selected Works Cards -->
+                <article class="project-card selected-works-card">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card selected-works-card">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card selected-works-card">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card selected-works-card">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card selected-works-card">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card selected-works-card">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card selected-works-card">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card selected-works-card">
+                    <div class="project-image"></div>
+                </article>
+
+                <!-- Gallery Cards -->
                 <div class="gallery-welcome" style="display: none;">
                     <div class="gallery-welcome-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -271,56 +324,121 @@
                     </button>
                 </div>
 
-                <!-- Gallery Cards (Empty for now) -->
-                <article class="project-card empty-card">
+                <article class="project-card gallery-card" style="display: none;">
                     <div class="project-image">
                         <span class="coming-soon-badge">Coming Soon</span>
                     </div>
                 </article>
 
-                <article class="project-card empty-card">
+                <article class="project-card gallery-card" style="display: none;">
                     <div class="project-image">
                         <span class="coming-soon-badge">Coming Soon</span>
                     </div>
                 </article>
 
-                <article class="project-card empty-card">
+                <article class="project-card gallery-card" style="display: none;">
                     <div class="project-image">
                         <span class="coming-soon-badge">Coming Soon</span>
                     </div>
                 </article>
 
-                <article class="project-card empty-card">
+                <article class="project-card gallery-card" style="display: none;">
                     <div class="project-image">
                         <span class="coming-soon-badge">Coming Soon</span>
                     </div>
                 </article>
 
-                <article class="project-card empty-card">
+                <article class="project-card gallery-card" style="display: none;">
                     <div class="project-image">
                         <span class="coming-soon-badge">Coming Soon</span>
                     </div>
                 </article>
 
-                <article class="project-card empty-card">
+                <article class="project-card gallery-card" style="display: none;">
                     <div class="project-image">
                         <span class="coming-soon-badge">Coming Soon</span>
                     </div>
                 </article>
 
-                <article class="project-card empty-card">
+                <article class="project-card gallery-card" style="display: none;">
                     <div class="project-image">
                         <span class="coming-soon-badge">Coming Soon</span>
                     </div>
                 </article>
 
-                <article class="project-card empty-card">
+                <article class="project-card gallery-card" style="display: none;">
                     <div class="project-image">
                         <span class="coming-soon-badge">Coming Soon</span>
                     </div>
                 </article>
 
-                <!-- Dashboard View Projects -->
+                <!-- Visualizations Cards -->
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card visualizations-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <!-- Web Apps Cards -->
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <article class="project-card webapps-card" style="display: none;">
+                    <div class="project-image"></div>
+                </article>
+
+                <!-- Old Dashboard Projects (Hidden) -->
                 <article class="project-card" onclick="window.open('https://github.com/UduakAfang/Portfolio/blob/main/Maven%20Environmental%20Challenge/Apple\'s%20Environmental%20Goals%20Report.pdf', '_blank')">
                     <div class="project-image">
                         <img src="images/no_co2.svg" alt="Apple Emissions" style="width: 100%; height: 100%; object-fit: cover;">
