@@ -483,8 +483,29 @@
         </div>
     </section>
 
-    <!-- Gallery Toggle Script -->
+    <!-- Project Modal -->
+    <div class="project-modal" id="project-modal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 class="modal-title" id="modal-title"></h2>
+            <p class="modal-description" id="modal-description"></p>
+            <div class="modal-details">
+                <div class="modal-detail-row">
+                    <span class="modal-detail-label">Technologies:</span>
+                    <span class="modal-detail-value" id="modal-tech"></span>
+                </div>
+                <div class="modal-detail-row">
+                    <span class="modal-detail-label">Date:</span>
+                    <span class="modal-detail-value" id="modal-date"></span>
+                </div>
+            </div>
+            <div class="modal-links" id="modal-links"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="assets/js/gallery.js"></script>
+    <script src="assets/js/projects.js"></script>
 </body>
 
 </html>

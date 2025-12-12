@@ -1,0 +1,9 @@
+TITLE: Creative Project Title
+DESCRIPTION: Brief description of this gallery item. What is it? Why did you create it?
+TECH: Tools or technologies used
+DATE: Month Year
+LINK:
+GITHUB:
+TAGS: experiment, creative, prototype
+
+INSTRUCTIONS: Same as other projects. Edit fields, add images to images folder.

@@ -1,0 +1,9 @@
+TITLE: Your Dashboard/Visualization Title
+DESCRIPTION: Describe your visualization. What insights does it show? What data does it analyze? Keep it brief and impactful.
+TECH: Tableau, Power BI, Excel, or other tools used
+DATE: Month Year
+LINK: Link to live dashboard (e.g., Tableau Public link)
+GITHUB:
+TAGS: dashboard, visualization, data-analysis
+
+INSTRUCTIONS: Same as selected-works. Edit the text after each colon. Add thumbnail.jpg to the images folder.

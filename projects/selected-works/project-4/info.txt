@@ -1,0 +1,16 @@
+TITLE: Your Project Title Here
+DESCRIPTION: Write a brief description of your project. Explain what it does, what problem it solves, and the impact it had. Keep it concise but informative (2-3 sentences is perfect).
+TECH: List the technologies you used (e.g., Tableau, Python, SQL, Power BI)
+DATE: Month Year (e.g., January 2024)
+LINK: https://your-live-project-link.com (leave blank if no link)
+GITHUB: https://github.com/yourusername/repo (leave blank if no GitHub)
+TAGS: keyword1, keyword2, keyword3 (e.g., dashboard, sales, analytics)
+
+INSTRUCTIONS FOR EDITING:
+1. Replace the text after each field name (after the colon)
+2. Keep the field names (TITLE:, DESCRIPTION:, etc.) exactly as they are
+3. For images, add files to the 'images' folder in this directory:
+   - thumbnail.jpg (main image shown on card)
+   - screenshot-1.jpg, screenshot-2.jpg, etc. (additional images)
+4. Leave LINK or GITHUB blank if you don't have them (just write: LINK: )
+5. Save this file when done

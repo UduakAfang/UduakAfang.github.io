@@ -1,0 +1,9 @@
+TITLE: Your Web App Name
+DESCRIPTION: What does this web app do? What problem does it solve? Who is it for?
+TECH: React, Python, Flask, or other technologies used
+DATE: Month Year
+LINK: Live demo link
+GITHUB: GitHub repository link
+TAGS: webapp, tool, automation
+
+INSTRUCTIONS: Same as selected-works. Edit the text after each colon. Add thumbnail.jpg to the images folder.
