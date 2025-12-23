@@ -1333,3 +1333,66 @@ a {
         font-size: 1.5rem;
     }
 }
+
+/* ============================================
+   Work in Progress Banner
+   ============================================ */
+
+.wip-banner {
+    background: linear-gradient(135deg, rgba(155, 135, 245, 0.08) 0%, rgba(155, 135, 245, 0.04) 100%);
+    border-bottom: 1px solid rgba(155, 135, 245, 0.2);
+    padding: 12px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .wip-banner {
+    background: linear-gradient(135deg, rgba(155, 135, 245, 0.12) 0%, rgba(155, 135, 245, 0.06) 100%);
+    border-bottom: 1px solid rgba(155, 135, 245, 0.3);
+}
+
+.wip-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.wip-icon {
+    color: var(--accent-purple);
+    flex-shrink: 0;
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.wip-text {
+    font-family: var(--font-projects);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-main);
+    letter-spacing: 0.3px;
+}
+
+@media (max-width: 768px) {
+    .wip-banner {
+        padding: 10px 0;
+    }
+
+    .wip-text {
+        font-size: 0.85rem;
+        text-align: center;
+    }
+
+    .wip-content {
+        gap: 8px;
+        padding: 0 15px;
+    }
+}
