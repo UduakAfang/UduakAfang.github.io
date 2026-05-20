@@ -1,523 +1,217 @@
-<!DOCTYPE HTML>
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Uduak Afang - Business Intelligence Analyst Portfolio</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description"
-        content="Portfolio of Uduak Afang, a Business Intelligence Analyst specializing in SQL, Python, Tableau, and PowerBI.">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Uduak Afang — Business Intelligence Analyst</title>
+<meta name="description" content="BI Analyst with 3+ years building dashboards and pipelines that finance, operations and commercial teams actually trust. Tableau, SQL, Python, dbt.">
+<meta property="og:title" content="Uduak Afang — Business Intelligence Analyst">
+<meta property="og:description" content="BI Analyst building dashboards and pipelines end-to-end — from the raw SQL pull to the screen a stakeholder opens on a Monday morning.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://uduakafang.github.io">
+<meta property="og:image" content="https://uduakafang.github.io/images/profile.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Uduak Afang — BI Analyst">
+<meta name="twitter:description" content="Dashboards, pipelines, and data stories. Tableau Viz of the Day × 2. Vizzies nominee × 4.">
+<meta name="twitter:image" content="https://uduakafang.github.io/images/profile.jpg">
+<meta name="theme-color" content="#f4f1eb">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80' font-family='sans-serif' font-weight='900'>U</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:    '#1a1a1a',
+          paper:  '#f4f1eb',
+          paper2: '#ebe6dd',
+          paper3: '#e2dcd1',
+          brick:  '#C7522A',
+          brick2: '#9e3f1f',
+          olive:  '#5e6342',
+          haiti:  '#18102B',
+        },
+        fontFamily: {
+          sans:    ['Satoshi','system-ui','sans-serif'],
+          display: ['"Saira Condensed"','sans-serif'],
+          mono:    ['"JetBrains Mono"','ui-monospace','monospace'],
+          serif:   ['"Instrument Serif"','serif'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html, body { background:#f4f1eb; color:#1a1a1a; }
+  body { font-family: Satoshi, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  ::selection { background:#C7522A; color:#f4f1eb; }
+  ::-webkit-scrollbar { width:10px; height:10px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:rgba(26,26,26,.18); border-radius:6px; }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size:11px; letter-spacing:.28em; text-transform:uppercase; }
+  .pagenum { font-family: "JetBrains Mono", monospace; font-size:10px; letter-spacing:.32em; }
+  .mono    { font-family: "JetBrains Mono", monospace; }
+  .display { font-family: "Saira Condensed", sans-serif; font-weight:900; letter-spacing:-0.02em; line-height:.9; text-transform:uppercase; }
+  .serif-it{ font-family: "Instrument Serif", serif; font-style:italic; font-weight:400; letter-spacing:-0.01em; }
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/hybrid.css" />
+  /* paper texture (subtle) */
+  .paper-grain { background-image:
+    radial-gradient(rgba(26,26,26,0.025) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
 
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-P845BLSF');</script>
-    <!-- End Google Tag Manager -->
+  /* underline link */
+  .ul-link { position:relative; display:inline-block; }
+  .ul-link::after { content:""; position:absolute; left:0; bottom:-2px; height:1px; width:100%; background:currentColor; transform:scaleX(.3); transform-origin:left; transition: transform .4s cubic-bezier(.2,.6,.2,1); }
+  .ul-link:hover::after { transform:scaleX(1); }
+
+  /* card lift */
+  .card-lift { transition: transform .5s cubic-bezier(.2,.6,.2,1), box-shadow .5s; will-change:transform; }
+  .card-lift:hover { transform: translateY(-4px); }
+
+  /* sticky pill behavior */
+  .stuck { backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); }
+
+  /* skill bar */
+  .skill-track { background:rgba(26,26,26,.08); border-radius:999px; overflow:hidden; position:relative; }
+  .skill-fill  { position:absolute; inset:0 auto 0 0; background:#1a1a1a; border-radius:999px; }
+
+  /* marquee */
+  @keyframes marq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .marquee-track { animation: marq 38s linear infinite; }
+
+  /* tag pill */
+  .tag-pill { background:#1a1a1a; color:#f4f1eb; padding:6px 12px; border-radius:999px; font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; display:inline-flex; align-items:center; gap:6px; }
+  .tag-pill.ghost { background:transparent; color:#1a1a1a; border:1px solid rgba(26,26,26,.2); }
+
+  /* reveal — slide up (re-triggerable: .in removed when out of view) */
+  .reveal { opacity:0; transform: translateY(36px); transition: opacity .9s cubic-bezier(.2,.6,.2,1), transform .9s cubic-bezier(.2,.6,.2,1); }
+  .reveal.in { opacity:1; transform: translateY(0); }
+
+  /* reveal from left */
+  .reveal-left { opacity:0; transform: translateX(-40px); transition: opacity .7s cubic-bezier(.2,.6,.2,1), transform .7s cubic-bezier(.2,.6,.2,1); }
+  .reveal-left.in { opacity:1; transform: translateX(0); }
+
+  /* reveal scale — cards pop in from small + fade */
+  .reveal-pop { opacity:0; transform: scale(0.88) translateY(24px); transition: opacity .7s cubic-bezier(.2,.6,.2,1), transform .7s cubic-bezier(.2,.6,.2,1); }
+  .reveal-pop.in { opacity:1; transform: scale(1) translateY(0); }
+
+  /* flip-reveal — 3D card flip from behind (Y axis) */
+  .flip-reveal { perspective: 1200px; }
+  .flip-reveal > * { opacity:0; transform: rotateY(-90deg) scale(0.9); transform-origin: left center; transition: opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); }
+  .flip-reveal.in > * { opacity:1; transform: rotateY(0deg) scale(1); }
+
+  /* flip-reveal-alt — flip from opposite direction */
+  .flip-reveal-alt { perspective: 1200px; }
+  .flip-reveal-alt > * { opacity:0; transform: rotateY(90deg) scale(0.9); transform-origin: right center; transition: opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); }
+  .flip-reveal-alt.in > * { opacity:1; transform: rotateY(0deg) scale(1); }
+
+  /* flip-reveal-x — flip from top (X axis) */
+  .flip-reveal-x { perspective: 1200px; }
+  .flip-reveal-x > * { opacity:0; transform: rotateX(70deg) scale(0.9); transform-origin: top center; transition: opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); }
+  .flip-reveal-x.in > * { opacity:1; transform: rotateX(0deg) scale(1); }
+
+  /* scroll-darken button */
+  .scroll-darken { transition: background-color .6s ease, color .6s ease, border-color .6s ease; }
+  .scroll-darken.scrolled-in { background-color: #1a1a1a; color: #f4f1eb; border-color: #1a1a1a; }
+
+  /* stagger-flip: children flip in with stagger (alternating L/R) */
+  .stagger-flip { perspective: 1200px; }
+  .stagger-flip > * { opacity:0; transform-style: preserve-3d; transition: opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); }
+  .stagger-flip > *:nth-child(odd)  { transform: rotateY(-90deg) scale(0.9); transform-origin: left center; }
+  .stagger-flip > *:nth-child(even) { transform: rotateY(90deg) scale(0.9);  transform-origin: right center; }
+  .stagger-flip.in > * { opacity:1; transform: rotateY(0deg) scale(1); }
+  .stagger-flip > *:nth-child(1) { transition-delay: 0ms; }
+  .stagger-flip > *:nth-child(2) { transition-delay: 120ms; }
+  .stagger-flip > *:nth-child(3) { transition-delay: 240ms; }
+  .stagger-flip > *:nth-child(4) { transition-delay: 360ms; }
+  .stagger-flip > *:nth-child(5) { transition-delay: 480ms; }
+  .stagger-flip > *:nth-child(6) { transition-delay: 600ms; }
+
+  /* Profile card flip animation */
+  @keyframes flipIn {
+    0% { transform: perspective(1000px) rotateY(-90deg); opacity: 0; }
+    50% { transform: perspective(1000px) rotateY(-10deg); }
+    100% { transform: perspective(1000px) rotateY(0deg); opacity: 1; }
+  }
+  .profile-flip {
+    animation: flipIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+    transform-style: preserve-3d;
+  }
+
+  /* number indicator */
+  .num-dot { width:38px; height:38px; border-radius:50%; border:1px solid rgba(26,26,26,.25); display:inline-flex; align-items:center; justify-content:center; font-family:"JetBrains Mono",monospace; font-size:11px; }
+
+  /* dashed divider */
+  .dash-div { background-image: linear-gradient(to right, rgba(26,26,26,.35) 50%, transparent 0); background-position: bottom; background-size: 8px 1px; background-repeat: repeat-x; padding-bottom: 1px; }
+
+  /* Section stacking — sticky cards pattern.
+     min-height:100vh ensures each section fully covers the viewport
+     when it's stuck, so previous sections can't peek through. */
+  .stack-section {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    isolation: isolate;
+  }
+  /* curved "cuff" top — every section after the hero gets a rounded top edge
+     so stacking sections scoop over the one beneath them */
+  .stack-cuff {
+    border-radius: 36px 36px 0 0;
+    margin-top: -36px;       /* overlap previous section to hide the seam */
+    padding-top: 36px;       /* restore content spacing lost by negative margin */
+  }
+
+  /* hide tweaks panel chrome bleed */
+  [data-tweaks-host] { font-family: Satoshi, system-ui, sans-serif; }
+
+  /* ─── Loading screen ─── */
+  #loader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: #f4f1eb;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  #loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+  #loader .mark {
+    font-family: "Saira Condensed", sans-serif;
+    font-weight: 900; font-size: 64px; letter-spacing: -0.04em;
+    color: #1a1a1a; line-height: 1;
+    animation: loaderPulse 1.2s ease-in-out infinite;
+  }
+  #loader .mark span { color: #C7522A; }
+  @keyframes loaderPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.96); }
+    50%      { opacity: 1;   transform: scale(1);    }
+  }
+</style>
 </head>
-
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P845BLSF" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+<div id="loader"><div class="mark">UA<span>.</span></div></div>
+<div id="root"></div>
 
-    <nav class="header-nav">
-        <div class="container">
-            <div class="nav-content">
-                <div class="nav-left">
-                    <div class="nav-logo">△</div>
-                    <a href="mailto:uduakafang@gmail.com" class="nav-email">
-                        <span class="email-dot"></span>
-                        uduakafang@gmail.com
-                    </a>
-                </div>
-                <div class="nav-right">
-                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg>
-                        <svg class="moon-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Work in Progress Banner -->
-    <div class="wip-banner">
-        <div class="container">
-            <div class="wip-content">
-                <svg class="wip-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
-                </svg>
-                <span class="wip-text">Site under construction - New projects and features coming soon!</span>
-            </div>
-        </div>
-    </div>
-
-    <header class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-greeting">
-                    <span class="greeting-regular">Hi, I'm</span>
-                    <img src="images/profile.jpg" alt="" class="profile-pic">
-                    <span class="greeting-bold">Uduak Afang!</span>
-                </h1>
-
-                <div class="hero-title">
-                    <span class="title-light">I'm a</span>
-                    <span class="title-bold title-purple">Business Intelligence Analyst</span>
-                </div>
-
-                <p class="hero-summary">
-                    I focus on helping you make use of your data—whether that's setting up ETL processes, visualizing insights with Tableau and BI tools, or coding custom web apps with AI integration.
-                </p>
-
-                <p class="hero-desc">
-                    Feel free to explore my portfolio and reach out — I'd love to connect!
-                </p>
-
-                <div class="hero-actions">
-                    <div class="hero-actions-row">
-                        <a href="mailto:uduakafang@gmail.com" class="btn-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
-                            Book a call
-                        </a>
-                        <div class="status-badge">
-                            <span class="status-dot"></span>
-                            Open to work
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hero-socials">
-                    <a href="https://twitter.com/ud_analyst" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
-                        <img src="images/Icons/icons8-x-50.png" alt="X" style="width: 20px; height: 20px;">
-                    </a>
-                    <a href="https://www.linkedin.com/in/UduakAfang" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-                        <img src="images/Icons/linkedin-svgrepo-com.svg" alt="LinkedIn" style="width: 20px; height: 20px;">
-                    </a>
-                    <a href="https://public.tableau.com/app/profile/uduak.afang" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Tableau">
-                        <img src="images/Icons/tableau-icon-svgrepo-com.svg" alt="Tableau" style="width: 20px; height: 20px;">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section class="projects-section">
-        <div class="container">
-            <!-- View Toggle -->
-            <div class="view-toggle">
-                <button class="toggle-btn active" data-view="selected-works">
-                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                        <polyline points="2 17 12 22 22 17"></polyline>
-                        <polyline points="2 12 12 17 22 12"></polyline>
-                    </svg>
-                    Selected Works
-                </button>
-                <button class="toggle-btn" data-view="visualizations">
-                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="20" x2="18" y2="10"></line>
-                        <line x1="12" y1="20" x2="12" y2="4"></line>
-                        <line x1="6" y1="20" x2="6" y2="14"></line>
-                    </svg>
-                    Visualizations
-                </button>
-                <button class="toggle-btn" data-view="webapps">
-                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                        <line x1="8" y1="21" x2="16" y2="21"></line>
-                        <line x1="12" y1="17" x2="12" y2="21"></line>
-                    </svg>
-                    Web Apps
-                </button>
-                <button class="toggle-btn" data-view="gallery">
-                    <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                        <polyline points="21 15 16 10 5 21"></polyline>
-                    </svg>
-                    Gallery
-                </button>
-            </div>
-
-            <h2 class="section-title">Selected Works</h2>
-
-            <div class="projects-layout">
-                <!-- Left Column: Profile Info -->
-                <aside class="profile-column">
-                    <div class="profile-card">
-                        <img src="images/profile.jpg" alt="Uduak Afang" class="profile-card-pic">
-                        <div class="profile-card-content">
-                            <h3 class="profile-card-name">Uduak Afang</h3>
-                            <p class="profile-card-role">Business Intelligence Analyst</p>
-
-                            <div class="profile-card-actions">
-                                <a href="mailto:uduakafang@gmail.com" class="btn-message">Message</a>
-                                <a href="#projects" class="btn-gallery">View gallery</a>
-                            </div>
-
-                            <p class="profile-card-status">
-                                <span class="status-dot-small"></span>
-                                Open to work
-                            </p>
-                        </div>
-                    </div>
-
-                    <h4 class="section-header">About</h4>
-                    <div class="about-card">
-                        <div class="about-row">
-                            <div class="about-row-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
-                                </svg>
-                            </div>
-                            <div class="about-row-text">
-                                <span class="about-row-label">On repeat :</span>
-                                <span class="about-row-value">Swag by Justin Bieber</span>
-                            </div>
-                        </div>
-                        <div class="about-row">
-                            <div class="about-row-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                                    <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
-                                    <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
-                                    <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
-                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                                </svg>
-                            </div>
-                            <div class="about-row-text">
-                                <span class="about-row-label">Next destination :</span>
-                                <span class="about-row-value">Unknown</span>
-                            </div>
-                        </div>
-                        <div class="about-row">
-                            <div class="about-row-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
-                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                                    <line x1="12" y1="19" x2="12" y2="23"></line>
-                                    <line x1="8" y1="23" x2="16" y2="23"></line>
-                                </svg>
-                            </div>
-                            <div class="about-row-text">
-                                <span class="about-row-label">I speak :</span>
-                                <span class="about-row-value">English and Oron (learning)</span>
-                            </div>
-                        </div>
-                        <div class="about-row">
-                            <div class="about-row-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                                </svg>
-                            </div>
-                            <div class="about-row-text">
-                                <span class="about-row-label">Most active :</span>
-                                <span class="about-row-value">LinkedIn and X</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4 class="section-header">Skills</h4>
-                    <div class="about-card">
-                        <div class="skill-row">
-                            <div class="skill-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                                </svg>
-                            </div>
-                            <div class="skill-text">Data Analysis</div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="18" y1="20" x2="18" y2="10"></line>
-                                    <line x1="12" y1="20" x2="12" y2="4"></line>
-                                    <line x1="6" y1="20" x2="6" y2="14"></line>
-                                </svg>
-                            </div>
-                            <div class="skill-text">Data Visualization</div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="16 18 22 12 16 6"></polyline>
-                                    <polyline points="8 6 2 12 8 18"></polyline>
-                                </svg>
-                            </div>
-                            <div class="skill-text">Python & SQL</div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="16 18 22 12 16 6"></polyline>
-                                    <polyline points="8 6 2 12 8 18"></polyline>
-                                </svg>
-                            </div>
-                            <div class="skill-text">Coding and vibe coding</div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                                </svg>
-                            </div>
-                            <div class="skill-text">ETL</div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                                    <line x1="8" y1="21" x2="16" y2="21"></line>
-                                    <line x1="12" y1="17" x2="12" y2="21"></line>
-                                </svg>
-                            </div>
-                            <div class="skill-text">Dashboard Design</div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2v20M2 12h20"></path>
-                                    <circle cx="12" cy="12" r="4"></circle>
-                                </svg>
-                            </div>
-                            <div class="skill-text">Business Intelligence</div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="12" y1="20" x2="12" y2="10"></line>
-                                    <line x1="18" y1="20" x2="18" y2="4"></line>
-                                    <line x1="6" y1="20" x2="6" y2="16"></line>
-                                </svg>
-                            </div>
-                            <div class="skill-text">Statistical Analysis</div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
-                                </svg>
-                            </div>
-                            <div class="skill-text">Automation</div>
-                        </div>
-                    </div>
-
-                    <h4 class="section-header">Diary entries</h4>
-                    <div class="diary-card">
-                        <div class="diary-entry">
-                            <div class="diary-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                                </svg>
-                            </div>
-                            <div class="diary-content">
-                                <p class="diary-text">Completed data visualization project for client insights dashboard</p>
-                                <p class="diary-date">12/15/2024</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4 class="section-header">Present</h4>
-                    <div class="experience-card">
-                        <div class="experience-item">
-                            <p class="experience-role">Business Intelligence Analyst</p>
-                            <p class="experience-description">Transforming data into actionable insights through advanced analytics and visualization techniques. Specializing in SQL, Python, and modern BI tools.</p>
-                        </div>
-                    </div>
-                </aside>
-
-                <!-- Right Column: Project Grid -->
-                <div class="project-grid">
-
-                <!-- Selected Works Cards (4 most recent) -->
-                <article class="project-card selected-works-card">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card selected-works-card">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card selected-works-card">
-                    <div class="project-image"></div>
-                </article>
-
-                <article class="project-card selected-works-card">
-                    <div class="project-image"></div>
-                </article>
-
-                <!-- Visualizations Welcome Card -->
-                <div class="visualizations-welcome" style="display: none;">
-                    <div class="gallery-welcome-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="20" x2="18" y2="10"></line>
-                            <line x1="12" y1="20" x2="12" y2="4"></line>
-                            <line x1="6" y1="20" x2="6" y2="14"></line>
-                        </svg>
-                    </div>
-                    <h3 class="gallery-welcome-title">My Dashboards</h3>
-                    <p class="gallery-welcome-text">I love bringing data to life through visual storytelling. Here's where I showcase my dashboards built with Tableau, Power BI, and Excel—turning numbers into insights that actually make sense.</p>
-                    <button class="gallery-welcome-btn" onclick="document.querySelector('.project-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })">
-                        See the visuals
-                    </button>
-                </div>
-
-                <!-- Web Apps Welcome Card -->
-                <div class="webapps-welcome" style="display: none;">
-                    <div class="gallery-welcome-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
-                    </div>
-                    <h3 class="gallery-welcome-title">Web Apps I've Built</h3>
-                    <p class="gallery-welcome-text">Sometimes dashboards aren't enough—so I build custom web apps that make working with data easier. These are tools I've created to solve real analytics challenges.</p>
-                    <button class="gallery-welcome-btn" onclick="document.querySelector('.project-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })">
-                        Check them out
-                    </button>
-                </div>
-
-                <!-- Gallery Welcome Card -->
-                <div class="gallery-welcome" style="display: none;">
-                    <div class="gallery-welcome-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="gallery-welcome-title">My Creative Space</h3>
-                    <p class="gallery-welcome-text">This is where I experiment, sketch out ideas, and keep things that inspire me. Not everything here is polished—some are still cooking, but that's the fun part!</p>
-                    <button class="gallery-welcome-btn" onclick="document.querySelector('.project-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })">
-                        Take a peek
-                    </button>
-                </div>
-
-                <!-- Visualizations Placeholder Cards (6) -->
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card visualizations-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <!-- Web Apps Placeholder Cards (6) -->
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card webapps-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                <!-- Gallery Placeholder Cards (6) -->
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-                <article class="project-card gallery-card" style="display: none;">
-                    <div class="project-image"></div>
-                </article>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Project Modal -->
-    <div class="project-modal" id="project-modal" onclick="if(event.target === this) closeModal()">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <h2 class="modal-title" id="modal-title"></h2>
-            <p class="modal-description" id="modal-description"></p>
-            <div class="modal-details">
-                <div class="modal-detail-row">
-                    <span class="modal-detail-label">Technologies:</span>
-                    <span class="modal-detail-value" id="modal-tech"></span>
-                </div>
-                <div class="modal-detail-row">
-                    <span class="modal-detail-label">Date:</span>
-                    <span class="modal-detail-value" id="modal-date"></span>
-                </div>
-            </div>
-            <div class="modal-links" id="modal-links"></div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="assets/js/gallery.js"></script>
-    <script src="assets/js/projects.js"></script>
+<script type="text/babel" src="data.jsx"></script>
+<script type="text/babel" src="icons.jsx"></script>
+<script type="text/babel" src="illus.jsx"></script>
+<script type="text/babel" src="scrollfill.jsx"></script>
+<script type="text/babel" src="charts.jsx"></script>
+<script type="text/babel" src="cards.jsx"></script>
+<script type="text/babel" src="extras.jsx"></script>
+<script type="text/babel" src="home.jsx"></script>
+<script type="text/babel" src="works.jsx"></script>
+<script type="text/babel" src="resume.jsx"></script>
+<script type="text/babel" src="playbook.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
 </body>
-
 </html>

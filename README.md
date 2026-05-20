@@ -1,27 +1,20 @@
-# HELLO 🙋‍♀️
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
+
+# Run and deploy your AI Studio app
+
+This contains everything you need to run your app locally.
+
+View your app in AI Studio: https://ai.studio/apps/drive/19amtyT2yK_c6leNGH_cluImgvnIQzvPZ
+
+## Run Locally
+
+**Prerequisites:**  Node.js
 
 
-<b> Introduction <b>
-
-I am a  data analyst with a strong background in extracting insights and making data-driven decisions. I have experience in data cleaning, data visualization, statistical analysis, and machine learning. This portfolio serves as a showcase of my skills and the projects I have completed.
-Welcome.
-
-
-## Skills
-
-- Data Cleaning
-- Data Visualization (using Python libraries like Matplotlib and Seaborn)
-- Statistical Analysis
-- Machine Learning
-- SQL
-- Excel
-- Data Wrangling
-- Problem Solving
-
-## Contact
-
-If you would like to collaborate or have any questions about my work, please feel free to contact me:
-- Email: uduakafang@gmail.com
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/uduakafang)
-
-Thank you for visiting my portfolio! I look forward to connecting with you and discussing potential data analysis projects.
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
