@@ -44,24 +44,24 @@ function HomePage({ go }) {
         <div className="max-w-[1280px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-12 gap-6 md:gap-10 items-start">
             {/* left: status + name */}
-            <div className="col-span-12 lg:col-span-8 reveal text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start gap-3 mb-8">
+            <div className="col-span-12 lg:col-span-8 reveal">
+              <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-8 flex-wrap">
                 <span className="relative inline-flex w-2 h-2">
                   <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-70" />
                   <span className="relative inline-block w-2 h-2 rounded-full bg-emerald-600" />
                 </span>
-                <span className="eyebrow opacity-70">Available · {PROFILE.mode}</span>
-                <span className="opacity-25">—</span>
-                <span className="eyebrow opacity-50">Index · 2018 → 2026</span>
+                <span className="eyebrow opacity-70">Available for work</span>
+                <span className="opacity-25 hidden md:inline">—</span>
+                <span className="eyebrow opacity-50 hidden md:inline">Index · 2018 → 2026</span>
               </div>
 
-              {/* Greeting with typewriter — "Hey, I'm [name]," like the reference */}
-              <div className="flex items-baseline justify-center lg:justify-start gap-3 mb-3">
-                <span className="serif-it text-3xl md:text-4xl text-ink/80">Hey,</span>
-                <span className="mono text-[11px] uppercase tracking-[0.22em] opacity-55">a quick hello</span>
+              {/* Greeting with typewriter */}
+              <div className="flex items-baseline gap-3 mb-2 md:mb-3">
+                <span className="serif-it text-2xl md:text-4xl text-ink/80">Hey,</span>
+                <span className="mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] opacity-55">a quick hello</span>
               </div>
 
-              <h1 className="display text-[9vw] md:text-[6vw] lg:text-[5vw] leading-[0.9] tracking-[-0.04em]">
+              <h1 className="display text-[8.5vw] sm:text-[7vw] md:text-[6vw] lg:text-[5vw] leading-[0.9] tracking-[-0.04em]">
                 I&rsquo;m <span className="text-brick"><Typewriter words={["Uduak Afang"]} typeMs={75} /></span>
                 <span className="text-brick">,</span>
                 <br />
@@ -74,15 +74,16 @@ function HomePage({ go }) {
                 <span className="text-brick">.</span>
               </h1>
 
-              <p className="mt-6 text-[15px] mono uppercase tracking-[0.22em] text-ink/55">
-                {PROFILE.location} &nbsp;·&nbsp; {PROFILE.tz} &nbsp;·&nbsp; {PROFILE.mode}
+              <p className="mt-4 md:mt-6 text-[12px] md:text-[15px] mono uppercase tracking-[0.18em] md:tracking-[0.22em] text-ink/55">
+                {PROFILE.location} · {PROFILE.tz}
+                <span className="hidden sm:inline"> &nbsp;·&nbsp; {PROFILE.mode}</span>
               </p>
 
-              <p className="mt-8 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0 text-ink/75">
+              <p className="mt-6 md:mt-8 text-base md:text-xl leading-relaxed max-w-2xl text-ink/75">
                 {PROFILE.blurb}
               </p>
 
-              <div className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+              <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-2 md:gap-3">
                 <button
                   onClick={() => go("works")}
                   className="px-6 py-3 rounded-full bg-ink text-paper hover:bg-brick transition-colors flex items-center gap-2 mono text-[11px] uppercase tracking-[0.22em]"
@@ -144,13 +145,13 @@ function HomePage({ go }) {
               { n: 4,   suffix: "×",  k: "Vizzies",   s: "Awards nominee" },
               { n: 8,   suffix: "+",  k: "Shipped",    s: "End-to-end builds" },
             ].map((s, i) => (
-              <div key={i} className="bg-paper p-6 flex items-center gap-4">
-                <div className="display text-5xl leading-none">
+              <div key={i} className="bg-paper p-3 sm:p-4 md:p-6 flex items-center gap-2 sm:gap-3 md:gap-4">
+                <div className="display text-2xl sm:text-3xl md:text-5xl leading-none whitespace-nowrap">
                   <CountUp to={s.n} suffix={s.suffix} delay={i * 150} />
                 </div>
-                <div className="leading-tight">
-                  <div className="font-semibold">{s.k}</div>
-                  <div className="mono text-[10px] uppercase tracking-widest opacity-55">{s.s}</div>
+                <div className="leading-tight min-w-0">
+                  <div className="font-semibold text-sm md:text-base">{s.k}</div>
+                  <div className="mono text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-wider md:tracking-widest opacity-55 truncate">{s.s}</div>
                 </div>
               </div>
             ))}
