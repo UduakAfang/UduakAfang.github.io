@@ -107,7 +107,7 @@ function HelpSection() {
           setSvcRevealed(true);
           setSvcAnimDone(false);
           // clear stagger delays after all items have animated in
-          setTimeout(() => setSvcAnimDone(true), 800);
+          setTimeout(() => setSvcAnimDone(true), 1800);
         } else {
           setSvcRevealed(false);
           setSvcAnimDone(false);
@@ -148,7 +148,7 @@ function HelpSection() {
                       transform: svcRevealed ? "translateX(0)" : "translateX(-40px)",
                       paddingLeft: isActive ? 12 : 0,
                       transition: "opacity .7s cubic-bezier(.2,.6,.2,1), transform .7s cubic-bezier(.2,.6,.2,1), padding-left .5s ease",
-                      transitionDelay: (svcRevealed && !svcAnimDone) ? (i * 120) + "ms" : "0ms",
+                      transitionDelay: (svcRevealed && !svcAnimDone) ? [0, 300, 650, 1050][i] + "ms" : "0ms",
                     }}
                   >
                     <span className="mono text-[11px] uppercase tracking-[0.22em] text-ink/55 w-8 shrink-0">{s.n}</span>
@@ -386,7 +386,7 @@ function LocaleCard() {
       <div className="mt-3 flex items-end justify-between gap-2">
         <div>
           <div className="display text-5xl leading-[0.85]">Lagos<span className="text-brick">.</span></div>
-          <div className="mono text-[10px] uppercase tracking-widest opacity-55 mt-1.5">Nigeria · UTC+1 · Fully Remote</div>
+          <div className="mono text-[10px] uppercase tracking-widest opacity-55 mt-1.5">Nigeria · UTC+1 · Open to Remote</div>
         </div>
         <div className="text-right">
           <div className="display text-3xl leading-none tabular-nums">{hh}<span className="text-brick">:</span>{mm}</div>
@@ -489,7 +489,7 @@ function AboutWidgets() {
   }, []);
 
   return (
-    <section id="sec-about" className="stack-section stack-cuff py-24 md:py-32" style={{ zIndex: 60, backgroundColor: '#f4f1eb' }}>
+    <section id="sec-about" className="stack-section stack-cuff pt-24 md:pt-32 pb-48 md:pb-[28vh]" style={{ zIndex: 60, backgroundColor: '#f4f1eb' }}>
       <div className="max-w-[1320px] mx-auto px-6 md:px-12">
         <div className="flex items-end justify-between flex-wrap gap-4 mb-12 reveal">
           <div>

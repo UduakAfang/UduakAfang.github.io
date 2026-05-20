@@ -179,37 +179,145 @@ function Interstitial({ page, onDone }) {
       className="fixed inset-0 z-[150] bg-ink text-paper flex flex-col items-center justify-center px-6 overflow-hidden"
       style={{ opacity: 0 }}
     >
-      {/* Decorative background illustrations — subtle line art with brick accents */}
+      {/* Page-specific decorative illustrations */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1200 800" fill="none" preserveAspectRatio="xMidYMid slice">
-        {/* Grid dots */}
+        {/* Shared: subtle grid dots */}
         {[...Array(12)].map((_, i) =>
           [...Array(8)].map((_, j) => (
             <circle key={`d${i}-${j}`} cx={100 * i + 50} cy={100 * j + 50} r="1" fill="rgba(244,241,235,0.04)" />
           ))
         )}
-        {/* Diagonal lines — brick accent */}
-        <line x1="0" y1="0" x2="400" y2="400" stroke="#C7522A" strokeWidth="0.5" opacity="0.12" />
-        <line x1="800" y1="0" x2="1200" y2="400" stroke="#C7522A" strokeWidth="0.5" opacity="0.08" />
-        <line x1="1200" y1="800" x2="800" y2="400" stroke="#C7522A" strokeWidth="0.5" opacity="0.1" />
-        {/* Corner arcs */}
-        <path d="M0 200 Q0 0 200 0" stroke="rgba(244,241,235,0.06)" strokeWidth="1" />
-        <path d="M1200 600 Q1200 800 1000 800" stroke="rgba(244,241,235,0.06)" strokeWidth="1" />
-        {/* Flowing curves */}
-        <path d="M-50 400 C200 350, 400 500, 600 380 S1000 450, 1250 400" stroke="#C7522A" strokeWidth="0.7" opacity="0.09" />
-        <path d="M-50 500 C150 480, 350 550, 550 470 S900 520, 1250 490" stroke="rgba(244,241,235,0.05)" strokeWidth="0.7" />
-        {/* Abstract chart bars — nod to data/BI */}
-        <rect x="80"  y="620" width="18" height="60" rx="4" fill="#C7522A" opacity="0.06" />
-        <rect x="108" y="600" width="18" height="80" rx="4" fill="#C7522A" opacity="0.08" />
-        <rect x="136" y="640" width="18" height="40" rx="4" fill="#C7522A" opacity="0.05" />
-        <rect x="164" y="610" width="18" height="70" rx="4" fill="#C7522A" opacity="0.07" />
-        {/* Top-right scatter dots */}
-        <circle cx="1050" cy="120" r="3" fill="#C7522A" opacity="0.1" />
-        <circle cx="1080" cy="100" r="2" fill="#C7522A" opacity="0.08" />
-        <circle cx="1110" cy="140" r="4" fill="#C7522A" opacity="0.06" />
-        <circle cx="1070" cy="160" r="2.5" fill="rgba(244,241,235,0.08)" />
-        {/* Large circle ring */}
-        <circle cx="600" cy="400" r="280" stroke="rgba(244,241,235,0.03)" strokeWidth="1" />
-        <circle cx="600" cy="400" r="320" stroke="#C7522A" strokeWidth="0.5" opacity="0.04" />
+
+        {page === "works" && <>
+          {/* WORKS: Dashboard/chart motifs — bar charts, scatter, data grids */}
+          {/* Bar chart cluster — bottom left */}
+          <rect x="60"  y="580" width="24" height="100" rx="4" fill="#C7522A" opacity="0.08" />
+          <rect x="96"  y="540" width="24" height="140" rx="4" fill="#C7522A" opacity="0.1" />
+          <rect x="132" y="600" width="24" height="80"  rx="4" fill="#C7522A" opacity="0.06" />
+          <rect x="168" y="560" width="24" height="120" rx="4" fill="#C7522A" opacity="0.09" />
+          <rect x="204" y="620" width="24" height="60"  rx="4" fill="#C7522A" opacity="0.07" />
+          <rect x="240" y="510" width="24" height="170" rx="4" fill="#C7522A" opacity="0.05" />
+          {/* Axis lines */}
+          <line x1="50" y1="680" x2="280" y2="680" stroke="rgba(244,241,235,0.08)" strokeWidth="1" />
+          <line x1="50" y1="500" x2="50"  y2="680" stroke="rgba(244,241,235,0.08)" strokeWidth="1" />
+          {/* Pie/donut chart — top right */}
+          <circle cx="1050" cy="180" r="70" stroke="#C7522A" strokeWidth="6" opacity="0.08" strokeDasharray="110 330" />
+          <circle cx="1050" cy="180" r="70" stroke="rgba(244,241,235,0.06)" strokeWidth="6" strokeDasharray="200 240" strokeDashoffset="-110" />
+          <circle cx="1050" cy="180" r="50" stroke="#C7522A" strokeWidth="4" opacity="0.05" strokeDasharray="80 234" />
+          {/* Scatter dots — center right */}
+          <circle cx="900" cy="350" r="4" fill="#C7522A" opacity="0.1" />
+          <circle cx="940" cy="320" r="3" fill="#C7522A" opacity="0.08" />
+          <circle cx="920" cy="380" r="5" fill="#C7522A" opacity="0.06" />
+          <circle cx="970" cy="360" r="3" fill="rgba(244,241,235,0.08)" />
+          <circle cx="950" cy="400" r="4" fill="#C7522A" opacity="0.07" />
+          <circle cx="880" cy="310" r="2" fill="rgba(244,241,235,0.06)" />
+          {/* Data grid lines — top left */}
+          {[0,1,2,3,4].map(i => (
+            <line key={`gl${i}`} x1="80" y1={100+i*30} x2="320" y2={100+i*30} stroke="rgba(244,241,235,0.04)" strokeWidth="1" />
+          ))}
+          {[0,1,2,3].map(i => (
+            <line key={`gv${i}`} x1={80+i*80} y1="100" x2={80+i*80} y2="220" stroke="rgba(244,241,235,0.04)" strokeWidth="1" />
+          ))}
+          {/* Large concentric rings */}
+          <circle cx="600" cy="400" r="260" stroke="rgba(244,241,235,0.03)" strokeWidth="1" />
+          <circle cx="600" cy="400" r="300" stroke="#C7522A" strokeWidth="0.5" opacity="0.05" />
+          {/* Trend line */}
+          <path d="M300 450 C400 420, 500 380, 600 350 S800 300, 1000 280" stroke="#C7522A" strokeWidth="1" opacity="0.08" />
+        </>}
+
+        {page === "playbook" && <>
+          {/* PLAYBOOK: Process/methodology — flow arrows, steps, pipeline */}
+          {/* Flow pipeline — horizontal with nodes */}
+          <line x1="100" y1="200" x2="1100" y2="200" stroke="rgba(244,241,235,0.05)" strokeWidth="1" />
+          {[0,1,2,3,4,5].map(i => (
+            <React.Fragment key={`node${i}`}>
+              <circle cx={200+i*160} cy={200} r="12" stroke="#C7522A" strokeWidth="1.5" opacity={0.06 + i*0.015} fill="none" />
+              <circle cx={200+i*160} cy={200} r="4" fill="#C7522A" opacity={0.06 + i*0.02} />
+              {i < 5 && <path d={`M${218+i*160} 200 L${282+i*160} 200`} stroke="#C7522A" strokeWidth="0.8" opacity="0.06" markerEnd="" />}
+              {i < 5 && <polygon points={`${280+i*160},196 ${288+i*160},200 ${280+i*160},204`} fill="#C7522A" opacity="0.06" />}
+            </React.Fragment>
+          ))}
+          {/* Funnel shape — bottom left */}
+          <path d="M80 550 L220 550 L180 680 L120 680 Z" stroke="#C7522A" strokeWidth="1" opacity="0.07" fill="none" />
+          <path d="M100 580 L200 580 L175 640 L125 640 Z" stroke="#C7522A" strokeWidth="0.7" opacity="0.05" fill="none" />
+          {/* Branching arrows — top right */}
+          <path d="M950 100 L1050 100" stroke="rgba(244,241,235,0.06)" strokeWidth="1" />
+          <path d="M1050 100 L1120 60" stroke="#C7522A" strokeWidth="0.8" opacity="0.08" />
+          <path d="M1050 100 L1120 100" stroke="#C7522A" strokeWidth="0.8" opacity="0.08" />
+          <path d="M1050 100 L1120 140" stroke="#C7522A" strokeWidth="0.8" opacity="0.08" />
+          <circle cx="1120" cy="60" r="4" fill="#C7522A" opacity="0.06" />
+          <circle cx="1120" cy="100" r="4" fill="#C7522A" opacity="0.08" />
+          <circle cx="1120" cy="140" r="4" fill="#C7522A" opacity="0.06" />
+          {/* Hexagonal grid — center */}
+          {[0,1,2].map(row =>
+            [0,1,2,3].map(col => (
+              <polygon
+                key={`hex${row}-${col}`}
+                points={(() => {
+                  const cx = 500 + col * 52 + (row % 2) * 26;
+                  const cy = 380 + row * 45;
+                  const r = 22;
+                  return [0,1,2,3,4,5].map(k => {
+                    const a = Math.PI / 3 * k - Math.PI / 6;
+                    return `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`;
+                  }).join(" ");
+                })()}
+                stroke="#C7522A"
+                strokeWidth="0.6"
+                opacity="0.05"
+                fill="none"
+              />
+            ))
+          )}
+          {/* Circular orbit — large */}
+          <circle cx="600" cy="400" r="280" stroke="rgba(244,241,235,0.03)" strokeWidth="1" />
+          <circle cx="600" cy="400" r="180" stroke="#C7522A" strokeWidth="0.5" opacity="0.04" strokeDasharray="8 12" />
+        </>}
+
+        {page === "resume" && <>
+          {/* RESUME: Career/timeline — document shapes, milestones, path */}
+          {/* Vertical timeline — left side */}
+          <line x1="150" y1="80" x2="150" y2="720" stroke="rgba(244,241,235,0.06)" strokeWidth="1" />
+          {[0,1,2,3,4].map(i => (
+            <React.Fragment key={`tm${i}`}>
+              <circle cx="150" cy={160+i*120} r="6" stroke="#C7522A" strokeWidth="1.5" opacity={0.08 + i*0.01} fill="none" />
+              <circle cx="150" cy={160+i*120} r="2" fill="#C7522A" opacity={0.07 + i*0.01} />
+              <line x1="165" y1={160+i*120} x2={240+Math.random()*60} y2={160+i*120} stroke="rgba(244,241,235,0.04)" strokeWidth="1" />
+            </React.Fragment>
+          ))}
+          {/* Document shapes — top right */}
+          <rect x="950" y="100" width="120" height="160" rx="8" stroke="#C7522A" strokeWidth="1" opacity="0.07" fill="none" />
+          <line x1="970" y1="140" x2="1050" y2="140" stroke="rgba(244,241,235,0.05)" strokeWidth="1" />
+          <line x1="970" y1="165" x2="1040" y2="165" stroke="rgba(244,241,235,0.04)" strokeWidth="1" />
+          <line x1="970" y1="190" x2="1030" y2="190" stroke="rgba(244,241,235,0.04)" strokeWidth="1" />
+          <line x1="970" y1="215" x2="1045" y2="215" stroke="rgba(244,241,235,0.04)" strokeWidth="1" />
+          {/* Second document, offset */}
+          <rect x="980" y="130" width="120" height="160" rx="8" stroke="rgba(244,241,235,0.04)" strokeWidth="1" fill="none" />
+          {/* Career path curve — large swooping line */}
+          <path d="M100 700 C250 650, 400 500, 550 480 S800 350, 1000 200 S1150 120, 1200 100" stroke="#C7522A" strokeWidth="1" opacity="0.07" fill="none" />
+          {/* Achievement stars — scattered */}
+          {[[850,450],[900,500],[870,540],[920,470]].map(([x,y], i) => (
+            <polygon
+              key={`star${i}`}
+              points={(() => {
+                const r1 = 8, r2 = 3;
+                return [0,1,2,3,4,5,6,7,8,9].map(k => {
+                  const a = Math.PI / 5 * k - Math.PI / 2;
+                  const r = k % 2 === 0 ? r1 : r2;
+                  return `${x + r * Math.cos(a)},${y + r * Math.sin(a)}`;
+                }).join(" ");
+              })()}
+              fill="#C7522A"
+              opacity={0.05 + i*0.01}
+            />
+          ))}
+          {/* Graduation cap — abstract */}
+          <path d="M400 620 L440 600 L480 620 L440 640 Z" stroke="#C7522A" strokeWidth="0.8" opacity="0.06" fill="none" />
+          <line x1="440" y1="640" x2="440" y2="670" stroke="#C7522A" strokeWidth="0.8" opacity="0.05" />
+          {/* Concentric rings */}
+          <circle cx="600" cy="400" r="250" stroke="rgba(244,241,235,0.03)" strokeWidth="1" />
+          <circle cx="600" cy="400" r="200" stroke="#C7522A" strokeWidth="0.5" opacity="0.04" strokeDasharray="4 8" />
+        </>}
       </svg>
 
       {/* Logo mark */}

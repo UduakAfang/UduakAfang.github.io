@@ -5,7 +5,7 @@ const PROFILE = {
   role: "Business Intelligence Analyst",
   location: "Lagos, Nigeria",
   tz: "UTC+1",
-  mode: "Fully Remote",
+  mode: "Remote · Hybrid · On-Site (Lagos)",
   email: "uduakafang@gmail.com",
   linkedin: "https://linkedin.com/in/uduakafang",
   github:   "https://github.com/UduakAfang",

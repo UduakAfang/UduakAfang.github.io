@@ -92,7 +92,7 @@ function SelectedWorkCard({ work, onOpen }) {
       </p>
 
       {/* image well */}
-      <div className="mt-6 relative overflow-hidden rounded-[22px] bg-paper2" style={{ aspectRatio: "4 / 3" }}>
+      <div className="mt-6 relative overflow-hidden rounded-[22px] bg-paper2 border border-ink/10" style={{ aspectRatio: "4 / 3" }}>
         <img
           src={work.image}
           alt={work.title}

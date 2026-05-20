@@ -42,7 +42,7 @@ function HomePage({ go }) {
       {/* ───────────── HERO ───────────── */}
       <section id="sec-hero" className="stack-section pt-32 pb-24 md:pt-40 md:pb-32 relative" style={{ zIndex: 10, backgroundColor: '#f4f1eb' }}>
         <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-12 gap-6 md:gap-10 items-end">
+          <div className="grid grid-cols-12 gap-6 md:gap-10 items-start">
             {/* left: status + name */}
             <div className="col-span-12 lg:col-span-8 reveal">
               <div className="flex items-center gap-3 mb-8">
@@ -61,7 +61,7 @@ function HomePage({ go }) {
                 <span className="mono text-[11px] uppercase tracking-[0.22em] opacity-55">a quick hello</span>
               </div>
 
-              <h1 className="display text-[12vw] md:text-[8vw] lg:text-[6.6vw] leading-[0.9] tracking-[-0.04em]">
+              <h1 className="display text-[9vw] md:text-[6vw] lg:text-[5vw] leading-[0.9] tracking-[-0.04em]">
                 I&rsquo;m <span className="text-brick"><Typewriter words={["Uduak Afang"]} typeMs={75} /></span>
                 <span className="text-brick">,</span>
                 <br />
@@ -128,7 +128,7 @@ function HomePage({ go }) {
                 <div className="absolute -bottom-4 left-4 right-4 bg-ink text-paper rounded-2xl p-4 flex items-center justify-between">
                   <div className="mono text-[10px] uppercase tracking-widest opacity-70">Index card</div>
                   <div className="text-right">
-                    <div className="display text-xl leading-none">A1 · 2026</div>
+                    <div className="display text-xl leading-none">Lagos · 2026</div>
                     <div className="mono text-[9px] opacity-60 uppercase tracking-widest">U.AFANG · BI ANALYST</div>
                   </div>
                 </div>
@@ -142,7 +142,7 @@ function HomePage({ go }) {
               { n: 3,   suffix: "+",  k: "Years",     s: "BI experience" },
               { n: 2,   suffix: "×",  k: "Tableau",   s: "Viz of the Day" },
               { n: 4,   suffix: "×",  k: "Vizzies",   s: "Awards nominee" },
-              { n: 100, suffix: "+",  k: "Projects",  s: "Delivered to date" },
+              { n: 8,   suffix: "+",  k: "Shipped",    s: "End-to-end builds" },
             ].map((s, i) => (
               <div key={i} className="bg-paper p-6 flex items-center gap-4">
                 <div className="display text-5xl leading-none">
@@ -226,7 +226,7 @@ function HomePage({ go }) {
                 Read the playbook <ArrowUR size={13} />
               </button>
             </div>
-            <div className="col-span-12 lg:col-span-5 reveal">
+            <div className="col-span-12 lg:col-span-5 flip-reveal">
               <div className="bg-paper/5 border border-paper/10 rounded-3xl p-6">
                 <div className="flex items-center justify-between mb-6">
                   <div className="num-dot border-paper/30 text-paper">★</div>
@@ -280,7 +280,7 @@ function HomePage({ go }) {
                 Tools I use most weeks across BI, ETL, and the occasional full-stack build.
               </p>
             </div>
-            <div className="col-span-12 lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-3">
+            <div className="col-span-12 lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-3 stagger-flip">
               {TOOLS.map((t, i) => (
                 <div key={t} className="card-lift flex items-center gap-3 px-4 py-3 rounded-2xl border border-ink/15 bg-white">
                   <div className="w-9 h-9 rounded-xl bg-ink text-paper flex items-center justify-center">
