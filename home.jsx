@@ -44,8 +44,8 @@ function HomePage({ go }) {
         <div className="max-w-[1280px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-12 gap-6 md:gap-10 items-start">
             {/* left: status + name */}
-            <div className="col-span-12 lg:col-span-8 reveal">
-              <div className="flex items-center gap-3 mb-8">
+            <div className="col-span-12 lg:col-span-8 reveal text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-8">
                 <span className="relative inline-flex w-2 h-2">
                   <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-70" />
                   <span className="relative inline-block w-2 h-2 rounded-full bg-emerald-600" />
@@ -56,7 +56,7 @@ function HomePage({ go }) {
               </div>
 
               {/* Greeting with typewriter — "Hey, I'm [name]," like the reference */}
-              <div className="flex items-baseline gap-3 mb-3">
+              <div className="flex items-baseline justify-center lg:justify-start gap-3 mb-3">
                 <span className="serif-it text-3xl md:text-4xl text-ink/80">Hey,</span>
                 <span className="mono text-[11px] uppercase tracking-[0.22em] opacity-55">a quick hello</span>
               </div>
@@ -78,11 +78,11 @@ function HomePage({ go }) {
                 {PROFILE.location} &nbsp;·&nbsp; {PROFILE.tz} &nbsp;·&nbsp; {PROFILE.mode}
               </p>
 
-              <p className="mt-8 text-lg md:text-xl leading-relaxed max-w-2xl text-ink/75">
+              <p className="mt-8 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0 text-ink/75">
                 {PROFILE.blurb}
               </p>
 
-              <div className="mt-10 flex flex-wrap items-center gap-3">
+              <div className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-3">
                 <button
                   onClick={() => go("works")}
                   className="px-6 py-3 rounded-full bg-ink text-paper hover:bg-brick transition-colors flex items-center gap-2 mono text-[11px] uppercase tracking-[0.22em]"
@@ -105,7 +105,7 @@ function HomePage({ go }) {
             </div>
 
             {/* right: portrait */}
-            <div className="col-span-12 lg:col-span-4">
+            <div className="col-span-12 lg:col-span-4 max-w-sm mx-auto lg:max-w-none lg:mx-0">
               <div className="relative profile-flip">
                 <div className="absolute -top-3 -left-3 right-3 bottom-3 rounded-[36px] bg-brick/15" />
                 <div
