@@ -68,7 +68,7 @@ function PlaybookPage({ go }) {
   }, []);
 
   return (
-    <main className="bg-paper text-ink min-h-screen">
+    <main className="bg-paper text-ink min-h-screen overflow-x-hidden">
 
       {/* Hero — manifesto */}
       <section className="pt-28 md:pt-36 pb-16">
@@ -82,7 +82,7 @@ function PlaybookPage({ go }) {
           <div className="grid grid-cols-12 gap-8 items-end">
             <div className="col-span-12 lg:col-span-8 reveal">
               <div className="pagenum opacity-50 mb-3">§ 03 · The Playbook</div>
-              <h1 className="display text-[11vw] md:text-7xl lg:text-[9rem] leading-[0.84]">
+              <h1 className="display text-5xl sm:text-6xl md:text-7xl lg:text-[9rem] leading-[0.84]">
                 <ScrollFillText fill="#1a1a1a" stroke="#1a1a1a">HOW I</ScrollFillText>{" "}
                 <span className="serif-it text-brick lowercase" style={{ WebkitTextFillColor: "#C7522A" }}>work</span>
                 <span className="text-brick">.</span>
@@ -117,7 +117,7 @@ function PlaybookPage({ go }) {
           </div>
 
           {/* flow diagram */}
-          <div className="mt-16 rounded-3xl border border-ink/10 bg-white p-8 reveal">
+          <div className="mt-16 rounded-3xl border border-ink/10 bg-white p-4 sm:p-6 md:p-8 reveal overflow-x-auto">
             <div className="flex items-center justify-between mb-3">
               <div className="eyebrow opacity-55">Flow · From raw to decision</div>
               <div className="mono text-[10px] uppercase tracking-widest opacity-55">Linear · audited at every step</div>
@@ -133,11 +133,11 @@ function PlaybookPage({ go }) {
           {PILLARS.map((p, i) => (
             <article key={p.n} className="grid grid-cols-12 gap-8 reveal pt-12" style={{ borderTop: i === 0 ? "2px solid #1a1a1a" : "1px solid rgba(26,26,26,.18)" }}>
               <div className="col-span-12 md:col-span-3">
-                <div className="display text-[7rem] leading-[0.85] text-brick">{p.n}</div>
+                <div className="display text-6xl md:text-[7rem] leading-[0.85] text-brick">{p.n}</div>
                 <div className="mono text-[11px] uppercase tracking-widest opacity-55 mt-2">Pillar {p.n}</div>
               </div>
               <div className="col-span-12 md:col-span-6">
-                <h2 className="display text-6xl">
+                <h2 className="display text-4xl md:text-6xl">
                   {p.name} <span className="serif-it text-brick lowercase">{p.serif}</span><span className="text-brick">.</span>
                 </h2>
                 <p className="mt-5 text-lg leading-relaxed text-ink/75">{p.blurb}</p>
@@ -216,7 +216,7 @@ function PlaybookPage({ go }) {
           <div className="flex items-end justify-between mb-10 reveal">
             <div>
               <div className="pagenum opacity-50 mb-3">§ 03.c · Operating phases</div>
-              <h2 className="display text-6xl md:text-7xl">Six <span className="serif-it text-brick lowercase">phases</span><span className="text-brick">.</span></h2>
+              <h2 className="display text-4xl sm:text-5xl md:text-7xl">Six <span className="serif-it text-brick lowercase">phases</span><span className="text-brick">.</span></h2>
               <p className="mt-3 text-ink/65 max-w-xl">
                 Adapted to scope, never skipped. Each one ladders up to a pillar above.
               </p>
@@ -230,7 +230,7 @@ function PlaybookPage({ go }) {
             {PHASES.map((p, i) => (
               <div key={p.n} className={i % 2 === 0 ? "flip-reveal" : "flip-reveal-alt"}>
                 <div className="card-lift bg-white border border-ink/10 rounded-3xl p-6 flex gap-5" style={{ transitionDelay: (i * 120) + "ms" }}>
-                  <div className="display text-[5.5rem] leading-[0.8] text-brick">{p.n}</div>
+                  <div className="display text-5xl md:text-[5.5rem] leading-[0.8] text-brick shrink-0">{p.n}</div>
                   <div>
                     <h3 className="display text-3xl">{p.t}</h3>
                     <div className="mono text-[10px] uppercase tracking-widest opacity-55 mt-1">{p.s}</div>
@@ -247,7 +247,7 @@ function PlaybookPage({ go }) {
       <section className="py-24 bg-paper2">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 text-center reveal">
           <div className="pagenum opacity-50 mb-3">§ 03.d · Get started</div>
-          <h2 className="display text-6xl md:text-8xl">
+          <h2 className="display text-4xl sm:text-5xl md:text-8xl">
             Ready to <span className="serif-it text-brick lowercase">plate it up</span><span className="text-brick">?</span>
           </h2>
           <p className="mt-4 text-ink/65 max-w-xl mx-auto">

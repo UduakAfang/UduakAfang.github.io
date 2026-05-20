@@ -18,7 +18,7 @@ function ResumePage({ go }) {
   }, []);
 
   return (
-    <main className="bg-paper2 text-ink min-h-screen">
+    <main className="bg-paper2 text-ink min-h-screen overflow-x-hidden">
       {/* Title strip */}
       <section className="pt-28 md:pt-36 pb-10">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12">
@@ -56,14 +56,14 @@ function ResumePage({ go }) {
           <div className="bg-paper rounded-[32px] shadow-[0_30px_60px_-40px_rgba(26,26,26,0.35)] overflow-hidden reveal">
 
             {/* Editorial header (the Aileen-Luo bar) */}
-            <div className="relative bg-brick px-10 md:px-16 pt-8 pb-16">
+            <div className="relative bg-brick px-5 sm:px-10 md:px-16 pt-8 pb-16">
               {/* tiny meta bar across the top */}
               <div className="flex items-center justify-between mono text-[10px] uppercase tracking-[0.3em] text-paper/80 mb-12 gap-4">
                 <span>U. AFANG · 2026 · Résumé v3.2</span>
                 <span className="hidden md:inline">Letter · A4</span>
                 <span>Lagos / Remote</span>
               </div>
-              <div className="display text-paper text-[14vw] md:text-[8rem] leading-[0.85]">
+              <div className="display text-paper text-4xl sm:text-6xl md:text-[8rem] leading-[0.85]">
                 Uduak Afang
               </div>
               <div className="mt-3 mono text-paper/85 uppercase tracking-[0.22em] text-[11px]">
@@ -72,9 +72,9 @@ function ResumePage({ go }) {
             </div>
 
             {/* tear strip */}
-            <div className="dash-div mx-10 md:mx-16 -mt-3 relative z-10 bg-paper" />
+            <div className="dash-div mx-5 sm:mx-10 md:mx-16 -mt-3 relative z-10 bg-paper" />
 
-            <div className="px-8 md:px-16 py-14 grid grid-cols-12 gap-10">
+            <div className="px-4 sm:px-8 md:px-16 py-10 sm:py-14 grid grid-cols-12 gap-6 sm:gap-10">
 
               {/* LEFT — about / contact / skills */}
               <aside className="col-span-12 lg:col-span-4 space-y-10">

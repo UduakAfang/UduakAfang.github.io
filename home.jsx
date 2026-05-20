@@ -37,7 +37,7 @@ function HomePage({ go }) {
   }, []);
 
   return (
-    <main className="bg-paper text-ink">
+    <main className="bg-paper text-ink overflow-x-hidden">
 
       {/* ───────────── HERO ───────────── */}
       <section id="sec-hero" className="stack-section pt-32 pb-24 md:pt-40 md:pb-32 relative" style={{ zIndex: 10, backgroundColor: '#f4f1eb' }}>
@@ -61,7 +61,7 @@ function HomePage({ go }) {
                 <span className="mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] opacity-55">a quick hello</span>
               </div>
 
-              <h1 className="display text-[8.5vw] sm:text-[7vw] md:text-[6vw] lg:text-[5vw] leading-[0.9] tracking-[-0.04em]">
+              <h1 className="display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.9] tracking-[-0.04em]">
                 I&rsquo;m <span className="text-brick"><Typewriter words={["Uduak Afang"]} typeMs={75} /></span>
                 <span className="text-brick">,</span>
                 <br />
@@ -138,7 +138,7 @@ function HomePage({ go }) {
           </div>
 
           {/* metric strip — numbers count up when visible */}
-          <div className="mt-14 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-ink/15 rounded-3xl overflow-hidden">
+          <div className="mt-14 md:mt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-px bg-ink/15 rounded-3xl overflow-hidden">
             {[
               { n: 3,   suffix: "+",  k: "Years",     s: "BI experience" },
               { n: 2,   suffix: "×",  k: "Tableau",   s: "Viz of the Day" },
@@ -256,7 +256,7 @@ function HomePage({ go }) {
           <div className="grid grid-cols-12 gap-10 mb-24 reveal">
             <div className="col-span-12 lg:col-span-4">
               <div className="pagenum opacity-50 mb-3">§ 04.1 · Skills</div>
-              <h2 className="display text-5xl md:text-6xl">
+              <h2 className="display text-4xl sm:text-5xl md:text-6xl">
                 <ScrollFillText fill="#1a1a1a" stroke="#1a1a1a">Self-assessed</ScrollFillText><br/><ScrollFillText fill="#C7522A" stroke="#C7522A" className="serif-it lowercase" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontWeight: 400, letterSpacing: '-0.01em', textTransform: 'lowercase' }}>depth</ScrollFillText>
               </h2>
               <p className="mt-4 text-ink/65 max-w-xs">
@@ -274,14 +274,14 @@ function HomePage({ go }) {
           <div ref={techRef} className="grid grid-cols-12 gap-10 reveal pt-16 dash-div">
             <div className="col-span-12 lg:col-span-4">
               <div className="pagenum opacity-50 mb-3">§ 04.2 · Tech Stack</div>
-              <h2 className="display text-5xl md:text-6xl">
+              <h2 className="display text-4xl sm:text-5xl md:text-6xl">
                 <ScrollFillText fill="#1a1a1a" stroke="#1a1a1a">Daily</ScrollFillText><br/><ScrollFillText fill="#C7522A" stroke="#C7522A" className="serif-it lowercase" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontWeight: 400, letterSpacing: '-0.01em', textTransform: 'lowercase' }}>rotation</ScrollFillText>
               </h2>
               <p className="mt-4 text-ink/65 max-w-xs">
                 Tools I use most weeks across BI, ETL, and the occasional full-stack build.
               </p>
             </div>
-            <div className="col-span-12 lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-3 stagger-flip">
+            <div className="col-span-12 lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 stagger-flip">
               {TOOLS.map((t, i) => (
                 <div key={t} className="card-lift flex items-center gap-3 px-4 py-3 rounded-2xl border border-ink/15 bg-white">
                   <div className="w-9 h-9 rounded-xl bg-ink text-paper flex items-center justify-center">
@@ -307,11 +307,11 @@ function HomePage({ go }) {
             <ScrollFillText fill="#f4f1eb" stroke="#f4f1eb">LET&rsquo;S</ScrollFillText>{" "}
             <ScrollFillText fill="#C7522A" stroke="#C7522A" className="serif-it lowercase" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontWeight: 400, letterSpacing: '-0.01em', textTransform: 'lowercase' }}>talk</ScrollFillText><span className="text-brick">.</span>
           </h2>
-          <a href={`mailto:${PROFILE.email}`} className="ul-link mt-8 inline-block display text-4xl md:text-5xl text-brick">
+          <a href={`mailto:${PROFILE.email}`} className="ul-link mt-8 inline-block display text-2xl sm:text-4xl md:text-5xl text-brick break-all">
             {PROFILE.email}
           </a>
-          <div className="mt-8 mono text-[11px] uppercase tracking-widest opacity-65">
-            {PROFILE.location} &nbsp;·&nbsp; {PROFILE.tz} &nbsp;·&nbsp; {PROFILE.mode}
+          <div className="mt-8 mono text-[10px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest opacity-65">
+            {PROFILE.location} · {PROFILE.tz}<span className="hidden sm:inline"> · {PROFILE.mode}</span>
           </div>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             {[

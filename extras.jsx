@@ -120,7 +120,7 @@ function HelpSection() {
 
   return (
     <section id="sec-services" className="stack-section stack-cuff py-24 md:py-32" style={{ zIndex: 30, backgroundColor: '#f4f1eb' }}>
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-12 overflow-hidden">
         <div className="grid grid-cols-12 gap-8 items-start">
           {/* Left: list */}
           <div className="col-span-12 lg:col-span-7" ref={svcListRef}>
@@ -385,7 +385,7 @@ function LocaleCard() {
       <div className="mono text-[10px] uppercase tracking-widest opacity-55">Where I am</div>
       <div className="mt-3 flex items-end justify-between gap-2">
         <div>
-          <div className="display text-5xl leading-[0.85]">Lagos<span className="text-brick">.</span></div>
+          <div className="display text-4xl sm:text-5xl leading-[0.85]">Lagos<span className="text-brick">.</span></div>
           <div className="mono text-[10px] uppercase tracking-widest opacity-55 mt-1.5">Nigeria · UTC+1 · Open to Remote</div>
         </div>
         <div className="text-right">
@@ -435,8 +435,8 @@ function ActivityCard() {
         <div className="mono text-[10px] uppercase tracking-widest opacity-55">This week</div>
         <div className="mono text-[10px] uppercase tracking-widest text-brick">Mon → Sun</div>
       </div>
-      <div className="flex items-center gap-5">
-        <svg ref={ref} width="160" height="160" />
+      <div className="flex items-center gap-3 sm:gap-5">
+        <svg ref={ref} viewBox="0 0 160 160" className="w-24 h-24 sm:w-[160px] sm:h-[160px] shrink-0" />
         <ul className="space-y-2">
           {rings.map((r) => (
             <li key={r.label} className="flex items-center gap-2 text-sm">
@@ -490,7 +490,7 @@ function AboutWidgets() {
 
   return (
     <section id="sec-about" className="stack-section stack-cuff pt-24 md:pt-32 pb-16 md:pb-24 lg:pb-[28vh]" style={{ zIndex: 60, backgroundColor: '#f4f1eb' }}>
-      <div className="max-w-[1320px] mx-auto px-6 md:px-12">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-12 overflow-hidden">
         <div className="flex items-end justify-between flex-wrap gap-4 mb-12 reveal">
           <div>
             <div className="pagenum opacity-50 mb-3">§ 05 · Off the clock</div>

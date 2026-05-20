@@ -20,7 +20,7 @@ function WorksPage({ go }) {
   const archive = items.filter(w => !SELECTED_WORKS.find(s => s.id === w.id));
 
   return (
-    <main className="bg-paper text-ink min-h-screen">
+    <main className="bg-paper text-ink min-h-screen overflow-x-hidden">
       {/* Header / dashboard chrome */}
       <section className="pt-28 md:pt-36 pb-10">
         <div className="max-w-[1320px] mx-auto px-6 md:px-12">
