@@ -5,12 +5,17 @@ const { useState: useStateA, useEffect: useEffectA } = React;
 
 function Nav({ page, go }) {
   const [stuck, setStuck] = useStateA(false);
+  const [menuOpen, setMenuOpen] = useStateA(false);
+
   useEffectA(() => {
     const onScroll = () => setStuck(window.scrollY > 16);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // close mobile menu on page change
+  useEffectA(() => { setMenuOpen(false); }, [page]);
 
   const items = [
     { id: "home",     label: "Home"     },
@@ -20,7 +25,7 @@ function Nav({ page, go }) {
   ];
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-[100] flex justify-center px-4">
+    <header className="fixed top-4 left-0 right-0 z-[100] flex flex-col items-center px-4">
       <nav
         className={
           "w-full max-w-3xl rounded-full flex items-center justify-between px-2 py-2 transition-all duration-300 " +
@@ -34,6 +39,7 @@ function Nav({ page, go }) {
           <span className="font-bold tracking-tight">Uduak<span className="text-brick">.</span></span>
         </button>
 
+        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-1 p-1 bg-ink/5 rounded-full">
           {items.map(it => (
             <button
@@ -49,13 +55,60 @@ function Nav({ page, go }) {
           ))}
         </div>
 
-        <a
-          href={`mailto:${PROFILE.email}`}
-          className="px-4 py-2 rounded-full bg-brick text-paper hover:bg-brick2 transition-colors mono text-[11px] uppercase tracking-[0.22em] flex items-center gap-2"
-        >
-          Let's talk <ArrowUR size={11} />
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href={`mailto:${PROFILE.email}`}
+            className="hidden sm:inline-flex px-4 py-2 rounded-full bg-brick text-paper hover:bg-brick2 transition-colors mono text-[11px] uppercase tracking-[0.22em] items-center gap-2"
+          >
+            Let's talk <ArrowUR size={11} />
+          </a>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden w-9 h-9 rounded-full bg-ink/5 flex items-center justify-center"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Toggle menu"
+          >
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+              {menuOpen
+                ? <><line x1="4" y1="4" x2="14" y2="14" /><line x1="14" y1="4" x2="4" y2="14" /></>
+                : <><line x1="3" y1="5" x2="15" y2="5" /><line x1="3" y1="9" x2="15" y2="9" /><line x1="3" y1="13" x2="15" y2="13" /></>
+              }
+            </svg>
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile dropdown menu */}
+      <div
+        className="md:hidden w-full max-w-3xl overflow-hidden transition-all duration-300 ease-out"
+        style={{
+          maxHeight: menuOpen ? 280 : 0,
+          opacity: menuOpen ? 1 : 0,
+          pointerEvents: menuOpen ? "auto" : "none",
+        }}
+      >
+        <div className="mt-2 rounded-2xl bg-paper/95 backdrop-blur-md border border-ink/10 shadow-lg p-3 flex flex-col gap-1">
+          {items.map(it => (
+            <button
+              key={it.id}
+              onClick={() => { go(it.id); setMenuOpen(false); }}
+              className={
+                "w-full text-left px-4 py-3 rounded-xl mono text-[11px] uppercase tracking-[0.22em] transition-colors " +
+                (page === it.id ? "bg-ink text-paper" : "text-ink/70 hover:bg-ink/5")
+              }
+            >
+              {it.label}
+            </button>
+          ))}
+          <a
+            href={`mailto:${PROFILE.email}`}
+            className="sm:hidden w-full text-center px-4 py-3 rounded-xl bg-brick text-paper mono text-[11px] uppercase tracking-[0.22em] mt-1"
+          >
+            Let's talk
+          </a>
+        </div>
+      </div>
     </header>
   );
 }

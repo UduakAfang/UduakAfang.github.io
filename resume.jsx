@@ -31,7 +31,7 @@ function ResumePage({ go }) {
           <div className="flex items-end justify-between gap-6 flex-wrap">
             <div>
               <div className="pagenum opacity-50 mb-3">§ 06 · Curriculum Vitæ</div>
-              <h1 className="display text-7xl md:text-[8.5rem] leading-[0.85]">
+              <h1 className="display text-5xl md:text-7xl lg:text-[8.5rem] leading-[0.85]">
                 <ScrollFillText fill="#1a1a1a" stroke="#1a1a1a">RÉSUMÉ</ScrollFillText><span className="text-brick">.</span>
               </h1>
               <p className="mt-3 text-ink/65 max-w-md">A long-form version of who I am, what I've built, and where to find me.</p>

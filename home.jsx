@@ -137,7 +137,7 @@ function HomePage({ go }) {
           </div>
 
           {/* metric strip — numbers count up when visible */}
-          <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-ink/15 rounded-3xl overflow-hidden">
+          <div className="mt-14 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-ink/15 rounded-3xl overflow-hidden">
             {[
               { n: 3,   suffix: "+",  k: "Years",     s: "BI experience" },
               { n: 2,   suffix: "×",  k: "Tableau",   s: "Viz of the Day" },
@@ -164,7 +164,7 @@ function HomePage({ go }) {
           <div className="flex items-end justify-between mb-12 reveal">
             <div>
               <div className="pagenum opacity-50 mb-3">§ 02 · Selected Works</div>
-              <h2 className="display text-6xl md:text-8xl">
+              <h2 className="display text-4xl sm:text-5xl md:text-8xl">
                 <ScrollFillText fill="#1a1a1a" stroke="#1a1a1a">SELECTED</ScrollFillText>{" "}
                 <ScrollFillText fill="#C7522A" stroke="#C7522A" className="serif-it lowercase" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontWeight: 400, letterSpacing: '-0.01em', textTransform: 'lowercase' }}>works</ScrollFillText><span className="text-brick">.</span>
               </h2>
@@ -205,7 +205,7 @@ function HomePage({ go }) {
           <div className="grid grid-cols-12 gap-8 items-center">
             <div className="col-span-12 lg:col-span-7 reveal">
               <div className="pagenum opacity-50 mb-3">§ 03 · The Playbook</div>
-              <h2 className="display text-6xl md:text-7xl">
+              <h2 className="display text-4xl sm:text-5xl md:text-7xl">
                 <ScrollFillText fill="#f4f1eb" stroke="#f4f1eb">How data looks</ScrollFillText><br/>
                 <ScrollFillText fill="#C7522A" stroke="#C7522A" className="serif-it lowercase" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontWeight: 400, letterSpacing: '-0.01em', textTransform: 'lowercase' }}>is how data speaks.</ScrollFillText>
               </h2>
@@ -302,7 +302,7 @@ function HomePage({ go }) {
       <section id="sec-contact" className="stack-section stack-cuff text-paper py-28" style={{ zIndex: 70, backgroundColor: '#1a1a1a' }}>
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 text-center">
           <div className="pagenum opacity-50 mb-3">§ 06 · Contact</div>
-          <h2 className="display text-6xl md:text-8xl">
+          <h2 className="display text-4xl sm:text-5xl md:text-8xl">
             <ScrollFillText fill="#f4f1eb" stroke="#f4f1eb">LET&rsquo;S</ScrollFillText>{" "}
             <ScrollFillText fill="#C7522A" stroke="#C7522A" className="serif-it lowercase" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontWeight: 400, letterSpacing: '-0.01em', textTransform: 'lowercase' }}>talk</ScrollFillText><span className="text-brick">.</span>
           </h2>

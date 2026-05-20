@@ -125,7 +125,7 @@ function HelpSection() {
           {/* Left: list */}
           <div className="col-span-12 lg:col-span-7" ref={svcListRef}>
             <div className="pagenum opacity-50 mb-3">§ 03 · Services</div>
-            <h2 className="display text-6xl md:text-7xl leading-[0.85]">
+            <h2 className="display text-4xl sm:text-5xl md:text-7xl leading-[0.85]">
               <ScrollFillText fill="#1a1a1a" stroke="#1a1a1a">HOW I CAN</ScrollFillText>{" "}
               <ScrollFillText fill="#C7522A" stroke="#C7522A" className="serif-it lowercase" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontWeight: 400, letterSpacing: '-0.01em', textTransform: 'lowercase' }}>help you</ScrollFillText><span className="text-brick">.</span>
             </h2>
@@ -489,12 +489,12 @@ function AboutWidgets() {
   }, []);
 
   return (
-    <section id="sec-about" className="stack-section stack-cuff pt-24 md:pt-32 pb-48 md:pb-[28vh]" style={{ zIndex: 60, backgroundColor: '#f4f1eb' }}>
+    <section id="sec-about" className="stack-section stack-cuff pt-24 md:pt-32 pb-16 md:pb-24 lg:pb-[28vh]" style={{ zIndex: 60, backgroundColor: '#f4f1eb' }}>
       <div className="max-w-[1320px] mx-auto px-6 md:px-12">
         <div className="flex items-end justify-between flex-wrap gap-4 mb-12 reveal">
           <div>
             <div className="pagenum opacity-50 mb-3">§ 05 · Off the clock</div>
-            <h2 className="display text-6xl md:text-7xl">
+            <h2 className="display text-4xl sm:text-5xl md:text-7xl">
               <ScrollFillText fill="#1a1a1a" stroke="#1a1a1a">WHEN I'M NOT</ScrollFillText>{" "}
               <ScrollFillText fill="#C7522A" stroke="#C7522A" className="serif-it lowercase" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontWeight: 400, letterSpacing: '-0.01em', textTransform: 'lowercase' }}>at my desk</ScrollFillText><span className="text-brick">.</span>
             </h2>

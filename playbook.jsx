@@ -82,7 +82,7 @@ function PlaybookPage({ go }) {
           <div className="grid grid-cols-12 gap-8 items-end">
             <div className="col-span-12 lg:col-span-8 reveal">
               <div className="pagenum opacity-50 mb-3">§ 03 · The Playbook</div>
-              <h1 className="display text-[12vw] md:text-[9rem] leading-[0.84]">
+              <h1 className="display text-[11vw] md:text-7xl lg:text-[9rem] leading-[0.84]">
                 <ScrollFillText fill="#1a1a1a" stroke="#1a1a1a">HOW I</ScrollFillText>{" "}
                 <span className="serif-it text-brick lowercase" style={{ WebkitTextFillColor: "#C7522A" }}>work</span>
                 <span className="text-brick">.</span>

@@ -162,21 +162,27 @@
   /* dashed divider */
   .dash-div { background-image: linear-gradient(to right, rgba(26,26,26,.35) 50%, transparent 0); background-position: bottom; background-size: 8px 1px; background-repeat: repeat-x; padding-bottom: 1px; }
 
-  /* Section stacking — sticky cards pattern.
-     min-height:100vh ensures each section fully covers the viewport
-     when it's stuck, so previous sections can't peek through. */
+  /* Section stacking — sticky cards pattern (desktop only).
+     On mobile/tablet, sections flow normally to avoid content clipping. */
   .stack-section {
-    position: sticky;
-    top: 0;
-    min-height: 100vh;
     isolation: isolate;
   }
-  /* curved "cuff" top — every section after the hero gets a rounded top edge
-     so stacking sections scoop over the one beneath them */
+  @media (min-width: 1024px) {
+    .stack-section {
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
+    }
+  }
+  /* curved "cuff" top — rounded top edge on every section after the hero */
   .stack-cuff {
     border-radius: 36px 36px 0 0;
-    margin-top: -36px;       /* overlap previous section to hide the seam */
-    padding-top: 36px;       /* restore content spacing lost by negative margin */
+  }
+  @media (min-width: 1024px) {
+    .stack-cuff {
+      margin-top: -36px;       /* overlap previous section to hide the seam */
+      padding-top: 36px;       /* restore content spacing lost by negative margin */
+    }
   }
 
   /* hide tweaks panel chrome bleed */

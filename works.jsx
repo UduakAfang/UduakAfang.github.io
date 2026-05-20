@@ -35,7 +35,7 @@ function WorksPage({ go }) {
           <div className="flex items-end justify-between gap-6 flex-wrap mb-10">
             <div>
               <div className="pagenum opacity-50 mb-3">§ 02 · Project Archive</div>
-              <h1 className="display text-7xl md:text-[9rem] leading-[0.85]">
+              <h1 className="display text-5xl md:text-7xl lg:text-[9rem] leading-[0.85]">
                 <ScrollFillText fill="#1a1a1a" stroke="#1a1a1a">WORKS</ScrollFillText><span className="text-brick">.</span>
               </h1>
               <p className="mt-4 text-ink/65 max-w-xl">
