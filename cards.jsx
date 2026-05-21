@@ -50,7 +50,7 @@ function SelectedWorkCard({ work, onOpen }) {
   return (
     <article
       ref={cardRef}
-      className="relative bg-white rounded-[28px] p-7 flex flex-col h-full"
+      className="relative bg-white rounded-[20px] sm:rounded-[28px] p-3 sm:p-5 md:p-7 flex flex-col h-full"
       style={{
         boxShadow: hover
           ? "0 24px 48px -16px rgba(26,26,26,.22), 0 1px 0 rgba(26,26,26,.06)"
@@ -92,7 +92,7 @@ function SelectedWorkCard({ work, onOpen }) {
       </p>
 
       {/* image well */}
-      <div className="mt-6 relative overflow-hidden rounded-[22px] bg-paper2 border border-ink/10" style={{ aspectRatio: "4 / 3" }}>
+      <div className="mt-3 sm:mt-6 relative overflow-hidden rounded-[16px] sm:rounded-[22px] bg-paper2 border border-ink/10" style={{ aspectRatio: "4 / 3" }}>
         <img
           src={work.image}
           alt={work.title}
@@ -105,7 +105,7 @@ function SelectedWorkCard({ work, onOpen }) {
         <div className="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none"
              style={{ background: "linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0))" }} />
         {/* location pin */}
-        <div className="absolute left-4 bottom-4 right-4 flex items-end justify-between gap-2 text-white">
+        <div className="absolute left-2 bottom-2 right-2 sm:left-4 sm:bottom-4 sm:right-4 flex items-end justify-between gap-2 text-white">
           <div className="flex items-center gap-2 min-w-0">
             <Pin size={14} />
             <div className="leading-tight min-w-0">
@@ -124,7 +124,7 @@ function SelectedWorkCard({ work, onOpen }) {
       {/* See case study */}
       <button
         onClick={() => onOpen && onOpen(work)}
-        className="mt-6 inline-flex items-center justify-between gap-2 w-full px-5 py-3 rounded-full border border-ink/15 hover:border-ink hover:bg-ink hover:text-paper transition-colors group"
+        className="mt-3 sm:mt-6 inline-flex items-center justify-between gap-2 w-full px-3 sm:px-5 py-2 sm:py-3 rounded-full border border-ink/15 hover:border-ink hover:bg-ink hover:text-paper transition-colors group"
       >
         <span className="mono text-[11px] uppercase tracking-[0.22em]">See case study</span>
         <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-ink text-paper group-hover:bg-paper group-hover:text-ink transition-colors">
@@ -140,7 +140,7 @@ function ArchiveCard({ work, onOpen }) {
   return (
     <article
       onClick={() => onOpen && onOpen(work)}
-      className="card-lift bg-white rounded-[22px] p-4 cursor-pointer flex flex-col h-full"
+      className="card-lift bg-white rounded-[16px] sm:rounded-[22px] p-2 sm:p-4 cursor-pointer flex flex-col h-full"
       style={{ boxShadow: "0 1px 0 rgba(26,26,26,.06), 0 14px 30px -28px rgba(26,26,26,.25)" }}
     >
       <div className="flex items-center justify-between mb-3">
@@ -189,16 +189,16 @@ function CaseModal({ work, onClose }) {
           <img src={work.image} alt={work.title} className="w-full h-full object-cover" />
           <div className="absolute inset-x-0 bottom-0 h-2/3 pointer-events-none"
                style={{ background: "linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,0))" }} />
-          <div className="absolute left-6 bottom-6 right-6 text-white">
+          <div className="absolute left-3 bottom-3 right-3 sm:left-6 sm:bottom-6 sm:right-6 text-white">
             <div className="flex items-center gap-2 mb-3">
               <span className="tag-pill">{work.tag}</span>
               <span className="mono text-[10px] uppercase tracking-widest opacity-80">{work.year} · {work.client}</span>
             </div>
-            <h3 className="display text-5xl md:text-6xl">{work.title}</h3>
+            <h3 className="display text-3xl sm:text-5xl md:text-6xl">{work.title}</h3>
           </div>
         </div>
 
-        <div className="p-8 md:p-10 space-y-8">
+        <div className="p-4 sm:p-8 md:p-10 space-y-6 sm:space-y-8">
           <p className="text-base md:text-lg leading-relaxed text-ink/75">{work.blurb}</p>
 
           {/* Quick facts */}

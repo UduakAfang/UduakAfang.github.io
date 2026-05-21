@@ -118,7 +118,7 @@ function Footer({ go }) {
     <footer className="bg-ink text-paper">
       {/* big name slab */}
       <div className="border-t border-paper/10">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 py-10 grid grid-cols-12 gap-8 items-end">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12 py-10 grid grid-cols-12 gap-8 items-end">
           <div className="col-span-12 lg:col-span-7">
             <div className="display text-5xl sm:text-7xl md:text-[10rem] leading-[0.82] tracking-[-0.04em] text-paper/95">
               Uduak <span className="serif-it lowercase text-brick">afang</span><span className="text-brick">.</span>
@@ -158,7 +158,7 @@ function Footer({ go }) {
       </div>
 
       <div className="border-t border-paper/10">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 py-5 flex flex-col sm:flex-row flex-wrap items-center justify-between gap-2 sm:gap-3 mono text-[10px] uppercase tracking-widest text-paper/60 text-center sm:text-left">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12 py-5 flex flex-col sm:flex-row flex-wrap items-center justify-between gap-2 sm:gap-3 mono text-[10px] uppercase tracking-widest text-paper/60 text-center sm:text-left">
           <span>© {new Date().getFullYear()} · Uduak Afang</span>
           <span className="hidden sm:inline">{PROFILE.location} · {PROFILE.tz}</span>
           <span>v2.0 · Hand-built</span>

@@ -21,7 +21,7 @@ function ResumePage({ go }) {
     <main className="bg-paper2 text-ink min-h-screen overflow-x-hidden">
       {/* Title strip */}
       <section className="pt-28 md:pt-36 pb-10">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12">
           <div className="flex items-center gap-2 mono text-[11px] uppercase tracking-[0.22em] text-ink/55 mb-10">
             <button onClick={() => go("home")} className="hover:text-ink">Home</button>
             <span>/</span>
@@ -52,7 +52,7 @@ function ResumePage({ go }) {
 
       {/* The paper document */}
       <section className="pb-32">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12">
           <div className="bg-paper rounded-[32px] shadow-[0_30px_60px_-40px_rgba(26,26,26,0.35)] overflow-hidden reveal">
 
             {/* Editorial header (the Aileen-Luo bar) */}

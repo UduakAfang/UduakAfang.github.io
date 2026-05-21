@@ -23,7 +23,7 @@ function WorksPage({ go }) {
     <main className="bg-paper text-ink min-h-screen overflow-x-hidden">
       {/* Header / dashboard chrome */}
       <section className="pt-28 md:pt-36 pb-10">
-        <div className="max-w-[1320px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1320px] mx-auto px-3 sm:px-6 md:px-12">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 mono text-[11px] uppercase tracking-[0.22em] text-ink/55 mb-10">
             <button onClick={() => go("home")} className="hover:text-ink">Home</button>
@@ -78,7 +78,7 @@ function WorksPage({ go }) {
       {/* Pinned (selected works) */}
       {pinned.length > 0 && (
         <section className="pb-10">
-          <div className="max-w-[1320px] mx-auto px-6 md:px-12">
+          <div className="max-w-[1320px] mx-auto px-3 sm:px-6 md:px-12">
             <div className="flex items-center gap-3 mb-5">
               <div className="num-dot">★</div>
               <div>
@@ -97,7 +97,7 @@ function WorksPage({ go }) {
 
       {/* Full archive */}
       <section className="pb-32 pt-6">
-        <div className="max-w-[1320px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1320px] mx-auto px-3 sm:px-6 md:px-12">
           <div className="flex items-center gap-3 mb-5">
             <div className="num-dot">⌗</div>
             <div>

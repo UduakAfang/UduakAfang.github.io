@@ -47,7 +47,7 @@ function Typewriter({ words = [], typeMs = 70, holdMs = 1200, deleteMs = 38 }) {
       }
     >
       {empty && <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 mr-2" />}
-      <span className="whitespace-nowrap">{empty ? "Add name" : text}</span>
+      <span>{empty ? "Add name" : text}</span>
       <span
         aria-hidden
         className="ml-1 w-[3px] bg-current opacity-70 animate-pulse"
@@ -121,7 +121,7 @@ function HelpSection() {
   return (
     <section id="sec-services" className="stack-section stack-cuff py-24 md:py-32" style={{ zIndex: 30, backgroundColor: '#f4f1eb' }}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-12 overflow-hidden">
-        <div className="grid grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-12 gap-4 sm:gap-8 items-start">
           {/* Left: list */}
           <div className="col-span-12 lg:col-span-7" ref={svcListRef}>
             <div className="pagenum opacity-50 mb-3">§ 03 · Services</div>
@@ -232,7 +232,7 @@ function NowPlaying() {
   const item = items[current];
 
   return (
-    <div className="rounded-[28px] bg-ink text-paper p-5 col-span-12 md:col-span-6 lg:col-span-4 h-full flex flex-col">
+    <div className="rounded-[28px] bg-ink text-paper p-3 sm:p-5 col-span-12 md:col-span-6 lg:col-span-4 h-full flex flex-col">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2 mono text-[10px] uppercase tracking-widest opacity-65">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -243,7 +243,7 @@ function NowPlaying() {
 
       {/* Now playing display */}
       <div className="flex-1 flex items-center gap-4 mb-4">
-        <div className="w-20 h-20 rounded-2xl shadow-lg shrink-0 flex items-center justify-center transition-all duration-700" style={{ background: item.g }}>
+        <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl shadow-lg shrink-0 flex items-center justify-center transition-all duration-700" style={{ background: item.g }}>
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="opacity-80">
             <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2"/>
             <circle cx="12" cy="12" r="4" stroke="rgba(255,255,255,0.6)" strokeWidth="1"/>
@@ -287,7 +287,7 @@ function ReadingCard() {
     { title: "The Mysterious Benedict Society", author: "Trenton Lee Stewart", pct: 38, note: "Series re-read", g: "linear-gradient(135deg, #2E5D3A, #1a3a2a)" },
   ];
   return (
-    <div className="rounded-[28px] bg-paper2 p-5 col-span-12 md:col-span-6 lg:col-span-4 flex flex-col h-full border border-ink/10">
+    <div className="rounded-[28px] bg-paper2 p-3 sm:p-5 col-span-12 md:col-span-6 lg:col-span-4 flex flex-col h-full border border-ink/10">
       <div className="flex items-center justify-between mb-4">
         <div className="mono text-[10px] uppercase tracking-widest opacity-55">Reading right now</div>
         <div className="mono text-[10px] uppercase tracking-widest text-brick">2 books</div>
@@ -341,7 +341,7 @@ function ObsessionsCard() {
     { t: "n8n flows" },
   ];
   return (
-    <div className="rounded-[28px] bg-white p-5 col-span-12 md:col-span-6 lg:col-span-4 flex flex-col h-full border border-ink/10">
+    <div className="rounded-[28px] bg-white p-3 sm:p-5 col-span-12 md:col-span-6 lg:col-span-4 flex flex-col h-full border border-ink/10">
       <div className="flex items-center justify-between mb-4">
         <div className="mono text-[10px] uppercase tracking-widest opacity-55">Currently obsessed with</div>
         <span className="mono text-[10px] uppercase tracking-widest text-brick">↑ this week</span>
@@ -381,7 +381,7 @@ function LocaleCard() {
   const mm = String(lagos.getMinutes()).padStart(2, "0");
   const ss = String(lagos.getSeconds()).padStart(2, "0");
   return (
-    <div className="rounded-[28px] p-5 col-span-12 md:col-span-6 lg:col-span-4 flex flex-col h-full bg-paper2 border border-ink/10">
+    <div className="rounded-[28px] p-3 sm:p-5 col-span-12 md:col-span-6 lg:col-span-4 flex flex-col h-full bg-paper2 border border-ink/10">
       <div className="mono text-[10px] uppercase tracking-widest opacity-55">Where I am</div>
       <div className="mt-3 flex items-end justify-between gap-2">
         <div>
@@ -430,7 +430,7 @@ function ActivityCard() {
     });
   }, []);
   return (
-    <div className="rounded-[28px] p-5 col-span-12 md:col-span-6 lg:col-span-4 flex flex-col h-full bg-white border border-ink/10">
+    <div className="rounded-[28px] p-3 sm:p-5 col-span-12 md:col-span-6 lg:col-span-4 flex flex-col h-full bg-white border border-ink/10">
       <div className="flex items-center justify-between mb-2">
         <div className="mono text-[10px] uppercase tracking-widest opacity-55">This week</div>
         <div className="mono text-[10px] uppercase tracking-widest text-brick">Mon → Sun</div>
@@ -457,7 +457,7 @@ function ActivityCard() {
 /* Quote card */
 function QuoteCard() {
   return (
-    <div className="rounded-[28px] p-6 col-span-12 md:col-span-6 lg:col-span-4 flex flex-col h-full bg-ink text-paper">
+    <div className="rounded-[28px] p-3 sm:p-6 col-span-12 md:col-span-6 lg:col-span-4 flex flex-col h-full bg-ink text-paper">
       <div className="mono text-[10px] uppercase tracking-widest opacity-65 mb-3">Maxim · pinned to my desk</div>
       <p className="text-2xl leading-snug font-medium">
         "The food can be sweet, but if the <span className="serif-it text-brick">plating</span> is ugly,
@@ -507,7 +507,7 @@ function AboutWidgets() {
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-5 auto-rows-fr stagger-flip" ref={aboutGridRef}>
+        <div className="grid grid-cols-12 gap-3 sm:gap-5 auto-rows-fr stagger-flip" ref={aboutGridRef}>
           <NowPlaying />
           <ReadingCard />
           <ObsessionsCard />

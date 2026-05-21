@@ -41,8 +41,8 @@ function HomePage({ go }) {
 
       {/* ───────────── HERO ───────────── */}
       <section id="sec-hero" className="stack-section pt-32 pb-24 md:pt-40 md:pb-32 relative" style={{ zIndex: 10, backgroundColor: '#f4f1eb' }}>
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-12 gap-6 md:gap-10 items-start">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12">
+          <div className="grid grid-cols-12 gap-3 sm:gap-6 md:gap-10 items-start">
             {/* left: status + name */}
             <div className="col-span-12 lg:col-span-8 reveal">
               <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-8 flex-wrap">
@@ -126,7 +126,7 @@ function HomePage({ go }) {
                     style={{ display: "block" }}
                   />
                 </div>
-                <div className="absolute -bottom-4 left-4 right-4 bg-ink text-paper rounded-2xl p-4 flex items-center justify-between">
+                <div className="absolute -bottom-4 left-2 right-2 sm:left-4 sm:right-4 bg-ink text-paper rounded-2xl p-2 sm:p-4 flex items-center justify-between">
                   <div className="mono text-[10px] uppercase tracking-widest opacity-70">Index card</div>
                   <div className="text-right">
                     <div className="display text-xl leading-none">Lagos · 2026</div>
@@ -161,7 +161,7 @@ function HomePage({ go }) {
 
       {/* ───────────── SELECTED WORKS (only three) ───────────── */}
       <section id="sec-works" className="stack-section stack-cuff py-24 md:py-32 relative" style={{ zIndex: 20, backgroundColor: '#f4f1eb' }}>
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12">
           <div className="flex items-end justify-between mb-12 reveal">
             <div>
               <div className="pagenum opacity-50 mb-3">§ 02 · Selected Works</div>
@@ -183,7 +183,7 @@ function HomePage({ go }) {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {SELECTED_WORKS.map((w, i) => (
               <div key={w.id} className="reveal-pop" style={{ transitionDelay: (i * 180) + "ms" }}><SelectedWorkCard work={w} onOpen={setOpen} /></div>
             ))}
@@ -202,8 +202,8 @@ function HomePage({ go }) {
 
       {/* ───────────── PLAYBOOK TEASER ───────────── */}
       <section id="sec-playbook" className="stack-section stack-cuff text-paper py-24 md:py-32" style={{ zIndex: 40, backgroundColor: '#1a1a1a' }}>
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-12 gap-8 items-center">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12">
+          <div className="grid grid-cols-12 gap-4 sm:gap-8 items-center">
             <div className="col-span-12 lg:col-span-7 reveal">
               <div className="pagenum opacity-50 mb-3">§ 03 · The Playbook</div>
               <h2 className="display text-4xl sm:text-5xl md:text-7xl">
@@ -228,7 +228,7 @@ function HomePage({ go }) {
               </button>
             </div>
             <div className="col-span-12 lg:col-span-5 flip-reveal">
-              <div className="bg-paper/5 border border-paper/10 rounded-3xl p-6">
+              <div className="bg-paper/5 border border-paper/10 rounded-3xl p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-6">
                   <div className="num-dot border-paper/30 text-paper">★</div>
                   <div className="mono text-[10px] uppercase tracking-widest opacity-55">On craft</div>
@@ -238,7 +238,7 @@ function HomePage({ go }) {
                   to understand your visual."
                 </p>
                 <div className="mt-6 flex items-center gap-3 text-paper/70">
-                  <div className="w-9 h-9 rounded-full bg-paper/10 text-paper flex items-center justify-center font-bold text-sm">CNK</div>
+                  <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-paper/10 text-paper flex items-center justify-center font-bold text-xs sm:text-sm shrink-0">CNK</div>
                   <div className="mono text-[11px] uppercase tracking-widest">— Cole Nussbaumer Knaflic</div>
                 </div>
               </div>
@@ -250,10 +250,10 @@ function HomePage({ go }) {
       {/* ───────────── SKILLS + TECH STACK ─────────────
           Wrapped in a single section that lifts upward as the next one enters */}
       <section id="sec-skills" className="stack-section stack-cuff py-24 md:py-32 relative" style={{ zIndex: 50, backgroundColor: '#f4f1eb' }}>
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12">
 
           {/* Skills */}
-          <div className="grid grid-cols-12 gap-10 mb-24 reveal">
+          <div className="grid grid-cols-12 gap-4 sm:gap-10 mb-24 reveal">
             <div className="col-span-12 lg:col-span-4">
               <div className="pagenum opacity-50 mb-3">§ 04.1 · Skills</div>
               <h2 className="display text-4xl sm:text-5xl md:text-6xl">
@@ -271,7 +271,7 @@ function HomePage({ go }) {
           </div>
 
           {/* Tech stack */}
-          <div ref={techRef} className="grid grid-cols-12 gap-10 reveal pt-16 dash-div">
+          <div ref={techRef} className="grid grid-cols-12 gap-4 sm:gap-10 reveal pt-16 dash-div">
             <div className="col-span-12 lg:col-span-4">
               <div className="pagenum opacity-50 mb-3">§ 04.2 · Tech Stack</div>
               <h2 className="display text-4xl sm:text-5xl md:text-6xl">
@@ -283,8 +283,8 @@ function HomePage({ go }) {
             </div>
             <div className="col-span-12 lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 stagger-flip">
               {TOOLS.map((t, i) => (
-                <div key={t} className="card-lift flex items-center gap-3 px-4 py-3 rounded-2xl border border-ink/15 bg-white">
-                  <div className="w-9 h-9 rounded-xl bg-ink text-paper flex items-center justify-center">
+                <div key={t} className="card-lift flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl border border-ink/15 bg-white">
+                  <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-ink text-paper flex items-center justify-center shrink-0">
                     <ToolIcon name={t} size={18} />
                   </div>
                   <div className="flex-1 font-semibold text-sm">{t}</div>
@@ -301,7 +301,7 @@ function HomePage({ go }) {
 
       {/* ───────────── CONTACT ───────────── */}
       <section id="sec-contact" className="stack-section stack-cuff text-paper py-28" style={{ zIndex: 70, backgroundColor: '#1a1a1a' }}>
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 text-center">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12 text-center">
           <div className="pagenum opacity-50 mb-3">§ 06 · Contact</div>
           <h2 className="display text-4xl sm:text-5xl md:text-8xl">
             <ScrollFillText fill="#f4f1eb" stroke="#f4f1eb">LET&rsquo;S</ScrollFillText>{" "}
@@ -393,21 +393,21 @@ function SkillRow({ skill, index }) {
         <span className="mono text-[10px] uppercase tracking-widest opacity-55">{skill.note}</span>
         <span className="mono text-[10px] uppercase tracking-widest opacity-55">{String(index + 1).padStart(2, "0")}</span>
       </div>
-      <div className="skill-track h-[58px]">
+      <div className="skill-track h-[48px] sm:h-[58px]">
         {/* background row */}
-        <div className="absolute inset-0 flex items-center justify-between px-6">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-ink/10 flex items-center justify-center mono text-[10px]">{skill.name[0]}</div>
-            <span className="display text-2xl">{skill.name}</span>
+        <div className="absolute inset-0 flex items-center justify-between px-3 sm:px-6">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-ink/10 flex items-center justify-center mono text-[10px] shrink-0">{skill.name[0]}</div>
+            <span className="display text-lg sm:text-2xl truncate">{skill.name}</span>
           </div>
           <span className="mono text-base text-brick font-semibold">{skill.pct}%</span>
         </div>
         {/* filled overlay (clipped) */}
         <div ref={fillRef} className="skill-fill" style={{ width: 0 }}>
-          <div className="absolute inset-0 flex items-center justify-between px-6 text-paper" style={{ width: "200%" }}>
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-paper/15 flex items-center justify-center mono text-[10px]">{skill.name[0]}</div>
-              <span className="display text-2xl">{skill.name}</span>
+          <div className="absolute inset-0 flex items-center justify-between px-3 sm:px-6 text-paper" style={{ width: "200%" }}>
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-paper/15 flex items-center justify-center mono text-[10px] shrink-0">{skill.name[0]}</div>
+              <span className="display text-lg sm:text-2xl truncate">{skill.name}</span>
             </div>
             <span className="mono text-base font-semibold">{skill.pct}%</span>
           </div>

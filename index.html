@@ -93,7 +93,8 @@
   .marquee-track { animation: marq 38s linear infinite; }
 
   /* tag pill */
-  .tag-pill { background:#1a1a1a; color:#f4f1eb; padding:6px 12px; border-radius:999px; font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; display:inline-flex; align-items:center; gap:6px; }
+  .tag-pill { background:#1a1a1a; color:#f4f1eb; padding:4px 8px; border-radius:999px; font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; display:inline-flex; align-items:center; gap:4px; max-width:100%; }
+  @media (min-width: 640px) { .tag-pill { padding:6px 12px; font-size:10px; letter-spacing:.18em; gap:6px; } }
   .tag-pill.ghost { background:transparent; color:#1a1a1a; border:1px solid rgba(26,26,26,.2); }
 
   /* reveal — slide up (re-triggerable: .in removed when out of view) */
@@ -158,7 +159,8 @@
   }
 
   /* number indicator */
-  .num-dot { width:38px; height:38px; border-radius:50%; border:1px solid rgba(26,26,26,.25); display:inline-flex; align-items:center; justify-content:center; font-family:"JetBrains Mono",monospace; font-size:11px; }
+  .num-dot { width:30px; height:30px; border-radius:50%; border:1px solid rgba(26,26,26,.25); display:inline-flex; align-items:center; justify-content:center; font-family:"JetBrains Mono",monospace; font-size:10px; flex-shrink:0; }
+  @media (min-width: 640px) { .num-dot { width:38px; height:38px; font-size:11px; } }
 
   /* dashed divider */
   .dash-div { background-image: linear-gradient(to right, rgba(26,26,26,.35) 50%, transparent 0); background-position: bottom; background-size: 8px 1px; background-repeat: repeat-x; padding-bottom: 1px; }

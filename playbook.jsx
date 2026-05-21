@@ -72,14 +72,14 @@ function PlaybookPage({ go }) {
 
       {/* Hero — manifesto */}
       <section className="pt-28 md:pt-36 pb-16">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12">
           <div className="flex items-center gap-2 mono text-[11px] uppercase tracking-[0.22em] text-ink/55 mb-10">
             <button onClick={() => go("home")} className="hover:text-ink">Home</button>
             <span>/</span>
             <span className="text-ink">Playbook</span>
           </div>
 
-          <div className="grid grid-cols-12 gap-8 items-end">
+          <div className="grid grid-cols-12 gap-4 sm:gap-8 items-end">
             <div className="col-span-12 lg:col-span-8 reveal">
               <div className="pagenum opacity-50 mb-3">§ 03 · The Playbook</div>
               <h1 className="display text-5xl sm:text-6xl md:text-7xl lg:text-[9rem] leading-[0.84]">
@@ -129,9 +129,9 @@ function PlaybookPage({ go }) {
 
       {/* Three pillars — long form */}
       <section className="py-16">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 space-y-16">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12 space-y-16">
           {PILLARS.map((p, i) => (
-            <article key={p.n} className="grid grid-cols-12 gap-8 reveal pt-12" style={{ borderTop: i === 0 ? "2px solid #1a1a1a" : "1px solid rgba(26,26,26,.18)" }}>
+            <article key={p.n} className="grid grid-cols-12 gap-4 sm:gap-8 reveal pt-12" style={{ borderTop: i === 0 ? "2px solid #1a1a1a" : "1px solid rgba(26,26,26,.18)" }}>
               <div className="col-span-12 md:col-span-3">
                 <div className="display text-6xl md:text-[7rem] leading-[0.85] text-brick">{p.n}</div>
                 <div className="mono text-[11px] uppercase tracking-widest opacity-55 mt-2">Pillar {p.n}</div>
@@ -159,8 +159,8 @@ function PlaybookPage({ go }) {
 
       {/* The "why presentation matters" featured block */}
       <section className="py-20 bg-ink text-paper">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-12 gap-8 items-start">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12">
+          <div className="grid grid-cols-12 gap-4 sm:gap-8 items-start">
             <div className="col-span-12 lg:col-span-5 reveal">
               <div className="pagenum opacity-50 mb-3">§ 03.b · Presentation is the message</div>
               <h2 className="display text-5xl md:text-6xl">
@@ -191,7 +191,7 @@ function PlaybookPage({ go }) {
           </div>
 
           {/* Real-code snippet  the user asked for */}
-          <div className="mt-16 grid grid-cols-12 gap-8 items-start reveal">
+          <div className="mt-16 grid grid-cols-12 gap-4 sm:gap-8 items-start reveal">
             <div className="col-span-12 lg:col-span-5">
               <div className="pagenum opacity-50 mb-3">§ 03.c · Underneath</div>
               <h2 className="display text-4xl md:text-5xl">
@@ -212,7 +212,7 @@ function PlaybookPage({ go }) {
 
       {/* Six phases (kept from existing playbook but mapped onto the pillars) */}
       <section className="py-20">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12">
           <div className="flex items-end justify-between mb-10 reveal">
             <div>
               <div className="pagenum opacity-50 mb-3">§ 03.c · Operating phases</div>
@@ -229,7 +229,7 @@ function PlaybookPage({ go }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {PHASES.map((p, i) => (
               <div key={p.n} className={i % 2 === 0 ? "flip-reveal" : "flip-reveal-alt"}>
-                <div className="card-lift bg-white border border-ink/10 rounded-3xl p-6 flex gap-5" style={{ transitionDelay: (i * 120) + "ms" }}>
+                <div className="card-lift bg-white border border-ink/10 rounded-2xl sm:rounded-3xl p-3 sm:p-6 flex gap-3 sm:gap-5" style={{ transitionDelay: (i * 120) + "ms" }}>
                   <div className="display text-5xl md:text-[5.5rem] leading-[0.8] text-brick shrink-0">{p.n}</div>
                   <div>
                     <h3 className="display text-3xl">{p.t}</h3>
@@ -245,7 +245,7 @@ function PlaybookPage({ go }) {
 
       {/* CTA */}
       <section className="py-24 bg-paper2">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 text-center reveal">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-6 md:px-12 text-center reveal">
           <div className="pagenum opacity-50 mb-3">§ 03.d · Get started</div>
           <h2 className="display text-4xl sm:text-5xl md:text-8xl">
             Ready to <span className="serif-it text-brick lowercase">plate it up</span><span className="text-brick">?</span>
