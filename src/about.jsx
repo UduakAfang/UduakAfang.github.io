@@ -340,82 +340,101 @@ function HeroBand({ go }) {
 
 /* One drawing per column: a schema, a dashboard, a shipped product.
    A file at images/illustrations/do-N.svg overrides its drawing. */
+/* Data modelling — a lineage: three raw sources flow through a dbt
+   transform into one tested model. Reads as analytics engineering, not a
+   generic "table". */
 function ArtSchema() {
   const I = "rgb(var(--c-ink))", A = "rgb(var(--c-accent))", A2 = "rgb(var(--c-accent2))";
   return (
-    <svg viewBox="0 0 160 120" className="h-[130px] w-full" fill="none">
-      <path d="M46 34h18M46 34v34h18M64 86H46V68" stroke={I} strokeWidth="1.4" opacity=".45" />
-      <g stroke={I} strokeWidth="1.5">
-        <rect x="8" y="22" width="40" height="26" rx="4" fill="rgb(var(--c-paper))" />
-        <rect x="8" y="56" width="40" height="26" rx="4" fill="rgb(var(--c-paper))" />
-        <rect x="8" y="88" width="40" height="22" rx="4" fill="rgb(var(--c-paper))" />
-        <rect x="64" y="24" width="88" height="72" rx="5" fill="rgb(var(--c-paper))" />
+    <svg viewBox="0 0 200 140" className="h-[150px] w-full" fill="none">
+      <g stroke={I} strokeWidth="1.4" opacity=".35" fill="none">
+        <path d="M48 45 C 66 45, 68 69, 84 69" />
+        <path d="M48 73 H84" />
+        <path d="M48 101 C 66 101, 68 77, 84 77" />
       </g>
-      <rect x="64" y="24" width="88" height="12" rx="5" fill={I} opacity=".9" />
-      <rect x="70" y="28.5" width="30" height="3" rx="1.5" fill="rgb(var(--c-paper))" opacity=".8" />
+      <path d="M128 69 H150" stroke={A} strokeWidth="1.6" opacity=".75" />
+      <path d="M145 65 l6 4 -6 4" stroke={A} strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      {[35, 63, 91].map((y, i) => (
+        <g key={i}>
+          <rect x="12" y={y} width="36" height="22" rx="6" fill="rgb(var(--c-paper))" stroke={I} strokeWidth="1.5" />
+          <rect x="18" y={y + 6} width="17" height="2.6" rx="1.3" fill={I} opacity=".32" />
+          <rect x="18" y={y + 12} width="24" height="2.6" rx="1.3" fill={I} opacity=".16" />
+        </g>
+      ))}
+      <text x="30" y="130" fontSize="7" fill={I} opacity=".42" textAnchor="middle" fontFamily="var(--f-mono)" letterSpacing="1">RAW</text>
+      <rect x="84" y="53" width="44" height="34" rx="9" fill={A} opacity=".1" />
+      <rect x="84" y="53" width="44" height="34" rx="9" stroke={A} strokeWidth="1.6" />
+      <text x="106" y="75" fontSize="13" fontWeight="800" fill={A} textAnchor="middle" fontFamily="var(--f-mono)">{"{ }"}</text>
+      <text x="106" y="130" fontSize="7" fill={I} opacity=".42" textAnchor="middle" fontFamily="var(--f-mono)" letterSpacing="1">dbt</text>
+      <rect x="150" y="40" width="42" height="58" rx="7" fill="rgb(var(--c-paper))" stroke={I} strokeWidth="1.6" />
+      <rect x="150" y="40" width="42" height="12" rx="7" fill={I} opacity=".9" />
+      <rect x="155" y="44.5" width="20" height="3" rx="1.5" fill="rgb(var(--c-paper))" opacity=".85" />
       {[0, 1, 2, 3].map((r) => (
         <g key={r}>
-          <circle cx="74" cy={49 + r * 13} r="2.6" fill={r === 1 ? A : I} opacity={r === 1 ? 1 : .28} />
-          <rect x="82" y={46.6 + r * 13} width={r === 3 ? 26 : 40} height="4.6" rx="2.3" fill={I} opacity=".2" />
-          <rect x={r === 3 ? 112 : 126} y={46.6 + r * 13} width="18" height="4.6" rx="2.3" fill={r === 1 ? A2 : I} opacity={r === 1 ? .8 : .12} />
+          <circle cx="158" cy={61 + r * 9} r="2" fill={r === 1 ? A2 : I} opacity={r === 1 ? 1 : .3} />
+          <rect x="164" y={59.5 + r * 9} width={r === 3 ? 14 : 22} height="3" rx="1.5" fill={I} opacity=".18" />
         </g>
       ))}
-      {[0, 1, 2].map((k) => (
-        <g key={k}>
-          <rect x="14" y={29 + k * 32.5} width="20" height="3.4" rx="1.7" fill={I} opacity=".3" />
-          <rect x="14" y={36 + k * 32.5} width="28" height="3.4" rx="1.7" fill={I} opacity=".14" />
-        </g>
-      ))}
+      <text x="171" y="130" fontSize="7" fill={I} opacity=".42" textAnchor="middle" fontFamily="var(--f-mono)" letterSpacing="1">MODEL</text>
+      <circle cx="187" cy="43" r="8.5" fill="rgb(var(--c-paper))" stroke={A2} strokeWidth="1.4" />
+      <path d="M183 43 l3 3 5 -6" stroke={A2} strokeWidth="1.7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
+/* Dashboards — a laid-out BI screen: KPI tile, bar comparison, trend line.
+   Hierarchy first, the way a real decision surface reads. */
 function ArtDashboard() {
   const I = "rgb(var(--c-ink))", A = "rgb(var(--c-accent))", A2 = "rgb(var(--c-accent2))";
-  const bars = [16, 27, 21, 38, 30, 46];
+  const bars = [14, 22, 18, 30, 25, 38];
   return (
-    <svg viewBox="0 0 160 120" className="h-[130px] w-full" fill="none">
-      <rect x="8" y="14" width="144" height="92" rx="7" fill="rgb(var(--c-paper))" stroke={I} strokeWidth="1.5" />
-      <path d="M8 28h144" stroke={I} strokeWidth="1.3" opacity=".3" />
-      <circle cx="17" cy="21" r="2" fill={I} opacity=".3" />
-      <circle cx="24" cy="21" r="2" fill={I} opacity=".2" />
-      <rect x="18" y="36" width="58" height="30" rx="4" fill={I} opacity=".05" />
-      <text x="24" y="48" fontSize="7" fill={I} opacity=".45" fontFamily="var(--f-mono)" letterSpacing=".6">DAYS TO PAY</text>
-      <text x="24" y="61" fontSize="15" fontWeight="700" fill={A} fontFamily="var(--f-head)">31.4</text>
+    <svg viewBox="0 0 200 140" className="h-[150px] w-full" fill="none">
+      <rect x="10" y="12" width="180" height="116" rx="10" fill="rgb(var(--c-paper))" stroke={I} strokeWidth="1.6" />
+      <path d="M10 33 H190" stroke={I} strokeWidth="1.3" opacity=".25" />
+      <circle cx="21" cy="22" r="2.2" fill={A} opacity=".75" />
+      <circle cx="29" cy="22" r="2.2" fill={I} opacity=".2" />
+      <rect x="150" y="18" width="30" height="7" rx="3.5" fill={I} opacity=".1" />
+      <rect x="20" y="44" width="74" height="44" rx="7" fill={I} opacity=".05" />
+      <text x="29" y="59" fontSize="7" fill={I} opacity=".5" fontFamily="var(--f-mono)" letterSpacing=".6">DAYS TO PAY</text>
+      <text x="29" y="79" fontSize="20" fontWeight="800" fill={A} fontFamily="var(--f-head)">31.4</text>
       {bars.map((b, i) => (
-        <rect key={i} x={88 + i * 10} y={66 - b} width="6.5" height={b} rx="2" fill={i === 5 ? A : I} opacity={i === 5 ? .9 : .2} />
+        <rect key={i} x={108 + i * 13} y={88 - b} width="8" height={b} rx="2.5" fill={i === 5 ? A : I} opacity={i === 5 ? .9 : .22} />
       ))}
-      <path d="M20 96l14-8 12 5 14-13 13 6 15-11 16 4 14-9" stroke={A2} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="132" cy="79" r="3" fill={A2} />
-      <path d="M18 74h58" stroke={I} strokeWidth="1.2" opacity=".2" />
+      <path d="M108 92 H182" stroke={I} strokeWidth="1.1" opacity=".2" />
+      <path d="M22 118 l20 -10 16 5 18 -12 18 7 20 -9 22 5 24 -8" stroke={A2} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="180" cy="99" r="3" fill={A2} />
     </svg>
   );
 }
 
+/* Products — a shipped web app with a companion mobile view: a readiness
+   ring on the phone, a chart on the web, a "live" dot. TrackPerform / DrillCal
+   in spirit. */
 function ArtProduct() {
   const I = "rgb(var(--c-ink))", A = "rgb(var(--c-accent))", A2 = "rgb(var(--c-accent2))";
   return (
-    <svg viewBox="0 0 160 120" className="h-[130px] w-full" fill="none">
-      <rect x="24" y="30" width="62" height="82" rx="9" fill="rgb(var(--c-paper))" stroke={I} strokeWidth="1.6" />
-      <rect x="46" y="35" width="18" height="3" rx="1.5" fill={I} opacity=".3" />
-      <rect x="32" y="46" width="46" height="20" rx="4" fill={I} opacity=".07" />
-      <text x="37" y="55" fontSize="6.5" fill={I} opacity=".45" fontFamily="var(--f-mono)" letterSpacing=".5">SESSION LOAD</text>
-      <rect x="37" y="58" width="26" height="4" rx="2" fill={A} />
+    <svg viewBox="0 0 200 140" className="h-[150px] w-full" fill="none">
+      <rect x="70" y="28" width="118" height="82" rx="9" fill="rgb(var(--c-paper))" stroke={I} strokeWidth="1.6" />
+      <path d="M70 44 H188" stroke={I} strokeWidth="1.2" opacity=".25" />
+      <circle cx="80" cy="36" r="1.8" fill={I} opacity=".3" />
+      <circle cx="87" cy="36" r="1.8" fill={I} opacity=".2" />
+      <rect x="100" y="33" width="60" height="6" rx="3" fill={I} opacity=".08" />
+      <rect x="84" y="52" width="30" height="4" rx="2" fill={I} opacity=".22" />
+      <rect x="84" y="60" width="46" height="4" rx="2" fill={I} opacity=".12" />
+      <path d="M84 96 l14 -13 10 6 14 -17 12 10 16 -13" stroke={A} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="150" cy="69" r="3" fill={A} />
+      <rect x="18" y="46" width="52" height="86" rx="12" fill="rgb(var(--c-paper))" stroke={I} strokeWidth="1.7" />
+      <rect x="36" y="51" width="16" height="3" rx="1.5" fill={I} opacity=".25" />
+      <circle cx="44" cy="79" r="15" stroke={I} strokeWidth="3" opacity=".14" fill="none" />
+      <path d="M44 64 a15 15 0 0 1 12.5 23" stroke={A} strokeWidth="3" fill="none" strokeLinecap="round" />
+      <text x="44" y="83" fontSize="11" fontWeight="800" fill={A} textAnchor="middle" fontFamily="var(--f-head)">1.3</text>
       {[0, 1, 2].map((r) => (
         <g key={r}>
-          <circle cx="37" cy={77 + r * 11} r="2.4" fill={r === 0 ? A2 : I} opacity={r === 0 ? .9 : .25} />
-          <rect x="44" y={74.8 + r * 11} width={r === 2 ? 18 : 30} height="4.2" rx="2.1" fill={I} opacity=".18" />
+          <circle cx="28" cy={104 + r * 8} r="1.8" fill={r === 0 ? A2 : I} opacity={r === 0 ? .9 : .25} />
+          <rect x="34" y={102.5 + r * 8} width={r === 2 ? 16 : 26} height="3" rx="1.5" fill={I} opacity=".16" />
         </g>
       ))}
-      <g stroke={I} strokeWidth="1.5">
-        <rect x="94" y="44" width="54" height="38" rx="5" fill="rgb(var(--c-paper))" />
-      </g>
-      <path d="M100 74l10-11 8 6 11-15 9 7" stroke={A} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <rect x="100" y="51" width="22" height="3.6" rx="1.8" fill={I} opacity=".22" />
-      <g stroke={A2} strokeWidth="1.8" strokeLinecap="round">
-        <path d="M120 96l5 5 9-11" />
-      </g>
-      <circle cx="127" cy="98" r="12" stroke={A2} strokeWidth="1.4" opacity=".4" />
+      <circle cx="181" cy="36" r="3" fill={A2} />
     </svg>
   );
 }
@@ -432,8 +451,8 @@ function DoArt({ n }) {
     im.src = src;
   }, [src]);
   const Fallback = DO_ART[n - 1] || ArtSchema;
-  if (!ok) return <div className="h-[130px] flex items-center justify-center"><Fallback /></div>;
-  return <img src={src} alt="" className="h-[130px] w-full object-contain" />;
+  if (!ok) return <div className="h-[150px] flex items-center justify-center"><Fallback /></div>;
+  return <img src={src} alt="" className="h-[150px] w-full object-contain" />;
 }
 
 function FocusRow() {
