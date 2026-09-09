@@ -19,118 +19,104 @@ const LEDES = [
   "Not a novelty \u2014 a daily practice. The judgement calls (grain, ownership, what a metric means) are still mine. ~Everything else moves faster than it used to.~",
 ];
 
-/* PipelineFlow — a clean, connected node row that reads left-to-right on
-   desktop and stacks vertically on small screens. Replaces the old
-   horizontally-scrolling SVG "street": no off-screen scroll, no mascot,
-   the stages themselves carry the story. */
-function PipelineFlow({ stages }) {
-  return (
-    <div className="pipeflow" role="list">
-      {stages.map((s, i) => (
-        <React.Fragment key={s.k}>
-          <div role="listitem" className="pipenode reveal" style={{ transitionDelay: Math.min(i, 6) * 55 + "ms" }}>
-            <span className="pipenode-k mono">{s.k}</span>
-            <span className="pipenode-t">{s.t}</span>
-            <span className="pipenode-s mono">{s.s}</span>
-          </div>
-          {i < stages.length - 1 && <span className="pipearrow" aria-hidden="true" />}
-        </React.Fragment>
-      ))}
-    </div>
-  );
-}
+/* The workflow page is a case-led story, not an abstract pipeline: how I
+   work, shown through one real build (TrackPerform) end to end. Copy is
+   condensed from the project's own case narrative; each chapter lands on a
+   principle. Real product screenshots carry the evidence. */
+const WORKFLOW_STORY = [
+  {
+    n: "01", kicker: "Where it starts",
+    title: "I build it once by hand, so I know what it has to say",
+    body: "TrackPerform didn't begin as a company — it began as a competition. Chelsea released a set of GPS tracking data, and I built the dashboard in Tableau: player load, an acute-versus-chronic view of training demand, a match-day calendar, a full player profile. It got shortlisted. It didn't win — but building it taught me exactly what a load dashboard has to say, and to whom. That mattered more than the result.",
+    principle: "You can't automate a screen you've never had to design yourself.",
+    img: "images/trackperform/chelsea-tableau.png", cap: "The original Tableau build",
+  },
+  {
+    n: "02", kicker: "The turn", pull: true,
+    quote: "Could this build itself?",
+    body: "A physical trainer at a top-flight European club had seen the competition work and wanted it built around his own squad, so I built it again with his real numbers. When it was done, he asked the question that became the company. My first instinct was that it couldn't. But I'd built the thing twice by hand, so I knew exactly what had to happen between a raw export and a finished read. The only real question was whether AI could handle the messy middle — reading a file it had never seen and working out what every column meant. It could.",
+    principle: "I don't reach for AI to look modern. I reach for it where the judgment is mechanical and the volume is real.",
+  },
+  {
+    n: "03", kicker: "The real problem",
+    title: "The data you have, not the data you wish for",
+    body: "We launched to an encouraging start — around forty coaches and sport scientists signed up. Then the files arrived. Everyone's spreadsheet was different: some packed a whole week into one sheet split into stacked tables; others uploaded a single session with no date at all, because to them the date was obvious. Two things were quietly killing it — uploads bounced on formats I hadn't anticipated, and even when they worked, the read took two to three minutes to appear. People uploaded once, watched a spinner, and left.",
+    principle: "The happy path is never the hard part. The file that agrees with nothing else is.",
+    img: "images/trackperform/detecting-structure.png", cap: "Reading an unfamiliar file's structure",
+  },
+  {
+    n: "04", kicker: "The fix",
+    title: "Make the messy middle disappear",
+    body: "I rebuilt intake around one assumption: no two files agree. AI now reads the raw export and works out its structure on its own — where the data starts, which column is the date, whether the sheet is one day or a whole season in blocks. If it's a single day with no date, it stops and asks instead of guessing. If a date is ambiguous, it resolves the US-versus-European format instead of silently picking wrong. Then I killed the wait: the dashboard returns your first seven days in a couple of seconds and streams the rest in behind you.",
+    principle: "Don't make someone wait for the whole season to see the first week.",
+    img: "images/trackperform/daily-metrics-dark.png", cap: "The first read, back in seconds",
+  },
+];
 
 function StackPage4({ go, pal }) {
-  const [active, setActive] = useStateP4(0);
   useReveal4("stack");
-  useEffectP4(() => {
-    const onScroll = () => {
-      let cur = 0;
-      STAGES4.forEach((s, i) => {
-        const el = document.getElementById("s4-" + s.k);
-        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.55) cur = i;
-      });
-      setActive(cur);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <main className="grain">
-      <section className="pt-32 md:pt-40 pb-12 md:pb-16 text-center px-6">
-        <div className="eyebrow opacity-50">The workflow</div>
-        <h1 data-fill className="claim text-[11vw] md:text-[58px] max-w-[760px] mx-auto mt-6">
-          A pipeline isn't finished until someone acts on it
+      <section className="pt-32 md:pt-40 pb-10 md:pb-16 text-center px-6">
+        <div className="eyebrow opacity-50">How I work</div>
+        <h1 data-fill className="claim text-[11vw] md:text-[58px] max-w-[820px] mx-auto mt-6">
+          My process, shown — not listed
         </h1>
-        <p className="text-[17px] leading-[1.6] max-w-[540px] mx-auto mt-6" style={{ opacity: .85 }}>
-          <T>{LEDES[0]}</T>
+        <p className="text-[17px] leading-[1.65] max-w-[600px] mx-auto mt-6" style={{ opacity: .85 }}>
+          <T>Here's one real build instead of a seven-box diagram: ~TrackPerform~, from a club's messy spreadsheet to a product coaches actually use — and the call I made at each step.</T>
         </p>
       </section>
 
-      <section className="shell pb-6 md:pb-12">
-        <div className="flex items-baseline justify-between gap-6 border-b border-ink/12 pb-5 mb-6 md:mb-8">
-          <h2 className="claim text-[7.5vw] md:text-[30px]">Three lanes, one standard</h2>
-          <span className="mono text-[9.5px] tracking-[.2em] uppercase whitespace-nowrap" style={{ opacity: .4 }}>overview</span>
-        </div>
-        <p className="text-[16px] md:text-[17px] leading-[1.6] max-w-[640px] mb-11 md:mb-16" style={{ opacity: .82 }}>
-          <T>The three roles I'm hired for — ~analytics engineer~, ~data analyst~, ~BI analyst~ — are one line, not three jobs. Hire me for any of them and you get someone who owns the parts feeding into it.</T>
-        </p>
-        <div className="space-y-12 md:space-y-16">
-          {TRACKS4.map((t) => (
-            <div key={t.id} className="reveal">
-              <div className="flex items-baseline gap-3 md:gap-4 mb-2">
-                <span className="mono text-[10px] tracking-[.2em] text-accent pt-0.5">{t.n}</span>
-                <h3 className="text-[21px] md:text-[27px] font-black tracking-[-.04em] leading-tight">{t.claim}</h3>
-              </div>
-              <p className="text-[14.5px] leading-[1.6] max-w-[580px] mb-7" style={{ opacity: .7 }}>{t.note}</p>
-              <PipelineFlow stages={t.stages} />
+      <div className="shell space-y-20 md:space-y-32 pb-4">
+        {WORKFLOW_STORY.map((c, i) => c.pull ? (
+          <section key={c.n} className="reveal max-w-[860px] mx-auto text-center py-2">
+            <div className="mono text-[10px] tracking-[.2em] uppercase" style={{ opacity: .5 }}><span className="text-accent">{c.n}</span> · {c.kicker}</div>
+            <blockquote className="claim text-[10vw] md:text-[54px] leading-[1.04] mt-6 mb-8">
+              <span className="serif-it">“{c.quote}”</span>
+            </blockquote>
+            <p className="text-[16px] md:text-[17.5px] leading-[1.7] max-w-[620px] mx-auto text-left" style={{ opacity: .82 }}>{c.body}</p>
+            <div className="mt-8 border-l-2 border-accent pl-4 text-left max-w-[560px] mx-auto">
+              <p className="text-[16px] md:text-[18px] font-semibold tracking-[-.01em] leading-snug">{c.principle}</p>
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
+        ) : (
+          <section key={c.n} className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+            <div className={"md:col-span-6 " + (i % 2 ? "md:order-2" : "")}>
+              <div className="mono text-[10px] tracking-[.2em] uppercase" style={{ opacity: .5 }}><span className="text-accent">{c.n}</span> · {c.kicker}</div>
+              <h2 className="claim text-[7.5vw] md:text-[34px] leading-[1.08] mt-3">{c.title}</h2>
+              <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .82 }}>{c.body}</p>
+              <div className="mt-6 border-l-2 border-accent pl-4">
+                <p className="text-[15.5px] md:text-[17px] font-semibold tracking-[-.01em] leading-snug">{c.principle}</p>
+              </div>
+            </div>
+            <figure className={"reveal md:col-span-6 " + (i % 2 ? "md:order-1" : "")}>
+              <div className="rounded-[16px] overflow-hidden border border-ink/12" style={{ background: "rgb(var(--c-paper2))" }}>
+                <img src={c.img} alt={c.cap} loading="lazy" className="w-full block" />
+              </div>
+              <figcaption className="mono text-[8.5px] tracking-[.18em] uppercase mt-3" style={{ opacity: .45 }}>{c.cap}</figcaption>
+            </figure>
+          </section>
+        ))}
+      </div>
 
       <section className="shell py-16 md:py-24">
-        <div className="flex items-baseline justify-between gap-6 border-b border-ink/12 pb-5 mb-4 md:mb-8">
-          <h2 className="claim text-[7.5vw] md:text-[30px]">The canonical line, in full</h2>
-          <span className="mono text-[9.5px] tracking-[.2em] uppercase whitespace-nowrap" style={{ opacity: .4 }}>seven stages</span>
-        </div>
-        {STAGES4.map((s, i) => (
-          <div key={s.k} id={"s4-" + s.k} className="grid grid-cols-12 gap-8 scroll-mt-56 py-14 border-b border-ink/10">
-            <div className="col-span-12 md:col-span-4">
-              <div className={"mono text-[10px] tracking-[.24em] transition-colors duration-500 " + (i === active ? "text-accent" : "opacity-40")}>{s.k}</div>
-              <h2 className="text-[32px] md:text-[42px] font-black tracking-[-.045em] leading-none mt-3">{s.t}</h2>
-              <div className="mono text-[9.5px] tracking-[.18em] uppercase mt-3" style={{ opacity: .45 }}>{s.s}</div>
-            </div>
-            <div className="col-span-12 md:col-span-8">
-              <p className="text-[17px] md:text-[19px] leading-[1.65] max-w-2xl" style={{ opacity: .82 }}>{s.d}</p>
-              {i === 2 && (
-                <div className="mt-8 max-w-xl">
-                  <QueryCard name="models/staging/stg_gps_sessions.sql" lines={`-- staging: one row per player-session
-{{ config(materialized='view') }}
-
-select
-  cast(player_id as int)     as player_id,
-  cast(session_date as date) as session_date,
-  nullif(total_distance,'')::numeric as total_distance_m
-from {{ source('raw','gps_export') }}
-where player_id is not null`} />
-                </div>
-              )}
-              {i === 4 && (
-                <div className="mt-8 grid md:grid-cols-2 gap-4 max-w-2xl">
-                  <SchemaCard name="metrics.days_to_pay" rows={[["grain", "customer/month"], ["source", "fct_payments"], ["owner", "finance"], ["tests", "3"]]} />
-                  <SchemaCard name="metrics.acwr" rows={[["grain", "player/day"], ["source", "fct_session_load"], ["owner", "sports sci"], ["tests", "4"]]} />
-                </div>
-              )}
-              {i === 5 && <div className="mt-8 max-w-md"><MiniDash tilt={false} /></div>}
-            </div>
+        <div className="shellbox rounded-[28px] border border-ink/12 px-7 md:px-14 py-12 md:py-16" style={{ background: "rgb(var(--c-card))" }}>
+          <div className="grid md:grid-cols-3 gap-8 md:gap-6 text-center md:text-left">
+            {[["40+", "metrics auto-mapped from any export"], ["3 min → 3s", "from upload to first read"], ["1", "person owned the model, pipeline and interface"]].map(([v, l]) => (
+              <div key={l}>
+                <div className="claim text-[12vw] md:text-[46px] text-accent leading-none">{v}</div>
+                <div className="text-[13.5px] leading-[1.5] mt-3" style={{ opacity: .7 }}>{l}</div>
+              </div>
+            ))}
           </div>
-        ))}
+          <p className="text-[16px] md:text-[18px] leading-[1.6] max-w-[680px] mt-10 md:mt-12">
+            <T>Analytics engineer, data analyst, BI analyst — for this build they were ~one job, not three~. That's the whole argument for hiring one person who owns the line end to end.</T>
+          </p>
+          <button onClick={() => go("case:01")} className="mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-white text-[13.5px] font-medium hover:opacity-88 transition-opacity">
+            Read the full TrackPerform case <span className="text-[11px]">↗</span>
+          </button>
+        </div>
       </section>
-
-      <ToolsRow title="AI is part of how I build, every day" sub={LEDES[2]} />
 
       <Contact4 />
     </main>
