@@ -137,7 +137,7 @@ footer,.circuit-foot{isolation:isolate}
 .ul{position:relative;display:inline-block}
 .ul::after{content:"";position:absolute;left:0;bottom:.02em;height:1px;width:100%;background:currentColor;opacity:.3;transition:opacity .3s}
 .ul:hover::after{opacity:1}
-.reveal{opacity:0;transform:translate3d(0,26px,0);transition:opacity .85s cubic-bezier(.2,.6,.2,1),transform .85s cubic-bezier(.2,.6,.2,1);backface-visibility:hidden}
+.reveal{opacity:0;transform:translate3d(0,26px,0);transition:opacity .85s cubic-bezier(.2,.7,.2,1),transform .85s cubic-bezier(.2,.7,.2,1);backface-visibility:hidden}
 .reveal.in{opacity:1;transform:none}
 .reveal img,.pcard img{backface-visibility:hidden;transform:translateZ(0)}
 @media (prefers-reduced-motion:reduce){.reveal{transition:none;transform:none;opacity:1}}
@@ -298,7 +298,7 @@ html[data-dark="1"] .case-fig img{border-color:rgb(var(--c-ink)/.06)}
 .pcard.vb-cell .vb-shot{height:150px;padding:0 0 16px}
 .pcard.vb-cell .vb-shot img{max-height:150px}
 .pcard-flip{perspective:1800px}
-.pcard-flip>div{transform-origin:50% 100%;transform:rotateX(-84deg);opacity:0;transition:transform 1s cubic-bezier(.22,.72,.2,1),opacity .7s ease}
+.pcard-flip>div{transform-origin:50% 100%;transform:rotateX(-84deg);opacity:0;transition:transform 1s cubic-bezier(.2,.7,.2,1),opacity .7s ease}
 .pcard-flip.in>div{transform:none;opacity:1}
 .mw{will-change:opacity}
 [data-spin]{will-change:transform}
@@ -316,7 +316,7 @@ html[data-dark="1"] .case-fig img{border-color:rgb(var(--c-ink)/.06)}
 /* Pipeline node flow — workflow page. Vertical on small screens, a connected
    horizontal row from 900px up. No off-screen scroll. */
 .pipeflow{display:flex;flex-direction:column;gap:0}
-.pipenode{position:relative;flex:1;display:flex;flex-direction:column;gap:6px;padding:16px 18px;border:1px solid rgb(var(--c-ink)/.14);border-radius:16px;background:rgb(var(--c-card));transition:transform .4s cubic-bezier(.2,.6,.2,1),border-color .4s}
+.pipenode{position:relative;flex:1;display:flex;flex-direction:column;gap:6px;padding:16px 18px;border:1px solid rgb(var(--c-ink)/.14);border-radius:16px;background:rgb(var(--c-card));transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .4s}
 .pipenode:hover{transform:translateY(-3px);border-color:rgb(var(--c-ink)/.32)}
 .pipenode-k{font-size:9.5px;letter-spacing:.22em;color:rgb(var(--c-accent))}
 .pipenode-t{font-family:var(--f-head);font-weight:800;letter-spacing:-.03em;font-size:18px;line-height:1.05}

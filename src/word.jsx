@@ -79,8 +79,10 @@
       }
     } else if (n.kind === "flip") {
       const e = n.v * n.v * (3 - 2 * n.v);
-      n.el.style.transform = "rotateY(" + ((1 - e) * -152).toFixed(2) + "deg)";
-      n.el.style.opacity = (0.25 + 0.75 * e).toFixed(3);
+      /* Calm reveal, not a spinning card: a slight tilt and rise that settle
+         as the image enters view. Restraint over spectacle. */
+      n.el.style.transform = "rotateY(" + ((1 - e) * -14).toFixed(2) + "deg) translateY(" + ((1 - e) * 18).toFixed(1) + "px)";
+      n.el.style.opacity = (0.2 + 0.8 * e).toFixed(3);
     } else {
       n.el.style.transform = "rotate(" + (n.v * n.amt).toFixed(2) + "deg)";
     }
