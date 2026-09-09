@@ -23,7 +23,7 @@ function Hero5({ go, panel = "Panel" }) {
               I build data models, pipelines and <span className="serif-it">dashboards</span>.
             </h1>
             <div className="flex flex-wrap items-center mt-9 mb-8">
-              {["Data models", "Dashboards", "Products"].map((d, i) => (
+              {["Analytics Engineer", "Data Analyst", "BI Analyst"].map((d, i) => (
                 <span key={d} className={"mono text-[9.5px] tracking-[.18em] uppercase px-5 first:pl-0 " + (i ? "border-l border-ink/20" : "")} style={{ opacity: .6 }}>{d}</span>
               ))}
             </div>
@@ -55,7 +55,7 @@ function Hero5({ go, panel = "Panel" }) {
               <div>
                 <div className="mono text-[8.5px] tracking-[.2em] uppercase pb-2.5 border-b border-ink/15" style={{ opacity: .45 }}>Based in</div>
                 <div className="text-[15px] font-semibold tracking-[-.01em] mt-3">{PROFILE.location} <span style={{ opacity: .5 }}>({PROFILE.tz})</span></div>
-                <div className="text-[13.5px] mt-1" style={{ opacity: .6 }}>{PROFILE.mode} · UK &amp; EU hours</div>
+                <div className="text-[13.5px] mt-1" style={{ opacity: .6 }}>{PROFILE.mode} · Any hours, any timezone</div>
                 <div className="flex items-center gap-2 mono text-[9px] tracking-[.16em] uppercase mt-3.5 text-accent">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" />Open to work
                 </div>

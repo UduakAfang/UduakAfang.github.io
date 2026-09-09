@@ -183,7 +183,7 @@ function Loader4() {
       <div className="text-center px-6">
         <div className="loader4-name">Uduak Afang</div>
         <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 mt-5">
-          {["Data models", "Dashboards", "Products"].map((d, i) => (
+          {["Analytics Engineer", "Data Analyst", "BI Analyst"].map((d, i) => (
             <span key={d} className="loader4-tag" style={{ animationDelay: 260 + i * 150 + "ms" }}>{d}</span>
           ))}
         </div>

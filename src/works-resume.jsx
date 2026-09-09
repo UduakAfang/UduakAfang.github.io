@@ -70,10 +70,13 @@ function StackPage4({ go, pal }) {
       </section>
 
       <section className="shell pb-6 md:pb-12">
-        <div className="flex items-baseline justify-between gap-6 border-b border-ink/12 pb-5 mb-10 md:mb-14">
+        <div className="flex items-baseline justify-between gap-6 border-b border-ink/12 pb-5 mb-6 md:mb-8">
           <h2 className="claim text-[7.5vw] md:text-[30px]">Three lanes, one standard</h2>
           <span className="mono text-[9.5px] tracking-[.2em] uppercase whitespace-nowrap" style={{ opacity: .4 }}>overview</span>
         </div>
+        <p className="text-[16px] md:text-[17px] leading-[1.6] max-w-[640px] mb-11 md:mb-16" style={{ opacity: .82 }}>
+          <T>The three roles I'm hired for — ~analytics engineer~, ~data analyst~, ~BI analyst~ — are one line, not three jobs. Hire me for any of them and you get someone who owns the parts feeding into it.</T>
+        </p>
         <div className="space-y-12 md:space-y-16">
           {TRACKS4.map((t) => (
             <div key={t.id} className="reveal">
