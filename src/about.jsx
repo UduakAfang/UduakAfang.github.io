@@ -463,7 +463,7 @@ function FocusRow() {
           <span className="inline-block px-4 py-2 rounded-lg border border-ink/15 mono text-[9.5px] tracking-[.18em] uppercase"
                 style={{ background: "rgb(var(--c-paper))", opacity: .8 }}>What I do</span>
           <h2 data-fill className="claim text-[8.5vw] md:text-[52px] max-w-[760px] mx-auto mt-7">Here’s what I can help you with</h2>
-          <p className="text-[14px] md:text-[15px] leading-[1.65] max-w-[540px] mx-auto mt-7" style={{ opacity: .62 }}>Which is to say: I care how it looks as much as what it says. A model gets the same attention as a chart — the aesthetics and the insight are the same job, and neither one lands without the other.</p>
+          <p className="text-[14px] md:text-[15px] leading-[1.65] max-w-[540px] mx-auto mt-7" style={{ opacity: .62 }}>I care how a dashboard looks as much as what it says. The model gets the same care as the chart — to me that's one job, not two.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-5 md:gap-6 mt-14">
           {FOCUS4.map((f, i) => (

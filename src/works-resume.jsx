@@ -25,30 +25,30 @@ const LEDES = [
    principle. Real product screenshots carry the evidence. */
 const WORKFLOW_STORY = [
   {
-    n: "01", kicker: "Where it starts",
-    title: "I build it once by hand, so I know what it has to say",
-    body: "TrackPerform didn't begin as a company — it began as a competition. Chelsea released a set of GPS tracking data, and I built the dashboard in Tableau: player load, an acute-versus-chronic view of training demand, a match-day calendar, a full player profile. It got shortlisted. It didn't win — but building it taught me exactly what a load dashboard has to say, and to whom. That mattered more than the result.",
-    principle: "You can't automate a screen you've never had to design yourself.",
+    n: "01", kicker: "How it started",
+    title: "I built the whole thing by hand first",
+    body: "TrackPerform started as a competition, not a company. Chelsea released a set of GPS tracking data, and I built the dashboard in Tableau — player load, an acute-versus-chronic view of training demand, a match-day calendar, a full player profile. It got shortlisted. It didn't win, but building it taught me exactly what a load dashboard needs to say, and who it's for. That was worth more than winning.",
+    principle: "I don't think you can automate a screen you've never built yourself.",
     img: "images/trackperform/chelsea-tableau.png", cap: "The original Tableau build",
   },
   {
-    n: "02", kicker: "The turn", pull: true,
+    n: "02", kicker: "Becoming a product", pull: true,
     quote: "Could this build itself?",
-    body: "A physical trainer at a top-flight European club had seen the competition work and wanted it built around his own squad, so I built it again with his real numbers. When it was done, he asked the question that became the company. My first instinct was that it couldn't. But I'd built the thing twice by hand, so I knew exactly what had to happen between a raw export and a finished read. The only real question was whether AI could handle the messy middle — reading a file it had never seen and working out what every column meant. It could.",
-    principle: "I don't reach for AI to look modern. I reach for it where the judgment is mechanical and the volume is real.",
+    body: "A trainer at a top-flight European club had seen the competition work and wanted it built around his own squad, so I built it again with his real numbers. When it was done, he asked the question that became the company. My first thought was no. But I'd built the thing twice by hand, so I knew exactly what had to happen between a raw export and a finished read. The real question was whether AI could handle the messy middle — reading a file it had never seen and working out what every column meant. It could.",
+    principle: "I used AI here because the work was repetitive and there was a lot of it — not to look clever.",
   },
   {
-    n: "03", kicker: "The real problem",
-    title: "The data you have, not the data you wish for",
-    body: "We launched to an encouraging start — around forty coaches and sport scientists signed up. Then the files arrived. Everyone's spreadsheet was different: some packed a whole week into one sheet split into stacked tables; others uploaded a single session with no date at all, because to them the date was obvious. Two things were quietly killing it — uploads bounced on formats I hadn't anticipated, and even when they worked, the read took two to three minutes to appear. People uploaded once, watched a spinner, and left.",
-    principle: "The happy path is never the hard part. The file that agrees with nothing else is.",
+    n: "03", kicker: "The problem",
+    title: "Every file was different",
+    body: "We launched to a good start — around forty coaches and sport scientists signed up. Then the files came in. No two spreadsheets were the same: some packed a whole week into one sheet split into stacked tables; others uploaded a single session with no date at all, because to them the date was obvious. Two things were quietly killing it — uploads failed on formats I hadn't planned for, and even when they worked, the read took two to three minutes to show up. People uploaded once, watched a spinner, and left.",
+    principle: "The hard part was never the tidy file. It was the ones that matched nothing else.",
     img: "images/trackperform/detecting-structure.png", cap: "Reading an unfamiliar file's structure",
   },
   {
     n: "04", kicker: "The fix",
-    title: "Make the messy middle disappear",
-    body: "I rebuilt intake around one assumption: no two files agree. AI now reads the raw export and works out its structure on its own — where the data starts, which column is the date, whether the sheet is one day or a whole season in blocks. If it's a single day with no date, it stops and asks instead of guessing. If a date is ambiguous, it resolves the US-versus-European format instead of silently picking wrong. Then I killed the wait: the dashboard returns your first seven days in a couple of seconds and streams the rest in behind you.",
-    principle: "Don't make someone wait for the whole season to see the first week.",
+    title: "Fixing the two things that lost people",
+    body: "I rebuilt the upload around one assumption: no two files agree. AI now reads the raw export and works out its shape on its own — where the data starts, which column is the date, whether the sheet is one day or a whole season in blocks. If it's a single day with no date, it stops and asks instead of guessing. If a date is ambiguous, it works out the US-versus-European format instead of quietly picking wrong. Then I dealt with the wait: the dashboard shows your first seven days in a couple of seconds and loads the rest in behind you.",
+    principle: "People won't watch a spinner for three minutes, so I show the first week in seconds.",
     img: "images/trackperform/daily-metrics-dark.png", cap: "The first read, back in seconds",
   },
 ];
@@ -58,12 +58,12 @@ function StackPage4({ go, pal }) {
   return (
     <main className="grain">
       <section className="pt-32 md:pt-40 pb-10 md:pb-16 text-center px-6">
-        <div className="eyebrow opacity-50">How I work</div>
+        <div className="eyebrow opacity-50">The workflow</div>
         <h1 data-fill className="claim text-[11vw] md:text-[58px] max-w-[820px] mx-auto mt-6">
-          My process, shown — not listed
+          How I work
         </h1>
         <p className="text-[17px] leading-[1.65] max-w-[600px] mx-auto mt-6" style={{ opacity: .85 }}>
-          <T>Here's one real build instead of a seven-box diagram: ~TrackPerform~, from a club's messy spreadsheet to a product coaches actually use — and the call I made at each step.</T>
+          <T>Rather than list steps, I'll walk through one project I built — ~TrackPerform~ — from a messy spreadsheet to something coaches actually use, and the decisions I made along the way.</T>
         </p>
       </section>
 
@@ -110,7 +110,7 @@ function StackPage4({ go, pal }) {
             ))}
           </div>
           <p className="text-[16px] md:text-[18px] leading-[1.6] max-w-[680px] mt-10 md:mt-12">
-            <T>Analytics engineer, data analyst, BI analyst — for this build they were ~one job, not three~. That's the whole argument for hiring one person who owns the line end to end.</T>
+            <T>On this project the analytics engineering, the data work and the BI were all ~one job~ — mine. That's usually how it goes when I build something: one person owns the data, the pipeline and the screen.</T>
           </p>
           <button onClick={() => go("case:01")} className="mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-white text-[13.5px] font-medium hover:opacity-88 transition-opacity">
             Read the full TrackPerform case <span className="text-[11px]">↗</span>

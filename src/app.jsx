@@ -129,7 +129,7 @@ function Footer4({ go }) {
         <div className="grid grid-cols-12 gap-y-9 gap-x-8">
           <div className="col-span-12 md:col-span-6">
             <h2 data-fill className="claim text-[8vw] md:text-[36px] leading-[1.05]">
-              Ready to model <span className="serif-it">something real?</span>
+              Want to <span className="serif-it">work together?</span>
             </h2>
             <a href={`mailto:${PROFILE.email}`}
                className="mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full text-[13.5px] font-medium"

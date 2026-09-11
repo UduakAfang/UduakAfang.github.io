@@ -430,7 +430,7 @@ function WorkBench({ go }) {
           <div>
             <span className="inline-block px-4 py-2 rounded-lg border border-ink/15 mono text-[9.5px] tracking-[.18em] uppercase"
                   style={{ background: "rgb(var(--c-paper))", opacity: .8 }}>How I work</span>
-            <h2 data-fill className="claim text-[8.5vw] md:text-[44px] mt-6 max-w-[420px]">Three tracks, one bench</h2>
+            <h2 data-fill className="claim text-[8.5vw] md:text-[44px] mt-6 max-w-[440px]">The three kinds of work I do</h2>
             <div className="mt-9">
               {BENCH_KEYS.map((k) => {
                 const b = BENCH[k], on = k === key;
@@ -447,7 +447,7 @@ function WorkBench({ go }) {
               })}
             </div>
             <button onClick={() => go("stack")} className="ul mono text-[10px] tracking-[.2em] uppercase mt-7 inline-block"
-                    style={{ opacity: .6 }}>Walk it in full →</button>
+                    style={{ opacity: .6 }}>See the full workflow →</button>
           </div>
           <div className="min-w-0 flex">
             <BenchCanvas d={d} key={key} />
