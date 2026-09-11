@@ -328,3 +328,19 @@ html[data-dark="1"] .case-fig img{border-color:rgb(var(--c-ink)/.06)}
   .pipenode{border-radius:14px}
   .pipearrow::before{content:"\2192";padding:0 10px}
 }
+
+/* Print — "Download résumé (PDF)" prints the résumé content only, as clean
+   black-on-white. Site chrome and the button itself are hidden. */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,footer,.curtain,.loader4,#boot,.resume-dl,.scroll-cue{display:none!important}
+  html,body{background:#fff!important}
+  .grain{background-image:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+  .bar-fill{width:var(--w)!important}
+  .mw{opacity:1!important}
+  .resume-doc{padding-top:0!important}
+  .resume-doc section:first-child{padding-top:8px!important;padding-bottom:14px!important}
+  .resume-doc h1{font-size:34px!important}
+  @page{margin:14mm}
+}

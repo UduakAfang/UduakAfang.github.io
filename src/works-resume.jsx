@@ -51,6 +51,19 @@ const WORKFLOW_STORY = [
     principle: "People won't watch a spinner for three minutes, so I show the first week in seconds.",
     img: "images/trackperform/daily-metrics-dark.png", cap: "The first read, back in seconds",
   },
+  {
+    n: "05", kicker: "How it's wired", flow: true,
+    title: "What actually happens when you upload a file",
+    body: "There's no magic to it. The file lands in Supabase storage and stays there untouched, so the original is never lost. A Python service on Google Cloud Run picks it up, does the parsing and the maths — cleaning the noise, working out the metrics — and writes the finished numbers back into Supabase for the dashboard to read. The heavy work runs off to the side, so the app itself stays fast.",
+    principle: "I keep the heavy data work separate from the app, so one never slows the other down.",
+    steps: [
+      { k: "01", t: "Upload", s: "coach's raw export" },
+      { k: "02", t: "Supabase Storage", s: "raw file, kept" },
+      { k: "03", t: "Cloud Run · Python", s: "clean + calculate" },
+      { k: "04", t: "Supabase tables", s: "clean metrics" },
+      { k: "05", t: "Dashboard", s: "reads in seconds" },
+    ],
+  },
 ];
 
 function StackPage4({ go, pal }) {
@@ -77,6 +90,29 @@ function StackPage4({ go, pal }) {
             <p className="text-[16px] md:text-[17.5px] leading-[1.7] max-w-[620px] mx-auto text-left" style={{ opacity: .82 }}>{c.body}</p>
             <div className="mt-8 border-l-2 border-accent pl-4 text-left max-w-[560px] mx-auto">
               <p className="text-[16px] md:text-[18px] font-semibold tracking-[-.01em] leading-snug">{c.principle}</p>
+            </div>
+          </section>
+        ) : c.flow ? (
+          <section key={c.n} className="reveal">
+            <div className="max-w-[720px]">
+              <div className="mono text-[10px] tracking-[.2em] uppercase" style={{ opacity: .5 }}><span className="text-accent">{c.n}</span> · {c.kicker}</div>
+              <h2 className="claim text-[7.5vw] md:text-[34px] leading-[1.08] mt-3">{c.title}</h2>
+              <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .82 }}>{c.body}</p>
+            </div>
+            <div className="pipeflow mt-9">
+              {c.steps.map((s, k) => (
+                <React.Fragment key={s.k}>
+                  <div className="pipenode">
+                    <span className="pipenode-k mono">{s.k}</span>
+                    <span className="pipenode-t">{s.t}</span>
+                    <span className="pipenode-s mono">{s.s}</span>
+                  </div>
+                  {k < c.steps.length - 1 && <span className="pipearrow" aria-hidden="true" />}
+                </React.Fragment>
+              ))}
+            </div>
+            <div className="mt-8 border-l-2 border-accent pl-4 max-w-[560px]">
+              <p className="text-[15.5px] md:text-[17px] font-semibold tracking-[-.01em] leading-snug">{c.principle}</p>
             </div>
           </section>
         ) : (
@@ -170,7 +206,7 @@ function WorksPage4({ go, pal, cards }) {
 function ResumePage4({ go, pal }) {
   useReveal4("resume");
   return (
-    <main className="grain">
+    <main className="grain resume-doc">
       <section className="pt-32 md:pt-40 pb-12 text-center px-6">
         <div className="mono text-[10px] tracking-[.16em] uppercase max-w-[560px] mx-auto" style={{ opacity: .55 }}>{COPY4.role}</div>
         <h1 className="claim text-[12vw] md:text-[64px] mt-6">Résumé</h1>
@@ -178,6 +214,10 @@ function ResumePage4({ go, pal }) {
         <div className="mono text-[10.5px] tracking-[.14em] uppercase mt-7" style={{ opacity: .55 }}>
           {PROFILE.location} · {PROFILE.tz} · {PROFILE.mode}
         </div>
+        <button onClick={() => window.print()}
+          className="resume-dl mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink text-paper text-[13.5px] font-medium hover:opacity-88 transition-opacity">
+          Download résumé (PDF) <span className="text-[12px]">↓</span>
+        </button>
       </section>
 
       <section className="max-w-[820px] mx-auto px-6 md:px-10 pb-20">
@@ -223,7 +263,7 @@ function ResumePage4({ go, pal }) {
           <SkillBars items={SKILLS} />
         </div>
       </section>
-      <Contact4 />
+      <div className="print:hidden"><Contact4 /></div>
     </main>
   );
 }
