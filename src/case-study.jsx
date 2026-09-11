@@ -18,7 +18,7 @@ const CASE_COPY = {
     heads: ["It began in conversations with coaches", "The thing coaches kept saying", "The issues", "The fixes", "The features"],
     extra: {
       1: "The tenure numbers are the whole argument. A coach stays at a club ~two to four years~, works across four to eight teams in a career, and accumulates a few hundred drills doing it. Every one of those moves is a rebuild if the drills live in the club's drive.",
-      3: "So the calendar was rewritten to keep duration as data rather than infer it from the slot: a dragged session carries its start and end with it, a period holds as many sessions as the day actually has, and an all-day item can be dropped into a time like anything else.",
+      3: "So the calendar was rewritten to keep duration as data rather than infer it from the slot: a dragged session carries its start and end with it, a period holds as many sessions as the day actually has, and an all-day item can be dropped into a time like anything else. Under it all, DrillCal is a deliberately ~transactional~ app — React on Supabase, with ^Postgres row-level security^ doing the load-bearing work: a shared team never means a shared library, because the rows themselves decide who can see what.",
     },
   },
   "03": {
@@ -89,7 +89,7 @@ const CASE_FIGS = {
     3: [{ src: "images/trackperform/detecting-structure.png", t: "Detecting file structure",
           n: "The intake now reads the file for shape before mapping a single column: where the data starts, which column is the date, whether the sheet is one session or a season split into blocks. Unusual formatting gets restructured and proposed back to you instead of rejected." },
         { src: "images/diagrams/pipeline.svg", t: "Any export in, one coloured read out",
-          n: "AI reads the structure, a mapper resolves the columns onto a shared schema, the load engine computes the ratios, the dashboard renders — and the first seven days return in a couple of seconds while the rest streams in behind you. Uploads are also bounded to a date window now, so a year of sessions can't hold the first read hostage." }],
+          n: "AI reads the structure, a mapper resolves the columns onto a shared schema, the load engine computes the ratios, the dashboard renders — and the first seven days return in a couple of seconds while the rest streams in behind you. Uploads are also bounded to a date window now, so a year of sessions can't hold the first read hostage. It runs serverless: the raw file lands in Supabase storage, a Python service on Google Cloud Run does the parsing and the maths, and the finished metrics go back into Supabase for the dashboard to read — so the heavy work never slows the app itself." }],
     4: [{ src: "images/trackperform/performance-calendar.png", t: "ACWR calendar",
           n: "The feature the product exists for. Every metric, every day of the month, each cell carrying its EWMA ACWR level — green optimal (0.8–1.2), yellow below, red above. A month of readiness in one glance.",
           aside: { src: "images/diagrams/acwr.svg", t: "How the ratio is built",
