@@ -25,36 +25,30 @@ const LEDES = [
    principle. Real product screenshots carry the evidence. */
 const WORKFLOW_STORY = [
   {
-    n: "01", kicker: "How it started",
-    title: "I built the whole thing by hand first",
-    body: "TrackPerform started as a competition, not a company. Chelsea released a set of GPS tracking data, and I built the dashboard in Tableau — player load, an acute-versus-chronic view of training demand, a match-day calendar, a full player profile. It got shortlisted. It didn't win, but building it taught me exactly what a load dashboard needs to say, and who it's for. That was worth more than winning.",
-    principle: "I don't think you can automate a screen you've never built yourself.",
-    img: "images/trackperform/chelsea-tableau.png", cap: "The original Tableau build",
+    n: "01", kicker: "NYC 311 · Tableau",
+    title: "I work out the decision before I touch the data",
+    body: "With the NYC 311 map, the data wasn't the hard part — 108,000 service requests across seventeen departments were just sitting there. The job was working out the one thing worth showing: where the city actually fails its residents, neighbourhood by neighbourhood. A map is an argument, not a picture. Once I knew the argument, the build was simple — and it got picked as Tableau Viz of the Day.",
+    principle: "If I can't say what decision a screen is for, I'm not ready to build it.",
+    img: "images/nyc.png", cap: "NYC 311 · Tableau Viz of the Day",
   },
   {
-    n: "02", kicker: "Becoming a product", pull: true,
-    quote: "Could this build itself?",
-    body: "A trainer at a top-flight European club had seen the competition work and wanted it built around his own squad, so I built it again with his real numbers. When it was done, he asked the question that became the company. My first thought was no. But I'd built the thing twice by hand, so I knew exactly what had to happen between a raw export and a finished read. The real question was whether AI could handle the messy middle — reading a file it had never seen and working out what every column meant. It could.",
-    principle: "I used AI here because the work was repetitive and there was a lot of it — not to look clever.",
+    n: "02", kicker: "TrackPerform · the messy middle",
+    title: "The messy data is the actual job",
+    body: "TrackPerform started as a Chelsea data competition, then a trainer asked the question that made it a product: could this build itself? Every coach's GPS export was different — a week stacked into one sheet, a session with no date, one metric under four vendor names. So the app reads each file for its shape before mapping a single column, asks instead of guessing when a date is ambiguous, and shows the first seven days in a couple of seconds rather than making people wait three minutes.",
+    principle: "The happy path is never the hard part. The file that matches nothing else is.",
+    img: "images/trackperform/detecting-structure.png", cap: "TrackPerform · reading an unfamiliar file",
   },
   {
-    n: "03", kicker: "The problem",
-    title: "Every file was different",
-    body: "We launched to a good start — around forty coaches and sport scientists signed up. Then the files came in. No two spreadsheets were the same: some packed a whole week into one sheet split into stacked tables; others uploaded a single session with no date at all, because to them the date was obvious. Two things were quietly killing it — uploads failed on formats I hadn't planned for, and even when they worked, the read took two to three minutes to show up. People uploaded once, watched a spinner, and left.",
-    principle: "The hard part was never the tidy file. It was the ones that matched nothing else.",
-    img: "images/trackperform/detecting-structure.png", cap: "Reading an unfamiliar file's structure",
+    n: "03", kicker: "DrillCal · own the whole thing",
+    title: "The data model and the design are usually one decision",
+    body: "DrillCal is a coaching journal, and the whole point is that the library belongs to the coach, not the club — change club, keep your drills. That's a data-model call as much as a design one: it sits on Postgres row-level security, so a shared team never means a shared library. When the calendar broke — a dragged session losing its duration — the fix was in the model too: keep duration as data instead of guessing it from the slot.",
+    principle: "The database decision and the design decision are usually the same decision.",
+    img: "images/drillcal/drills.png", cap: "DrillCal · the drill library",
   },
   {
-    n: "04", kicker: "The fix",
-    title: "Fixing the two things that lost people",
-    body: "I rebuilt the upload around one assumption: no two files agree. AI now reads the raw export and works out its shape on its own — where the data starts, which column is the date, whether the sheet is one day or a whole season in blocks. If it's a single day with no date, it stops and asks instead of guessing. If a date is ambiguous, it works out the US-versus-European format instead of quietly picking wrong. Then I dealt with the wait: the dashboard shows your first seven days in a couple of seconds and loads the rest in behind you.",
-    principle: "People won't watch a spinner for three minutes, so I show the first week in seconds.",
-    img: "images/trackperform/daily-metrics-dark.png", cap: "The first read, back in seconds",
-  },
-  {
-    n: "05", kicker: "How it's wired", flow: true,
-    title: "What actually happens when you upload a file",
-    body: "There's no magic to it. The file lands in Supabase storage and stays there untouched, so the original is never lost. A Python service on Google Cloud Run picks it up, does the parsing and the maths — cleaning the noise, working out the metrics — and writes the finished numbers back into Supabase for the dashboard to read. The heavy work runs off to the side, so the app itself stays fast.",
+    n: "04", kicker: "How it's wired", flow: true,
+    title: "I keep the heavy work off the app",
+    body: "TrackPerform is the clearest example. When you upload a file it lands in Supabase storage and stays there untouched, so the original is never lost. A Python service on Google Cloud Run picks it up, does the parsing and the maths — cleaning the noise, working out the metrics — and writes the finished numbers back into Supabase for the dashboard to read. The heavy work runs off to the side, so the app itself stays fast.",
     principle: "I keep the heavy data work separate from the app, so one never slows the other down.",
     steps: [
       { k: "01", t: "Upload", s: "coach's raw export" },
@@ -76,7 +70,7 @@ function StackPage4({ go, pal }) {
           How I work
         </h1>
         <p className="text-[17px] leading-[1.65] max-w-[600px] mx-auto mt-6" style={{ opacity: .85 }}>
-          <T>Rather than list steps, I'll walk through one project I built — ~TrackPerform~ — from a messy spreadsheet to something coaches actually use, and the decisions I made along the way.</T>
+          <T>A few things that are true of everything I build — each one shown with the project where it mattered most, from a ~Tableau map~ to the ~products I shipped~.</T>
         </p>
       </section>
 
@@ -138,7 +132,7 @@ function StackPage4({ go, pal }) {
       <section className="shell py-16 md:py-24">
         <div className="shellbox rounded-[28px] border border-ink/12 px-7 md:px-14 py-12 md:py-16" style={{ background: "rgb(var(--c-card))" }}>
           <div className="grid md:grid-cols-3 gap-8 md:gap-6 text-center md:text-left">
-            {[["40+", "metrics auto-mapped from any export"], ["3 min → 3s", "from upload to first read"], ["1", "person owned the model, pipeline and interface"]].map(([v, l]) => (
+            {[["2", "products shipped for clients (TrackPerform, DrillCal)"], ["×2", "Tableau Viz of the Day"], ["1", "person owning the data, the pipeline and the screen"]].map(([v, l]) => (
               <div key={l}>
                 <div className="claim text-[12vw] md:text-[46px] text-accent leading-none">{v}</div>
                 <div className="text-[13.5px] leading-[1.5] mt-3" style={{ opacity: .7 }}>{l}</div>
@@ -146,10 +140,10 @@ function StackPage4({ go, pal }) {
             ))}
           </div>
           <p className="text-[16px] md:text-[18px] leading-[1.6] max-w-[680px] mt-10 md:mt-12">
-            <T>On this project the analytics engineering, the data work and the BI were all ~one job~ — mine. That's usually how it goes when I build something: one person owns the data, the pipeline and the screen.</T>
+            <T>The maps, the data models, the pipelines, the products — that's all one person. Analytics engineer, data analyst, BI analyst: for me they've never been ~three separate jobs~.</T>
           </p>
-          <button onClick={() => go("case:01")} className="mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-white text-[13.5px] font-medium hover:opacity-88 transition-opacity">
-            Read the full TrackPerform case <span className="text-[11px]">↗</span>
+          <button onClick={() => go("work")} className="mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-white text-[13.5px] font-medium hover:opacity-88 transition-opacity">
+            See all my work <span className="text-[11px]">↗</span>
           </button>
         </div>
       </section>
