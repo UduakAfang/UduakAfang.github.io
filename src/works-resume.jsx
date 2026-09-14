@@ -19,38 +19,20 @@ const LEDES = [
   "Not a novelty \u2014 a daily practice. The judgement calls (grain, ownership, what a metric means) are still mine. ~Everything else moves faster than it used to.~",
 ];
 
-/* The workflow page is a case-led story, not an abstract pipeline: how I
-   work, shown through one real build (TrackPerform) end to end. Copy is
-   condensed from the project's own case narrative; each chapter lands on a
-   principle. Real product screenshots carry the evidence. */
-const WORKFLOW_STORY = [
+/* The workflow page: what every project has in common, then a tab per lane
+   showing where the work differs — each grounded in a real project. */
+const WF_COMMON = [
+  { t: "Work out the decision first", d: "Before the data — I need to know the one call the screen is there to help someone make." },
+  { t: "The messy data is the job", d: "The tidy file is never the hard part. The ones that agree with nothing else are." },
+  { t: "The model and the design are one decision", d: "What a row means, who can see it, how it reads on screen — usually the same call, made once." },
+  { t: "Not done until someone acts on it", d: "A dashboard nobody opens didn't work. The point is the decision at the other end." },
+];
+
+const WF_ROWS = [
   {
-    n: "01", kicker: "NYC 311 · Tableau",
-    title: "I work out the decision before I touch the data",
-    body: "With the NYC 311 map, the data wasn't the hard part — 108,000 service requests across seventeen departments were just sitting there. The job was working out the one thing worth showing: where the city actually fails its residents, neighbourhood by neighbourhood. A map is an argument, not a picture. Once I knew the argument, the build was simple — and it got picked as Tableau Viz of the Day.",
-    principle: "If I can't say what decision a screen is for, I'm not ready to build it.",
-    img: "images/nyc.png", cap: "NYC 311 · Tableau Viz of the Day",
-  },
-  {
-    n: "02", kicker: "TrackPerform · the messy middle",
-    title: "The messy data is the actual job",
-    body: "TrackPerform started as a Chelsea data competition, then a trainer asked the question that made it a product: could this build itself? Every coach's GPS export was different — a week stacked into one sheet, a session with no date, one metric under four vendor names. So the app reads each file for its shape before mapping a single column, asks instead of guessing when a date is ambiguous, and shows the first seven days in a couple of seconds rather than making people wait three minutes.",
-    principle: "The happy path is never the hard part. The file that matches nothing else is.",
-    img: "images/trackperform/detecting-structure.png", cap: "TrackPerform · reading an unfamiliar file",
-  },
-  {
-    n: "03", kicker: "DrillCal · own the whole thing",
-    title: "The data model and the design are usually one decision",
-    body: "DrillCal is a coaching journal, and the whole point is that the library belongs to the coach, not the club — change club, keep your drills. That's a data-model call as much as a design one: it sits on Postgres row-level security, so a shared team never means a shared library. When the calendar broke — a dragged session losing its duration — the fix was in the model too: keep duration as data instead of guessing it from the slot.",
-    principle: "The database decision and the design decision are usually the same decision.",
-    img: "images/drillcal/drills.png", cap: "DrillCal · the drill library",
-  },
-  {
-    n: "04", kicker: "How it's wired", flow: true,
-    title: "I keep the heavy work off the app",
-    body: "TrackPerform is the clearest example. When you upload a file it lands in Supabase storage and stays there untouched, so the original is never lost. A Python service on Google Cloud Run picks it up, does the parsing and the maths — cleaning the noise, working out the metrics — and writes the finished numbers back into Supabase for the dashboard to read. The heavy work runs off to the side, so the app itself stays fast.",
-    principle: "I keep the heavy data work separate from the app, so one never slows the other down.",
-    steps: [
+    id: "ae", tab: "Analytics engineering", claim: "Raw data in, tested models out",
+    d: "The line I own end to end — landing raw data, cleaning and shaping it, and handing the dashboard something it can trust. TrackPerform is the clearest example: any coach's export in, one clean read out, with the heavy work kept off the app.",
+    flow: [
       { k: "01", t: "Upload", s: "coach's raw export" },
       { k: "02", t: "Supabase Storage", s: "raw file, kept" },
       { k: "03", t: "Cloud Run · Python", s: "clean + calculate" },
@@ -58,76 +40,98 @@ const WORKFLOW_STORY = [
       { k: "05", t: "Dashboard", s: "reads in seconds" },
     ],
   },
+  {
+    id: "bi", tab: "Dashboards & analysis", claim: "A question becomes a screen",
+    d: "Turning a request into something a team actually opens. With NYC 311 the real work was the argument, not the data — where the city fails its residents, neighbourhood by neighbourhood. A map is an argument, not a picture. It was picked as Tableau Viz of the Day.",
+    img: "images/nyc.png", cap: "NYC 311 · Tableau Viz of the Day",
+  },
+  {
+    id: "px", tab: "Products", claim: "A problem becomes a shipped app",
+    d: "When a dashboard isn't enough, I build the product around it — data model, pipeline and interface. DrillCal keeps a coach's whole library in their own account, on Postgres row-level security, so it moves with them when the club changes.",
+    img: "images/drillcal/drills.png", cap: "DrillCal · the drill library",
+  },
 ];
 
 function StackPage4({ go, pal }) {
+  const [tab, setTab] = useStateP4(0);
   useReveal4("stack");
+  const row = WF_ROWS[tab];
   return (
     <main className="grain">
-      <section className="pt-32 md:pt-40 pb-10 md:pb-16 text-center px-6">
+      <section className="pt-32 md:pt-40 pb-10 md:pb-14 text-center px-6">
         <div className="eyebrow opacity-50">The workflow</div>
         <h1 data-fill className="claim text-[11vw] md:text-[58px] max-w-[820px] mx-auto mt-6">
           How I work
         </h1>
-        <p className="text-[17px] leading-[1.65] max-w-[600px] mx-auto mt-6" style={{ opacity: .85 }}>
-          <T>A few things that are true of everything I build — each one shown with the project where it mattered most, from a ~Tableau map~ to the ~products I shipped~.</T>
+        <p className="text-[17px] leading-[1.65] max-w-[620px] mx-auto mt-6" style={{ opacity: .85 }}>
+          <T>However different the projects look, they run on the same few decisions. Here's what stays the same — and where each kind of work goes its own way.</T>
         </p>
       </section>
 
-      <div className="shell space-y-20 md:space-y-32 pb-4">
-        {WORKFLOW_STORY.map((c, i) => c.pull ? (
-          <section key={c.n} className="reveal max-w-[860px] mx-auto text-center py-2">
-            <div className="mono text-[10px] tracking-[.2em] uppercase" style={{ opacity: .5 }}><span className="text-accent">{c.n}</span> · {c.kicker}</div>
-            <blockquote className="claim text-[10vw] md:text-[54px] leading-[1.04] mt-6 mb-8">
-              <span className="serif-it">“{c.quote}”</span>
-            </blockquote>
-            <p className="text-[16px] md:text-[17.5px] leading-[1.7] max-w-[620px] mx-auto text-left" style={{ opacity: .82 }}>{c.body}</p>
-            <div className="mt-8 border-l-2 border-accent pl-4 text-left max-w-[560px] mx-auto">
-              <p className="text-[16px] md:text-[18px] font-semibold tracking-[-.01em] leading-snug">{c.principle}</p>
+      <section className="shell pb-8 md:pb-12">
+        <div className="flex items-baseline justify-between gap-6 border-b border-ink/12 pb-5 mb-9 md:mb-12">
+          <h2 className="claim text-[7.5vw] md:text-[30px]">What stays the same</h2>
+          <span className="mono text-[9.5px] tracking-[.2em] uppercase whitespace-nowrap" style={{ opacity: .4 }}>every project</span>
+        </div>
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-9">
+          {WF_COMMON.map((c, i) => (
+            <div key={c.t} className="reveal flex gap-4" style={{ transitionDelay: i * 60 + "ms" }}>
+              <span className="mono text-[11px] text-accent pt-1">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3 className="text-[17px] md:text-[19px] font-bold tracking-[-.02em] leading-snug">{c.t}</h3>
+                <p className="text-[14.5px] leading-[1.6] mt-2" style={{ opacity: .72 }}>{c.d}</p>
+              </div>
             </div>
-          </section>
-        ) : c.flow ? (
-          <section key={c.n} className="reveal">
-            <div className="max-w-[720px]">
-              <div className="mono text-[10px] tracking-[.2em] uppercase" style={{ opacity: .5 }}><span className="text-accent">{c.n}</span> · {c.kicker}</div>
-              <h2 className="claim text-[7.5vw] md:text-[34px] leading-[1.08] mt-3">{c.title}</h2>
-              <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .82 }}>{c.body}</p>
-            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="shell py-14 md:py-20">
+        <div className="flex items-baseline justify-between gap-6 border-b border-ink/12 pb-5 mb-8">
+          <h2 className="claim text-[7.5vw] md:text-[30px]">Where the work differs</h2>
+          <span className="mono text-[9.5px] tracking-[.2em] uppercase whitespace-nowrap" style={{ opacity: .4 }}>three lanes</span>
+        </div>
+        <div className="flex flex-wrap gap-2 mb-10">
+          {WF_ROWS.map((r, i) => (
+            <button key={r.id} onClick={() => setTab(i)}
+              className={"px-4 py-2.5 rounded-full mono text-[10px] tracking-[.16em] uppercase transition-colors " +
+                (i === tab ? "bg-ink text-paper" : "border border-ink/18 hover:border-ink/45")}>
+              {r.tab}
+            </button>
+          ))}
+        </div>
+        {row.flow ? (
+          <div>
+            <h3 className="claim text-[8vw] md:text-[34px] leading-[1.08] max-w-[640px]">{row.claim}</h3>
+            <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5 max-w-[640px]" style={{ opacity: .82 }}>{row.d}</p>
             <div className="pipeflow mt-9">
-              {c.steps.map((s, k) => (
+              {row.flow.map((s, k) => (
                 <React.Fragment key={s.k}>
                   <div className="pipenode">
                     <span className="pipenode-k mono">{s.k}</span>
                     <span className="pipenode-t">{s.t}</span>
                     <span className="pipenode-s mono">{s.s}</span>
                   </div>
-                  {k < c.steps.length - 1 && <span className="pipearrow" aria-hidden="true" />}
+                  {k < row.flow.length - 1 && <span className="pipearrow" aria-hidden="true" />}
                 </React.Fragment>
               ))}
             </div>
-            <div className="mt-8 border-l-2 border-accent pl-4 max-w-[560px]">
-              <p className="text-[15.5px] md:text-[17px] font-semibold tracking-[-.01em] leading-snug">{c.principle}</p>
-            </div>
-          </section>
+          </div>
         ) : (
-          <section key={c.n} className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
-            <div className={"md:col-span-6 " + (i % 2 ? "md:order-2" : "")}>
-              <div className="mono text-[10px] tracking-[.2em] uppercase" style={{ opacity: .5 }}><span className="text-accent">{c.n}</span> · {c.kicker}</div>
-              <h2 className="claim text-[7.5vw] md:text-[34px] leading-[1.08] mt-3">{c.title}</h2>
-              <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .82 }}>{c.body}</p>
-              <div className="mt-6 border-l-2 border-accent pl-4">
-                <p className="text-[15.5px] md:text-[17px] font-semibold tracking-[-.01em] leading-snug">{c.principle}</p>
-              </div>
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+            <div className="md:col-span-6">
+              <h3 className="claim text-[8vw] md:text-[34px] leading-[1.08]">{row.claim}</h3>
+              <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .82 }}>{row.d}</p>
             </div>
-            <figure className={"reveal md:col-span-6 " + (i % 2 ? "md:order-1" : "")}>
+            <figure className="md:col-span-6">
               <div className="rounded-[16px] overflow-hidden border border-ink/12" style={{ background: "rgb(var(--c-paper2))" }}>
-                <img src={c.img} alt={c.cap} loading="lazy" className="w-full block" />
+                <img src={row.img} alt={row.cap} loading="lazy" className="w-full block" />
               </div>
-              <figcaption className="mono text-[8.5px] tracking-[.18em] uppercase mt-3" style={{ opacity: .45 }}>{c.cap}</figcaption>
+              <figcaption className="mono text-[8.5px] tracking-[.18em] uppercase mt-3" style={{ opacity: .45 }}>{row.cap}</figcaption>
             </figure>
-          </section>
-        ))}
-      </div>
+          </div>
+        )}
+      </section>
 
       <section className="shell py-16 md:py-24">
         <div className="shellbox rounded-[28px] border border-ink/12 px-7 md:px-14 py-12 md:py-16" style={{ background: "rgb(var(--c-card))" }}>
