@@ -186,19 +186,24 @@ function Sticker({ label, rot, pos, light }) {
    No tint, no hover takeover — the work is the only thing on the card. */
 function ProjectCard({ work, tint, go, cards = "Tinted", order = 0 }) {
   const open = () => go("case:" + work.id);
-  const line = (work.stack || []).slice(0, 3).join(" · ") || work.tag;
+  const line = (work.stack || []).slice(0, 4).join(" · ") || work.tag;
+  const light = cards !== "Paper" && tint && tint.fg === "light";
+  const txtStyle = cards === "Paper"
+    ? { background: "rgb(var(--c-card))" }
+    : { background: (tint && tint.bg) || "rgb(var(--c-card))", color: light ? "#fff" : "rgb(var(--c-ink))" };
   return (
-    <div className="reveal pcard-flip relative group h-full" style={{ zIndex: 10 + order, isolation: "isolate" }}>
+    <div className="reveal pcard-flip relative group" style={{ zIndex: 10 + order, isolation: "isolate" }}>
       <div onClick={open} role="link" tabIndex="0"
            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}
-           className="pcard vb-cell vb-cell-link h-full flex flex-col items-center text-center cursor-pointer">
-        <div className="vb-shot w-full flex items-center justify-center">
-          <img src={work.image} alt={work.title} />
+           className="projrow cursor-pointer">
+        <div className="projrow-txt" style={txtStyle}>
+          <div className="mono text-[9px] tracking-[.18em] uppercase" style={{ opacity: .6 }}>{work.category}</div>
+          <h3 className="text-[25px] md:text-[30px] font-black tracking-[-.035em] leading-[1.05] mt-3">{work.title}</h3>
+          <div className="mono text-[9px] tracking-[.16em] uppercase mt-3 leading-[1.7]" style={{ opacity: .6 }}>{line}</div>
+          <div className="mono text-[9.5px] tracking-[.16em] uppercase mt-5 projrow-cta">Case study →</div>
         </div>
-        <div className="vb-foot w-full">
-          <div className="text-[19px] md:text-[21px] font-semibold tracking-[-.025em]">{work.title}</div>
-          <div className="mono text-[9px] tracking-[.16em] uppercase mt-2" style={{ opacity: .5 }}>{line}</div>
-          <div className="mono text-[9px] tracking-[.16em] uppercase mt-2.5 vb-cta">Case study →</div>
+        <div className="projrow-img">
+          <img src={work.image} alt={work.title} loading="lazy" />
         </div>
       </div>
     </div>
@@ -680,7 +685,7 @@ function HomePage4({ go, pal, band, cards, heroPanel }) {
             <div key={g.id}>
               <GroupHead g={g} n={String((g.id === "dashboards" ? (window.VIZ_ITEMS || []).length : items.length)).padStart(2, "0")} />
               {g.id === "dashboards" ? <VizBoard go={go} /> : (
-                <div className="grid md:grid-cols-2 gap-6 md:gap-7 items-stretch">
+                <div className="space-y-6 md:space-y-8">
                   {items.map((w, k) => (
                     <ProjectCard key={w.id} work={w} tint={pal.cards[SELECTED_WORKS.indexOf(w) % pal.cards.length]} go={go} cards={cards}
                       order={SELECTED_WORKS.indexOf(w) >= 0 ? SELECTED_WORKS.indexOf(w) : k} />
