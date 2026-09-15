@@ -200,9 +200,8 @@ footer,.circuit-foot{isolation:isolate}
 .vb{display:grid;gap:22px}
 .vb-pin{display:grid;gap:0;border:1px solid rgb(var(--c-ink)/.14);border-radius:20px;overflow:hidden;background:rgb(var(--c-card));cursor:pointer}
 @media(min-width:768px){.vb-pin{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr)}}
-.vb-pin-shot{background:rgb(var(--c-paper2));padding:0;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:260px}
-.vb-pin-shot img{width:100%;height:100%;max-height:none;object-fit:contain;object-position:center;border-radius:0;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-@media(min-width:768px){.vb-pin-shot{min-height:440px}}
+.vb-pin-shot{background:rgb(var(--c-paper2));padding:14px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.vb-pin-shot img{width:100%;height:100%;max-height:340px;object-fit:contain;border-radius:6px;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .vb-pin-txt{padding:32px 30px 34px;display:flex;flex-direction:column;justify-content:center;border-top:1px solid rgb(var(--c-ink)/.1)}
 @media(min-width:768px){.vb-pin-txt{border-top:0;border-left:1px solid rgb(var(--c-ink)/.1);padding:32px 34px}}
 .vb-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:18px;border-top:1px solid rgb(var(--c-ink)/.12)}
@@ -302,16 +301,17 @@ html[data-dark="1"] .case-fig img{border-color:rgb(var(--c-ink)/.06)}
 .pcard-flip>div{transform-origin:50% 100%;transform:rotateX(-84deg);opacity:0;transition:transform 1s cubic-bezier(.2,.7,.2,1),opacity .7s ease}
 .pcard-flip.in>div{transform:none;opacity:1}
 
-/* Project row — full-width card split 30 (details) / 70 (image), image
-   filling its side edge to edge. Stacks on mobile (details, then image). */
-.projrow{display:grid;grid-template-columns:1fr;border:1px solid rgb(var(--c-ink)/.14);border-radius:22px;overflow:hidden;background:rgb(var(--c-card));min-height:100%}
-@media(min-width:768px){.projrow{grid-template-columns:minmax(0,3fr) minmax(0,7fr);min-height:320px}}
-.projrow-txt{padding:28px 28px 30px;display:flex;flex-direction:column;justify-content:center}
-.projrow-img{position:relative;background:rgb(var(--c-paper2));overflow:hidden;min-height:240px}
-.projrow-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 8%;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.projrow:hover .projrow-img img{transform:scale(1.04)}
-.projrow-cta{opacity:.6;transition:opacity .3s ease,color .3s ease}
-.projrow:hover .projrow-cta{opacity:1;color:rgb(var(--c-accent))}
+/* Project card — image-forward: a big rounded image filling the card with a
+   slight frame, title + tags beneath. Used on the homepage and works grids. */
+.pcard2{background:rgb(var(--c-card));border:1px solid rgb(var(--c-ink)/.1);border-radius:18px;padding:10px 10px 6px;cursor:pointer;height:100%;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.pcard2:hover{transform:translateY(-5px);box-shadow:0 40px 70px -42px rgba(0,0,0,.45)}
+.pcard2-img{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:rgb(var(--c-paper2))}
+.pcard2-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 6%;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.pcard2:hover .pcard2-img img{transform:scale(1.05)}
+.pcard2-body{padding:15px 8px 12px}
+.pcard2-title{font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.pcard2-tags{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:9px}
+.pcard2-tag{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.06em;color:rgb(var(--c-ink)/.5)}
 .mw{will-change:opacity}
 [data-spin]{will-change:transform}
 .curtain-type{display:inline-block}

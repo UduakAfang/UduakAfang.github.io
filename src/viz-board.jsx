@@ -39,7 +39,7 @@ function VizPin({ go, id }) {
     <div className="vb-pin reveal" onClick={open} role="link" tabIndex="0"
          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}
          onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
-      <div className="vb-pin-shot" style={w.shotBg ? { background: w.shotBg } : undefined}>
+      <div className="vb-pin-shot">
         <img src={w.image} alt={w.title} style={{ transform: hov ? "scale(1.03)" : "scale(1)" }} />
       </div>
       <div className="vb-pin-txt">
@@ -79,8 +79,8 @@ function VizTile({ t, go }) {
   );
 }
 
-function VizBoard({ go, pinId = PINNED_ID }) {
-  const pin = VIZ_ITEMS.some((t) => t.id === pinId) ? pinId : null;
+function VizBoard({ go, pinId = PINNED_ID, pinned = true }) {
+  const pin = pinned && VIZ_ITEMS.some((t) => t.id === pinId) ? pinId : null;
   const tiles = VIZ_ITEMS.filter((t) => t.id !== pin);
   return (
     <div className="vb">

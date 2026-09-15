@@ -29,7 +29,6 @@ const SELECTED_WORKS = [
       "Every African country's first head of state after independence and the one in office today, on one map. Each ring is five years in power; the stem tells you whether power changed hands by election or by force.",
     metric: { value: "108", label: "Heads of state" },
     image: "images/leaders.png",
-    shotBg: "#2c3628",
     process: [
       { n: "01", t: "The question", d: "Did the systems of government African countries carried out of independence survive, and who is still standing in them?" },
       { n: "02", t: "The data", d: "A dataset I compiled myself — 54 countries, 108 slots, 106 distinct people — with administration type, mode of entry, exit type and dates sworn in and out." },
