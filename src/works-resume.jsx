@@ -201,59 +201,19 @@ function WorksPage4({ go, pal, cards }) {
   );
 }
 
-/* Printable CV — content mirrors Uduak's own résumé; laid out to match its
-   design (see .cv-sheet in styles.css). Hidden on screen, shown only in print
-   via the "Download résumé (PDF)" button. */
-const CV = {
+/* Printable CV — content mirrors Uduak's own résumés, in three role-tailored
+   variants (analytics engineer, data analyst, BI developer). The shared block
+   (contact, education, recognition, links) is identical across all three.
+   Laid out to match his CV design (see .cv-sheet in styles.css); hidden on
+   screen, printed by the "Download résumé" button. */
+const CV_SHARED = {
   name: "Uduak Afang",
-  title: "Analytics Engineer · Data Analyst · Business Intelligence",
-  overview: "BI analyst with 3+ years building dashboards, data models and reporting pipelines that hold up under scrutiny. Strong SQL, Power BI and Tableau, hands-on with Azure data platforms (Data Factory, Databricks), and a daily habit of using AI tools to move faster through analysis and automation. Comfortable owning a data problem end-to-end — from raw ingestion to a dashboard a non-technical stakeholder trusts — while working independently in a remote environment.",
-  experience: [
-    {
-      role: "BI Analyst", org: "SessionHub Softswitch Limited", meta: "Lagos, Nigeria · Mar 2023 – Present",
-      bullets: [
-        "Designed and built the company's invoice and financial reporting data model and dashboard from scratch, consolidating scattered, untracked records into one governed, queryable system.",
-        "Own data accuracy end-to-end: validate figures, document the underlying process, and cross-check before anything reaches a stakeholder or client.",
-        "Use AI tools daily to accelerate analysis, debug pipeline issues, and automate recurring reporting work.",
-        "Built Power BI dashboards and data models tracking customer churn and retention, gathering requirements directly from non-technical stakeholders.",
-      ],
-    },
-    {
-      role: "Data Analyst", org: "Demsco Travels & Tours", meta: "Lagos, Nigeria · Mar 2022 – Feb 2023",
-      bullets: [
-        "Migrated paper-based records into structured, query-ready datasets, improving data accuracy and cutting reporting time by 40%.",
-        "Built daily and weekly performance scorecards used by the operations and sales leads.",
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: "TrackPerform", tag: "Multi-Source Analytics Platform", year: "2025",
-      bullets: [
-        "Built a full-stack platform (React, Python/Flask, Supabase/PostgreSQL) that consolidates inconsistent multi-source data into one reporting layer, using AI tools throughout the build.",
-        "Defined a KPI framework from scratch (engagement and load-risk metrics, rolling trend tracking) and built the validation checks that catch data quality issues before they reach a dashboard.",
-      ],
-    },
-    {
-      name: "DrillCal", tag: "Data Integrity & Audit Logging", year: "2025",
-      bullets: [
-        "Diagnosed a data integrity bug, then built pre-deletion snapshot logging and an append-only audit trail (Postgres row-level security) so records can't be silently altered.",
-      ],
-    },
-  ],
   contact: [
     ["Phone", "+234 902-426-1252"],
     ["Email", "uduakafang@gmail.com"],
     ["Location", "Lagos, Nigeria · UTC+1 · Remote"],
     ["LinkedIn", "linkedin.com/in/uduakafang"],
   ],
-  skillsTech: [
-    "SQL (SQL Server, PostgreSQL, BigQuery)", "Power BI & DAX", "Tableau",
-    "Data Modeling (Dimensional, Semantic Layers)", "Azure Data Factory & Databricks",
-    "dbt & Spark Pipelines", "ETL / ELT Pipeline Development",
-    "AI-Assisted Analytics (Claude, ChatGPT)", "Python (Pandas, Flask)",
-  ],
-  skillsSoft: ["Data Governance & Quality", "Requirements Gathering", "Technical Documentation", "Stakeholder Communication", "Remote Self-Direction"],
   education: { deg: "B.Sc. — University of Lagos", where: "Lagos, Nigeria" },
   achievements: [
     ["2× Tableau Viz of the Day", "Two dashboards selected for Tableau's global daily featured Viz spotlight (personal Tableau Public work)."],
@@ -262,20 +222,120 @@ const CV = {
   links: [["GitHub", "github.com/UduakAfang"], ["Tableau", "public.tableau.com/…"], ["Portfolio", "uduakafang.github.io"]],
 };
 
-function CVSheet() {
+const CV_VARIANTS = {
+  ae: {
+    label: "Analytics Engineer",
+    title: "Analytics Engineer",
+    overview: "Analytics engineer with 3+ years turning messy, multi-source data into tested, trustworthy models and the dashboards on top of them. Strong SQL and Python, hands-on with dbt, Databricks and Azure Data Factory, and a daily habit of using AI tools to move faster through modelling, testing and debugging. I own the line end-to-end — raw ingestion, a governed semantic layer, and the screen a stakeholder actually decides on — working independently in a remote environment.",
+    experience: [
+      { role: "BI Analyst", org: "SessionHub Softswitch Limited", meta: "Lagos, Nigeria · Mar 2023 – Present", bullets: [
+        "Designed and built the company's invoice and financial reporting data model from scratch, consolidating scattered, untracked records into one governed, queryable semantic layer.",
+        "Wrote optimised SQL (CTEs, window functions) to extract, clean and transform data across multiple source systems, eliminating manual prep for finance and ops.",
+        "Automated reporting workflows with Azure Data Factory and Python, and use AI tools daily to scaffold models, draft tests and review SQL.",
+      ] },
+      { role: "Data Analyst", org: "Demsco Travels & Tours", meta: "Lagos, Nigeria · Mar 2022 – Feb 2023", bullets: [
+        "Migrated paper-based records into structured, query-ready datasets, improving data accuracy and cutting reporting time by 40%.",
+        "Built Power BI dashboards tracking churn and retention for non-technical stakeholders.",
+      ] },
+    ],
+    projects: [
+      { name: "TrackPerform", tag: "Data Pipeline & Modeling", year: "2025", bullets: [
+        "Architected an asynchronous, serverless ELT pipeline (Supabase Storage → Python on Google Cloud Run → Supabase) that ingests inconsistent multi-source exports and standardises them into one semantic layer before they reach a dashboard.",
+        "Defined a KPI framework from scratch and built automated data-quality checks that catch schema drift and inconsistencies as new sources are added.",
+      ] },
+      { name: "DrillCal", tag: "Data Integrity & Audit Logging", year: "2025", bullets: [
+        "Diagnosed a data integrity bug, then built pre-deletion snapshot logging and an append-only audit trail on Postgres row-level security as a governance safeguard.",
+      ] },
+    ],
+    skillsTech: [
+      "SQL (SQL Server, PostgreSQL, BigQuery)", "dbt & Spark Pipelines",
+      "Data Modeling (Dimensional, Semantic Layers)", "Azure Data Factory & Databricks",
+      "ETL / ELT Pipeline Development", "Python (Pandas, NumPy, Flask)",
+      "AI-Assisted Analytics (Claude, ChatGPT)", "Tableau & Power BI",
+    ],
+    skillsSoft: ["Data Governance & Quality", "Testing & CI mindset", "Requirements Gathering", "Remote Self-Direction"],
+  },
+
+  da: {
+    label: "Data Analyst",
+    title: "Data Analyst — BI and AI",
+    overview: "BI Analyst with 3+ years building dashboards and reporting that hold up under scrutiny, backed by hands-on SQL, cloud data pipeline experience (Azure Data Factory, Databricks), and a daily habit of using AI tools to accelerate analysis and automate repeatable work rather than treating them as a novelty. Comfortable turning ambiguous business questions into structured analyses, and translating findings for stakeholders who aren't looking at the data every day.",
+    experience: [
+      { role: "BI Analyst", org: "SessionHub Softswitch Limited", meta: "Lagos, Nigeria · Mar 2023 – Present", bullets: [
+        "Built the company's invoice and financial reporting web dashboard and database from scratch, consolidating scattered, untracked records into one structured, queryable system.",
+        "Use AI tools daily to accelerate analysis, debug code, and automate recurring reporting work — an everyday part of how I work, not an occasional experiment.",
+        "Maintain the dashboard day to day, validating data accuracy and cross-checking figures before they reach a stakeholder or client.",
+      ] },
+      { role: "Data Analyst", org: "Demsco Travels & Tours", meta: "Lagos, Nigeria · Mar 2022 – Feb 2023", bullets: [
+        "Analyzed customer behaviour patterns to identify churn and retention signals, translating findings into Power BI dashboards used by non-technical stakeholders.",
+        "Migrated paper-based records into structured, query-ready datasets, improving data accuracy and cutting reporting time by 40%.",
+      ] },
+    ],
+    projects: [
+      { name: "TrackPerform", tag: "Multi-Source Analytics Platform", year: "2025", bullets: [
+        "Built a full-stack platform (React, Python/Flask, Supabase/PostgreSQL) that consolidates inconsistent multi-source data into one reporting layer, using AI tools throughout the build to move faster through development and debugging.",
+        "Defined a KPI framework from scratch (engagement and load-risk metrics, rolling trend tracking) and built the validation checks that catch data quality issues before they reach a dashboard.",
+      ] },
+      { name: "DrillCal", tag: "Data Integrity & Audit Logging", year: "2025", bullets: [
+        "Diagnosed a data integrity bug, then built pre-deletion snapshot logging and an append-only audit trail (Postgres row-level security) so records can't be silently altered.",
+      ] },
+    ],
+    skillsTech: [
+      "SQL (SQL Server, PostgreSQL, BigQuery)", "Azure Data Factory & ADLS Gen2",
+      "Databricks & Spark Pipelines", "dbt", "Tableau & Power BI",
+      "AI-Assisted Analytics (Claude, ChatGPT)", "Python (Pandas, NumPy, Flask)", "Data Modeling & ETL",
+    ],
+    skillsSoft: ["Product Metrics (Activation, Retention, Churn)", "Structured Problem-Solving", "Stakeholder Communication", "Data Quality & Validation"],
+  },
+
+  bi: {
+    label: "BI Developer",
+    title: "Business Intelligence Developer",
+    overview: "BI Developer with 3+ years designing dashboards, data models, and reporting pipelines that hold up under scrutiny. Strong SQL and Power BI experience, hands-on with Azure-based data platforms (Data Factory, Databricks), and a daily habit of using AI tools to move faster through analysis and automation. Comfortable owning a data problem end-to-end, from raw ingestion to a dashboard a non-technical stakeholder trusts, while working independently in a remote environment.",
+    experience: [
+      { role: "BI Analyst", org: "SessionHub Softswitch Limited", meta: "Lagos, Nigeria · Mar 2023 – Present", bullets: [
+        "Designed and built the company's invoice and financial reporting data model and dashboard from scratch, consolidating scattered, untracked records into one governed, queryable system.",
+        "Own data accuracy and quality end-to-end: validate figures, document the underlying process, and cross-check before anything reaches a stakeholder or client.",
+        "Use AI tools daily to accelerate analysis, debug pipeline issues, and automate recurring reporting work.",
+      ] },
+      { role: "Data Analyst", org: "Demsco Travels & Tours", meta: "Lagos, Nigeria · Mar 2022 – Feb 2023", bullets: [
+        "Built Power BI dashboards and data models tracking customer churn and retention, gathering requirements directly from non-technical stakeholders.",
+        "Migrated paper-based records into structured, query-ready datasets, improving data accuracy and cutting reporting time by 40%.",
+      ] },
+    ],
+    projects: [
+      { name: "TrackPerform", tag: "Data Pipeline & Modeling", year: "2025", bullets: [
+        "Built the ETL layer for a full-stack analytics platform (Python/Flask, Supabase/PostgreSQL), ingesting inconsistent multi-source data and standardizing it into a consistent semantic layer before it reaches a dashboard.",
+        "Defined a KPI framework from scratch and built automated data quality checks to catch schema drift and inconsistencies as new sources were added, using AI tools throughout the build.",
+      ] },
+      { name: "DrillCal", tag: "Data Integrity & Audit Logging", year: "2025", bullets: [
+        "Diagnosed a data integrity bug, then built pre-deletion snapshot logging and an append-only audit trail (Postgres row-level security) as a data governance safeguard.",
+      ] },
+    ],
+    skillsTech: [
+      "Power BI & DAX", "SQL (SQL Server, PostgreSQL, BigQuery)",
+      "Data Modeling (Dimensional, Semantic Layers)", "Azure Data Factory & Databricks",
+      "dbt & Spark Pipelines", "ETL / ELT Pipeline Development",
+      "AI-Assisted Analytics (Claude, ChatGPT)", "Python (Pandas, Flask)",
+    ],
+    skillsSoft: ["Data Governance & Quality", "Requirements Gathering", "Technical Documentation", "Remote Self-Direction"],
+  },
+};
+
+function CVSheet({ v }) {
   return (
     <div className="cv-sheet" aria-hidden="true">
       <div className="cv-head">
-        <div className="cv-name">{CV.name}</div>
-        <div className="cv-title">{CV.title}</div>
+        <div className="cv-name">{CV_SHARED.name}</div>
+        <div className="cv-title">{v.title}</div>
       </div>
       <div className="cv-body">
         <div className="cv-main">
           <div className="cv-sec">Professional Overview</div>
-          <p className="cv-overview">{CV.overview}</p>
+          <p className="cv-overview">{v.overview}</p>
 
           <div className="cv-sec">Work Experience</div>
-          {CV.experience.map((e) => (
+          {v.experience.map((e) => (
             <div key={e.org}>
               <div className="cv-role">{e.role}</div>
               <div className="cv-org">{e.org}</div>
@@ -285,7 +345,7 @@ function CVSheet() {
           ))}
 
           <div className="cv-sec">Projects</div>
-          {CV.projects.map((p) => (
+          {v.projects.map((p) => (
             <div key={p.name}>
               <div className="cv-proj"><b>{p.name}</b> <i>— {p.tag}</i><span>{p.year}</span></div>
               <ul className="cv-list">{p.bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
@@ -295,23 +355,23 @@ function CVSheet() {
 
         <div className="cv-side">
           <div className="cv-sec">Contact</div>
-          {CV.contact.map(([k, v]) => <div key={k} className="cv-kv"><b>{k}</b><span>{v}</span></div>)}
+          {CV_SHARED.contact.map(([k, val]) => <div key={k} className="cv-kv"><b>{k}</b><span>{val}</span></div>)}
 
           <div className="cv-sec">Technical Skills</div>
-          {CV.skillsTech.map((s) => <div key={s} className="cv-skill">{s}</div>)}
+          {v.skillsTech.map((s) => <div key={s} className="cv-skill">{s}</div>)}
 
           <div className="cv-sec">Soft Skills</div>
-          {CV.skillsSoft.map((s) => <div key={s} className="cv-skill">{s}</div>)}
+          {v.skillsSoft.map((s) => <div key={s} className="cv-skill">{s}</div>)}
 
           <div className="cv-sec">Education</div>
-          <div className="cv-org" style={{ fontSize: "11.5px" }}>{CV.education.deg}</div>
-          <div className="cv-meta">{CV.education.where}</div>
+          <div className="cv-org" style={{ fontSize: "11.5px" }}>{CV_SHARED.education.deg}</div>
+          <div className="cv-meta">{CV_SHARED.education.where}</div>
 
           <div className="cv-sec">Achievements</div>
-          {CV.achievements.map(([t, d]) => <div key={t} className="cv-ach"><b>{t}</b><p>{d}</p></div>)}
+          {CV_SHARED.achievements.map(([t, d]) => <div key={t} className="cv-ach"><b>{t}</b><p>{d}</p></div>)}
 
           <div className="cv-sec">Links</div>
-          {CV.links.map(([k, v]) => <div key={k} className="cv-link"><b>{k}</b><span>{v}</span></div>)}
+          {CV_SHARED.links.map(([k, val]) => <div key={k} className="cv-link"><b>{k}</b><span>{val}</span></div>)}
         </div>
       </div>
     </div>
@@ -319,6 +379,7 @@ function CVSheet() {
 }
 
 function ResumePage4({ go, pal }) {
+  const [role, setRole] = useStateP4("ae");
   useReveal4("resume");
   return (
     <main className="grain resume-doc">
@@ -329,10 +390,22 @@ function ResumePage4({ go, pal }) {
         <div className="mono text-[10.5px] tracking-[.14em] uppercase mt-7" style={{ opacity: .55 }}>
           {PROFILE.location} · {PROFILE.tz} · {PROFILE.mode}
         </div>
-        <button onClick={() => window.print()}
-          className="resume-dl mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink text-paper text-[13.5px] font-medium hover:opacity-88 transition-opacity">
-          Download résumé (PDF) <span className="text-[12px]">↓</span>
-        </button>
+        <div className="resume-dl mt-9 flex flex-col items-center gap-3.5">
+          <div className="mono text-[9px] tracking-[.2em] uppercase" style={{ opacity: .45 }}>Download résumé for</div>
+          <div className="flex flex-wrap justify-center gap-2">
+            {Object.keys(CV_VARIANTS).map((k) => (
+              <button key={k} onClick={() => setRole(k)}
+                className={"px-4 py-2 rounded-full mono text-[9.5px] tracking-[.14em] uppercase transition-colors " +
+                  (role === k ? "bg-ink text-paper" : "border border-ink/20 hover:border-ink/45")}>
+                {CV_VARIANTS[k].label}
+              </button>
+            ))}
+          </div>
+          <button onClick={() => window.print()}
+            className="mt-1 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-white text-[13.5px] font-medium hover:opacity-88 transition-opacity">
+            Download PDF <span className="text-[12px]">↓</span>
+          </button>
+        </div>
       </section>
 
       <section className="max-w-[820px] mx-auto px-6 md:px-10 pb-20">
@@ -379,7 +452,7 @@ function ResumePage4({ go, pal }) {
         </div>
       </section>
       <div className="print:hidden"><Contact4 /></div>
-      <CVSheet />
+      <CVSheet v={CV_VARIANTS[role]} />
     </main>
   );
 }
