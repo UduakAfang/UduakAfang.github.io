@@ -329,18 +329,49 @@ html[data-dark="1"] .case-fig img{border-color:rgb(var(--c-ink)/.06)}
   .pipearrow::before{content:"\2192";padding:0 10px}
 }
 
-/* Print — "Download résumé (PDF)" prints the résumé content only, as clean
-   black-on-white. Site chrome and the button itself are hidden. */
+/* Printable CV — a hidden two-column résumé document that only appears when
+   the "Download résumé (PDF)" button prints. Modelled on Uduak's own CV:
+   serif name on a cream band, maroon rules and labels, dash bullets, a
+   sidebar with a thin divider. Kept independent of the site palette. */
+.cv-sheet{display:none}
+.cv-sheet,.cv-sheet *{color:#232323;font-family:Satoshi,system-ui,sans-serif;box-sizing:border-box}
+.cv-head{text-align:center;background:#efeae1;padding:26px 24px 20px;border-bottom:2px solid #6e1616}
+.cv-name{font-family:"Libre Caslon Text",Georgia,serif;font-size:31px;letter-spacing:.01em;color:#1c1c1c;line-height:1.05}
+.cv-title{margin-top:9px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#6e1616;font-weight:600}
+.cv-body{display:flex;gap:26px;padding:22px 26px 8px}
+.cv-main{flex:1 1 62%;min-width:0}
+.cv-side{flex:0 0 33%;border-left:1px solid #dcd6ca;padding-left:20px}
+.cv-sec{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#6e1616;font-weight:700;border-bottom:1px solid #d8d2c6;padding-bottom:5px;margin:18px 0 10px}
+.cv-main>.cv-sec:first-child,.cv-side>.cv-sec:first-child{margin-top:0}
+.cv-overview{font-size:11px;line-height:1.55;color:#3a3a3a}
+.cv-role{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#6e1616;font-weight:700;margin-top:13px}
+.cv-org{font-size:12.5px;font-weight:700;color:#1c1c1c;margin-top:1px}
+.cv-meta{font-size:9px;color:#7a7a7a;margin-top:2px}
+.cv-list{list-style:none;margin:7px 0 0;padding:0}
+.cv-list li{position:relative;padding-left:14px;font-size:10.5px;line-height:1.5;color:#3a3a3a;margin-bottom:5px}
+.cv-list li::before{content:"\2013";position:absolute;left:0;color:#6e1616}
+.cv-proj{margin-top:13px}
+.cv-proj b{font-size:12px;color:#1c1c1c}
+.cv-proj i{font-style:normal;font-size:11px;color:#6a6a6a}
+.cv-proj span{font-size:9px;color:#9a8f7d;margin-left:6px}
+.cv-kv{font-size:10px;line-height:1.45;margin-bottom:7px}
+.cv-kv b{display:block;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a;font-weight:600;margin-bottom:1px}
+.cv-kv span{color:#333}
+.cv-skill{position:relative;padding-left:12px;font-size:10px;line-height:1.45;color:#333;margin-bottom:4px}
+.cv-skill::before{content:"";position:absolute;left:0;top:6px;width:4px;height:4px;background:#6e1616;border-radius:1px}
+.cv-ach{margin-bottom:9px}
+.cv-ach b{font-size:11px;color:#1c1c1c}
+.cv-ach p{font-size:9.5px;line-height:1.45;color:#6a6a6a;margin:2px 0 0}
+.cv-link{margin-bottom:7px}
+.cv-link b{display:block;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a}
+.cv-link span{font-size:10px;color:#2f5aa8}
+
 @media print{
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   header,footer,.curtain,.loader4,#boot,.resume-dl,.scroll-cue{display:none!important}
   html,body{background:#fff!important}
   .grain{background-image:none!important}
-  .reveal{opacity:1!important;transform:none!important}
-  .bar-fill{width:var(--w)!important}
-  .mw{opacity:1!important}
-  .resume-doc{padding-top:0!important}
-  .resume-doc section:first-child{padding-top:8px!important;padding-bottom:14px!important}
-  .resume-doc h1{font-size:34px!important}
-  @page{margin:14mm}
+  .resume-doc>section{display:none!important}
+  .cv-sheet{display:block!important}
+  @page{margin:12mm}
 }

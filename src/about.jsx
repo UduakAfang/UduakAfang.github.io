@@ -21,7 +21,7 @@ const FOCUS4 = [
   { k: "01", t: "Build and maintain data models", d: "dbt on Databricks and Azure Data Factory. Raw lands untouched, staging casts and de-duplicates, every model carries tests.",
     pop: [["dbt models", "60+"], ["tests on them", "41"], ["orchestration", "Azure DF"]] },
   { k: "02", t: "Build dashboards that guide decisions", d: "Tableau and Power BI. Built so the number a team came for is on screen before anyone touches a filter.",
-    pop: [["Tableau Viz of the Day", "×2"], ["Vizzies", "Longlisted"], ["clicks to the answer", "0–1"]] },
+    pop: [["Tableau Viz of the Day", "×2"], ["Vizzies nominated", "×4"], ["clicks to the answer", "0–1"]] },
   { k: "03", t: "Design and ship products", d: "TrackPerform and DrillCal — client builds, both launched and used by coaches to plan and read a week of training.",
     pop: [["products live", "2"], ["read time", "3 min → 3s"], ["metrics auto-mapped", "40+"]] },
 ];

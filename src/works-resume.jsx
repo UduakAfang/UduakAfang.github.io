@@ -201,6 +201,123 @@ function WorksPage4({ go, pal, cards }) {
   );
 }
 
+/* Printable CV — content mirrors Uduak's own résumé; laid out to match its
+   design (see .cv-sheet in styles.css). Hidden on screen, shown only in print
+   via the "Download résumé (PDF)" button. */
+const CV = {
+  name: "Uduak Afang",
+  title: "Analytics Engineer · Data Analyst · Business Intelligence",
+  overview: "BI analyst with 3+ years building dashboards, data models and reporting pipelines that hold up under scrutiny. Strong SQL, Power BI and Tableau, hands-on with Azure data platforms (Data Factory, Databricks), and a daily habit of using AI tools to move faster through analysis and automation. Comfortable owning a data problem end-to-end — from raw ingestion to a dashboard a non-technical stakeholder trusts — while working independently in a remote environment.",
+  experience: [
+    {
+      role: "BI Analyst", org: "SessionHub Softswitch Limited", meta: "Lagos, Nigeria · Mar 2023 – Present",
+      bullets: [
+        "Designed and built the company's invoice and financial reporting data model and dashboard from scratch, consolidating scattered, untracked records into one governed, queryable system.",
+        "Own data accuracy end-to-end: validate figures, document the underlying process, and cross-check before anything reaches a stakeholder or client.",
+        "Use AI tools daily to accelerate analysis, debug pipeline issues, and automate recurring reporting work.",
+        "Built Power BI dashboards and data models tracking customer churn and retention, gathering requirements directly from non-technical stakeholders.",
+      ],
+    },
+    {
+      role: "Data Analyst", org: "Demsco Travels & Tours", meta: "Lagos, Nigeria · Mar 2022 – Feb 2023",
+      bullets: [
+        "Migrated paper-based records into structured, query-ready datasets, improving data accuracy and cutting reporting time by 40%.",
+        "Built daily and weekly performance scorecards used by the operations and sales leads.",
+      ],
+    },
+  ],
+  projects: [
+    {
+      name: "TrackPerform", tag: "Multi-Source Analytics Platform", year: "2025",
+      bullets: [
+        "Built a full-stack platform (React, Python/Flask, Supabase/PostgreSQL) that consolidates inconsistent multi-source data into one reporting layer, using AI tools throughout the build.",
+        "Defined a KPI framework from scratch (engagement and load-risk metrics, rolling trend tracking) and built the validation checks that catch data quality issues before they reach a dashboard.",
+      ],
+    },
+    {
+      name: "DrillCal", tag: "Data Integrity & Audit Logging", year: "2025",
+      bullets: [
+        "Diagnosed a data integrity bug, then built pre-deletion snapshot logging and an append-only audit trail (Postgres row-level security) so records can't be silently altered.",
+      ],
+    },
+  ],
+  contact: [
+    ["Phone", "+234 902-426-1252"],
+    ["Email", "uduakafang@gmail.com"],
+    ["Location", "Lagos, Nigeria · UTC+1 · Remote"],
+    ["LinkedIn", "linkedin.com/in/uduakafang"],
+  ],
+  skillsTech: [
+    "SQL (SQL Server, PostgreSQL, BigQuery)", "Power BI & DAX", "Tableau",
+    "Data Modeling (Dimensional, Semantic Layers)", "Azure Data Factory & Databricks",
+    "dbt & Spark Pipelines", "ETL / ELT Pipeline Development",
+    "AI-Assisted Analytics (Claude, ChatGPT)", "Python (Pandas, Flask)",
+  ],
+  skillsSoft: ["Data Governance & Quality", "Requirements Gathering", "Technical Documentation", "Stakeholder Communication", "Remote Self-Direction"],
+  education: { deg: "B.Sc. — University of Lagos", where: "Lagos, Nigeria" },
+  achievements: [
+    ["2× Tableau Viz of the Day", "Two dashboards selected for Tableau's global daily featured Viz spotlight (personal Tableau Public work)."],
+    ["4× Tableau Vizzies Nominated", "Nominated across four categories at the annual Tableau Public community awards."],
+  ],
+  links: [["GitHub", "github.com/UduakAfang"], ["Tableau", "public.tableau.com/…"], ["Portfolio", "uduakafang.github.io"]],
+};
+
+function CVSheet() {
+  return (
+    <div className="cv-sheet" aria-hidden="true">
+      <div className="cv-head">
+        <div className="cv-name">{CV.name}</div>
+        <div className="cv-title">{CV.title}</div>
+      </div>
+      <div className="cv-body">
+        <div className="cv-main">
+          <div className="cv-sec">Professional Overview</div>
+          <p className="cv-overview">{CV.overview}</p>
+
+          <div className="cv-sec">Work Experience</div>
+          {CV.experience.map((e) => (
+            <div key={e.org}>
+              <div className="cv-role">{e.role}</div>
+              <div className="cv-org">{e.org}</div>
+              <div className="cv-meta">{e.meta}</div>
+              <ul className="cv-list">{e.bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
+            </div>
+          ))}
+
+          <div className="cv-sec">Projects</div>
+          {CV.projects.map((p) => (
+            <div key={p.name}>
+              <div className="cv-proj"><b>{p.name}</b> <i>— {p.tag}</i><span>{p.year}</span></div>
+              <ul className="cv-list">{p.bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="cv-side">
+          <div className="cv-sec">Contact</div>
+          {CV.contact.map(([k, v]) => <div key={k} className="cv-kv"><b>{k}</b><span>{v}</span></div>)}
+
+          <div className="cv-sec">Technical Skills</div>
+          {CV.skillsTech.map((s) => <div key={s} className="cv-skill">{s}</div>)}
+
+          <div className="cv-sec">Soft Skills</div>
+          {CV.skillsSoft.map((s) => <div key={s} className="cv-skill">{s}</div>)}
+
+          <div className="cv-sec">Education</div>
+          <div className="cv-org" style={{ fontSize: "11.5px" }}>{CV.education.deg}</div>
+          <div className="cv-meta">{CV.education.where}</div>
+
+          <div className="cv-sec">Achievements</div>
+          {CV.achievements.map(([t, d]) => <div key={t} className="cv-ach"><b>{t}</b><p>{d}</p></div>)}
+
+          <div className="cv-sec">Links</div>
+          {CV.links.map(([k, v]) => <div key={k} className="cv-link"><b>{k}</b><span>{v}</span></div>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ResumePage4({ go, pal }) {
   useReveal4("resume");
   return (
@@ -262,6 +379,7 @@ function ResumePage4({ go, pal }) {
         </div>
       </section>
       <div className="print:hidden"><Contact4 /></div>
+      <CVSheet />
     </main>
   );
 }

@@ -213,7 +213,7 @@ const EXPERIENCE = [
   {
     period: "Mar 2023 — Present",
     role: "Business Intelligence Analyst",
-    company: "SessionHub Limited",
+    company: "SessionHub Softswitch Limited",
     location: "Lagos, Nigeria",
     bullets: [
       "Built Tableau dashboards (LOD, calculated fields, actions) tracking NGN 5M+ in outstanding invoices; validated end-to-end from SQL Server to stakeholders.",
@@ -242,8 +242,8 @@ const EDUCATION = {
 };
 
 const AWARDS = [
-  { id: "1", year: "2024", title: "Tableau Viz of the Day", body: "NYC 311 Service Requests dashboard" },
-  { id: "3", year: "2024", title: "Vizzies Longlist Nominee", body: "Tableau Public community awards · individual" },
+  { id: "1", year: "×2", title: "Tableau Viz of the Day", body: "Two dashboards selected for Tableau's global daily featured Viz" },
+  { id: "3", year: "×4", title: "Tableau Vizzies Nominated", body: "Nominated across four categories at the Tableau Public community awards" },
   { id: "4", year: "2024", title: "Upwork Top Rated",        body: "Top 1% freelancer for BI work" },
 ];
 
