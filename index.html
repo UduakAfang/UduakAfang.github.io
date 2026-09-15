@@ -12,221 +12,110 @@
 <meta property="og:image" content="https://uduakafang.github.io/images/profile.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Uduak Afang — BI Analyst">
-<meta name="twitter:description" content="Dashboards, pipelines, and data stories. Tableau Viz of the Day × 2. Vizzies nominee × 4.">
+<meta name="twitter:description" content="Dashboards, pipelines, and data stories. Tableau Viz of the Day. Vizzies nominee.">
 <meta name="twitter:image" content="https://uduakafang.github.io/images/profile.jpg">
-<meta name="theme-color" content="#f4f1eb">
+<meta name="theme-color" content="#fcfcfc">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80' font-family='sans-serif' font-weight='900'>U</text></svg>">
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&f[]=general-sans@300,400,500,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+
+<!-- Tailwind (Play CDN) -->
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script>
   tailwind.config = {
     theme: {
       extend: {
         colors: {
-          ink:    '#1a1a1a',
-          paper:  '#f4f1eb',
-          paper2: '#ebe6dd',
-          paper3: '#e2dcd1',
-          brick:  '#C7522A',
-          brick2: '#9e3f1f',
-          olive:  '#5e6342',
-          haiti:  '#18102B',
+          ink:     'rgb(var(--c-ink) / <alpha-value>)',
+          paper:   'rgb(var(--c-paper) / <alpha-value>)',
+          paper2:  'rgb(var(--c-paper2) / <alpha-value>)',
+          accent:  'rgb(var(--c-accent) / <alpha-value>)',
+          accent2: 'rgb(var(--c-accent2) / <alpha-value>)',
         },
         fontFamily: {
-          sans:    ['Satoshi','system-ui','sans-serif'],
-          display: ['"Saira Condensed"','sans-serif'],
-          mono:    ['"JetBrains Mono"','ui-monospace','monospace'],
-          serif:   ['"Instrument Serif"','serif'],
+          sans:  ['Satoshi','system-ui','sans-serif'],
+          mono:  ['"JetBrains Mono"','ui-monospace','monospace'],
+          serif: ['"Instrument Serif"','serif'],
         }
       }
     }
   }
 </script>
+
+<!-- Design system styles (extracted from the V5 design) -->
+<link rel="stylesheet" href="src/styles.css?v=7">
+
 <style>
-  html, body { background:#f4f1eb; color:#1a1a1a; overflow-x: hidden; }
-  body { font-family: Satoshi, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
-  #root { overflow-x: hidden; }
-  ::selection { background:#C7522A; color:#f4f1eb; }
-  ::-webkit-scrollbar { width:10px; height:10px; }
-  ::-webkit-scrollbar-track { background:transparent; }
-  ::-webkit-scrollbar-thumb { background:rgba(26,26,26,.18); border-radius:6px; }
-
-  .eyebrow { font-family: "JetBrains Mono", monospace; font-size:11px; letter-spacing:.28em; text-transform:uppercase; }
-  .pagenum { font-family: "JetBrains Mono", monospace; font-size:10px; letter-spacing:.32em; }
-  .mono    { font-family: "JetBrains Mono", monospace; }
-  .display { font-family: "Saira Condensed", sans-serif; font-weight:900; letter-spacing:-0.02em; line-height:.9; text-transform:uppercase; }
-  .serif-it{ font-family: "Instrument Serif", serif; font-style:italic; font-weight:400; letter-spacing:-0.01em; }
-
-  /* paper texture (subtle) */
-  .paper-grain { background-image:
-    radial-gradient(rgba(26,26,26,0.025) 1px, transparent 1px);
-    background-size: 3px 3px;
-  }
-
-  /* underline link */
-  .ul-link { position:relative; display:inline-block; }
-  .ul-link::after { content:""; position:absolute; left:0; bottom:-2px; height:1px; width:100%; background:currentColor; transform:scaleX(.3); transform-origin:left; transition: transform .4s cubic-bezier(.2,.6,.2,1); }
-  .ul-link:hover::after { transform:scaleX(1); }
-
-  /* card lift */
-  .card-lift { transition: transform .5s cubic-bezier(.2,.6,.2,1), box-shadow .5s; will-change:transform; }
-  .card-lift:hover { transform: translateY(-4px); }
-
-  /* sticky pill behavior */
-  .stuck { backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); }
-
-  /* skill bar */
-  .skill-track { background:rgba(26,26,26,.08); border-radius:999px; overflow:hidden; position:relative; }
-  .skill-fill  { position:absolute; inset:0 auto 0 0; background:#1a1a1a; border-radius:999px; }
-
-  /* marquee */
-  @keyframes marq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-  .marquee-track { animation: marq 38s linear infinite; }
-
-  /* tag pill */
-  .tag-pill { background:#1a1a1a; color:#f4f1eb; padding:4px 8px; border-radius:999px; font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; display:inline-flex; align-items:center; gap:4px; max-width:100%; }
-  @media (min-width: 640px) { .tag-pill { padding:6px 12px; font-size:10px; letter-spacing:.18em; gap:6px; } }
-  .tag-pill.ghost { background:transparent; color:#1a1a1a; border:1px solid rgba(26,26,26,.2); }
-
-  /* reveal — slide up (re-triggerable: .in removed when out of view) */
-  .reveal { opacity:0; transform: translateY(36px); transition: opacity .9s cubic-bezier(.2,.6,.2,1), transform .9s cubic-bezier(.2,.6,.2,1); }
-  .reveal.in { opacity:1; transform: translateY(0); }
-
-  /* reveal from left */
-  .reveal-left { opacity:0; transform: translateX(-40px); transition: opacity .7s cubic-bezier(.2,.6,.2,1), transform .7s cubic-bezier(.2,.6,.2,1); }
-  .reveal-left.in { opacity:1; transform: translateX(0); }
-
-  /* reveal scale — cards pop in from small + fade */
-  .reveal-pop { opacity:0; transform: scale(0.88) translateY(24px); transition: opacity .7s cubic-bezier(.2,.6,.2,1), transform .7s cubic-bezier(.2,.6,.2,1); }
-  .reveal-pop.in { opacity:1; transform: scale(1) translateY(0); }
-
-  /* flip-reveal — 3D card flip from behind (Y axis) */
-  .flip-reveal { perspective: 1200px; }
-  .flip-reveal > * { opacity:0; transform: rotateY(-90deg) scale(0.9); transform-origin: left center; transition: opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); }
-  .flip-reveal.in > * { opacity:1; transform: rotateY(0deg) scale(1); }
-
-  /* flip-reveal-alt — flip from opposite direction */
-  .flip-reveal-alt { perspective: 1200px; }
-  .flip-reveal-alt > * { opacity:0; transform: rotateY(90deg) scale(0.9); transform-origin: right center; transition: opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); }
-  .flip-reveal-alt.in > * { opacity:1; transform: rotateY(0deg) scale(1); }
-
-  /* flip-reveal-x — flip from top (X axis) */
-  .flip-reveal-x { perspective: 1200px; }
-  .flip-reveal-x > * { opacity:0; transform: rotateX(70deg) scale(0.9); transform-origin: top center; transition: opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); }
-  .flip-reveal-x.in > * { opacity:1; transform: rotateX(0deg) scale(1); }
-
-  /* scroll-darken button */
-  .scroll-darken { transition: background-color .6s ease, color .6s ease, border-color .6s ease; }
-  .scroll-darken.scrolled-in { background-color: #1a1a1a; color: #f4f1eb; border-color: #1a1a1a; }
-
-  /* stagger-flip: children flip in with stagger (alternating L/R) */
-  .stagger-flip { perspective: 1200px; }
-  .stagger-flip > * { opacity:0; transform-style: preserve-3d; transition: opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); }
-  .stagger-flip > *:nth-child(odd)  { transform: rotateY(-90deg) scale(0.9); transform-origin: left center; }
-  .stagger-flip > *:nth-child(even) { transform: rotateY(90deg) scale(0.9);  transform-origin: right center; }
-  .stagger-flip.in > * { opacity:1; transform: rotateY(0deg) scale(1); }
-  .stagger-flip > *:nth-child(1)  { transition-delay: 0ms; }
-  .stagger-flip > *:nth-child(2)  { transition-delay: 100ms; }
-  .stagger-flip > *:nth-child(3)  { transition-delay: 200ms; }
-  .stagger-flip > *:nth-child(4)  { transition-delay: 300ms; }
-  .stagger-flip > *:nth-child(5)  { transition-delay: 400ms; }
-  .stagger-flip > *:nth-child(6)  { transition-delay: 500ms; }
-  .stagger-flip > *:nth-child(7)  { transition-delay: 600ms; }
-  .stagger-flip > *:nth-child(8)  { transition-delay: 700ms; }
-  .stagger-flip > *:nth-child(9)  { transition-delay: 800ms; }
-  .stagger-flip > *:nth-child(10) { transition-delay: 900ms; }
-  .stagger-flip > *:nth-child(11) { transition-delay: 1000ms; }
-  .stagger-flip > *:nth-child(12) { transition-delay: 1100ms; }
-
-  /* Profile card flip animation */
-  @keyframes flipIn {
-    0% { transform: perspective(1000px) rotateY(-90deg); opacity: 0; }
-    50% { transform: perspective(1000px) rotateY(-10deg); }
-    100% { transform: perspective(1000px) rotateY(0deg); opacity: 1; }
-  }
-  .profile-flip {
-    animation: flipIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
-    transform-style: preserve-3d;
-  }
-
-  /* number indicator */
-  .num-dot { width:30px; height:30px; border-radius:50%; border:1px solid rgba(26,26,26,.25); display:inline-flex; align-items:center; justify-content:center; font-family:"JetBrains Mono",monospace; font-size:10px; flex-shrink:0; }
-  @media (min-width: 640px) { .num-dot { width:38px; height:38px; font-size:11px; } }
-
-  /* dashed divider */
-  .dash-div { background-image: linear-gradient(to right, rgba(26,26,26,.35) 50%, transparent 0); background-position: bottom; background-size: 8px 1px; background-repeat: repeat-x; padding-bottom: 1px; }
-
-  /* Section stacking — sticky cards pattern (desktop only).
-     On mobile/tablet, sections flow normally to avoid content clipping. */
-  .stack-section {
-    isolation: isolate;
-  }
-  @media (min-width: 1024px) {
-    .stack-section {
-      position: sticky;
-      top: 0;
-      min-height: 100vh;
-    }
-  }
-  /* curved "cuff" top — rounded top edge on every section after the hero */
-  .stack-cuff {
-    border-radius: 36px 36px 0 0;
-  }
-  @media (min-width: 1024px) {
-    .stack-cuff {
-      margin-top: -36px;       /* overlap previous section to hide the seam */
-      padding-top: 36px;       /* restore content spacing lost by negative margin */
-    }
-  }
-
-  /* hide tweaks panel chrome bleed */
-  [data-tweaks-host] { font-family: Satoshi, system-ui, sans-serif; }
-
-  /* ─── Loading screen ─── */
-  #loader {
-    position: fixed; inset: 0; z-index: 9999;
-    background: #f4f1eb;
+  /* Boot cover — shown until React mounts, then removed. Matches the design's paper. */
+  #boot {
+    position: fixed; inset: 0; z-index: 9998;
+    background: #fcfcfc;
     display: flex; align-items: center; justify-content: center;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    transition: opacity .45s ease, visibility .45s ease;
   }
-  #loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
-  #loader .mark {
-    font-family: "Saira Condensed", sans-serif;
-    font-weight: 900; font-size: 64px; letter-spacing: -0.04em;
-    color: #1a1a1a; line-height: 1;
-    animation: loaderPulse 1.2s ease-in-out infinite;
+  #boot.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+  #boot .mk {
+    font-family: Satoshi, system-ui, sans-serif;
+    font-weight: 900; font-size: 58px; letter-spacing: -.04em;
+    color: #2e2c25; line-height: 1;
+    animation: bootPulse 1.15s ease-in-out infinite;
   }
-  #loader .mark span { color: #C7522A; }
-  @keyframes loaderPulse {
-    0%, 100% { opacity: 0.3; transform: scale(0.96); }
-    50%      { opacity: 1;   transform: scale(1);    }
+  #boot .mk span { color: #d34530; }
+  @keyframes bootPulse {
+    0%,100% { opacity: .28; transform: scale(.97); }
+    50%     { opacity: 1;   transform: scale(1);   }
   }
 </style>
 </head>
 <body>
-<div id="loader"><div class="mark">UA<span>.</span></div></div>
+<div id="boot"><div class="mk">UA<span>.</span></div></div>
 <div id="root"></div>
 
-<script type="text/babel" src="data.jsx"></script>
-<script type="text/babel" src="icons.jsx"></script>
-<script type="text/babel" src="illus.jsx"></script>
-<script type="text/babel" src="scrollfill.jsx"></script>
-<script type="text/babel" src="charts.jsx"></script>
-<script type="text/babel" src="cards.jsx"></script>
-<script type="text/babel" src="extras.jsx"></script>
-<script type="text/babel" src="home.jsx"></script>
-<script type="text/babel" src="works.jsx"></script>
-<script type="text/babel" src="resume.jsx"></script>
-<script type="text/babel" src="playbook.jsx"></script>
-<script type="text/babel" src="app.jsx"></script>
+<!-- Hide the boot cover as soon as React renders into #root (fallback timeout). -->
+<script>
+  (function () {
+    var boot = document.getElementById('boot');
+    var root = document.getElementById('root');
+    if (!boot || !root) return;
+    var hide = function () { boot.classList.add('gone'); };
+    var mo = new MutationObserver(function () {
+      if (root.children.length) { hide(); mo.disconnect(); }
+    });
+    mo.observe(root, { childList: true });
+    setTimeout(hide, 8000);
+  })();
+</script>
+
+<!-- React + Babel (in-browser JSX, same setup as before) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<!-- Résumé PDF export (one-page, direct download) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.3/html2pdf.bundle.min.js"></script>
+
+<!-- Design components (order matters — later files use globals from earlier ones) -->
+<script type="text/babel" src="src/data.jsx?v=7"></script>
+<script type="text/babel" src="src/tweaks.jsx?v=7"></script>
+<script type="text/babel" src="src/charts.jsx?v=7"></script>
+<script type="text/babel" src="src/worklist.jsx?v=7"></script>
+<script type="text/babel" src="src/mark.jsx?v=7"></script>
+<script type="text/babel" src="src/robot.jsx?v=7"></script>
+<script type="text/babel" src="src/walker.jsx?v=7"></script>
+<script type="text/babel" src="src/bench.jsx?v=7"></script>
+<script type="text/babel" src="src/board.jsx?v=7"></script>
+<script>window.__V5 = true</script>
+<script type="text/babel" src="src/word.jsx?v=7"></script>
+<script type="text/babel" src="src/hero.jsx?v=7"></script>
+<script type="text/babel" src="src/about.jsx?v=7"></script>
+<script type="text/babel" src="src/case-study.jsx?v=7"></script>
+<script type="text/babel" src="src/case-viz.jsx?v=7"></script>
+<script type="text/babel" src="src/viz-board.jsx?v=7"></script>
+<script type="text/babel" src="src/works-resume.jsx?v=7"></script>
+<script type="text/babel" src="src/app.jsx?v=7"></script>
 </body>
 </html>
