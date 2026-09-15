@@ -65,15 +65,19 @@ function VizTile({ t, go }) {
   const open = hasCase
     ? () => go("case:" + t.id)
     : () => window.open(vizUrl(t.id), "_blank", "noopener");
+  const tags = String(t.label || "").split("·").map((s) => s.trim()).filter(Boolean);
   return (
-    <div className="vb-cell vb-cell-link reveal" onClick={open}
-         role="link" tabIndex="0"
-         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}>
-      <div className="vb-shot"><img src={t.image} alt={t.title} /></div>
-      <div className="vb-foot">
-        <div className="text-[15px] font-semibold tracking-[-.02em]">{t.title}</div>
-        <div className="mono text-[9px] tracking-[.16em] uppercase mt-1.5" style={{ opacity: .5 }}>Built with Tableau</div>
-        <div className="mono text-[9px] tracking-[.16em] uppercase mt-2 vb-cta">{hasCase ? "Case study →" : "View it live ↗"}</div>
+    <div className="reveal h-full">
+      <div className="pcard2" onClick={open} role="link" tabIndex="0"
+           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}>
+        <div className="pcard2-img"><img src={t.image} alt={t.title} loading="lazy" /></div>
+        <div className="pcard2-body">
+          <h3 className="pcard2-title">{t.title}</h3>
+          <div className="pcard2-tags">
+            {tags.map((x, i) => <span key={i} className="pcard2-tag">{x}</span>)}
+            <span className="pcard2-tag" style={{ color: "rgb(var(--c-accent))" }}>{hasCase ? "Case study →" : "View live ↗"}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -85,7 +89,7 @@ function VizBoard({ go, pinId = PINNED_ID, pinned = true }) {
   return (
     <div className="vb">
       {pin && <VizPin go={go} id={pin} />}
-      <div className="vb-grid">
+      <div className={"grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 items-stretch " + (pin ? "mt-6 md:mt-7" : "")}>
         {tiles.map((t) => <VizTile key={t.id} t={t} go={go} />)}
       </div>
     </div>
