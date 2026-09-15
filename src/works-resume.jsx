@@ -160,8 +160,8 @@ function StackPage4({ go, pal }) {
 /* The works page reads by category: what I visualise, then what I ship.
    Products sit last on purpose — the dashboards are the front door. */
 const WORK_GROUPS5 = [
-  { id: "viz", label: "Visualisations & dashboards", note: "Civic and personal data viz — one pinned piece, then the rest of the board.", ids: ["09", "03"] },
-  { id: "products", label: "End-to-end products, shipped", note: "Client builds. I own the data model, the pipeline and the interface.", ids: ["01", "02"] },
+  { id: "viz", label: "Dashboards & Analytics", note: "Civic and personal data visualisations, built in Tableau.", ids: ["09", "03"] },
+  { id: "products", label: "Products & Web Apps", note: "Client builds — I own the data model, the pipeline and the interface.", ids: ["01", "02"] },
 ];
 
 function WorksPage4({ go, pal, cards }) {
@@ -378,6 +378,24 @@ function CVSheet({ v }) {
   );
 }
 
+/* Export the off-screen .cv-sheet to a single-page PDF and download it
+   directly — no print dialog, and the page format matches the sheet so it
+   never splits across pages. */
+function downloadCV(label) {
+  const el = document.querySelector(".cv-sheet");
+  if (!el) return;
+  if (!window.html2pdf) { window.print(); return; }
+  const w = el.offsetWidth || 820;
+  const h = Math.ceil(el.scrollHeight || el.offsetHeight);
+  window.html2pdf().set({
+    margin: 0,
+    filename: "Uduak Afang - " + label + ".pdf",
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2, backgroundColor: "#ffffff", useCORS: true, windowWidth: w },
+    jsPDF: { unit: "px", format: [w, h], orientation: h >= w ? "portrait" : "landscape" },
+  }).from(el).save();
+}
+
 function ResumePage4({ go, pal }) {
   const [role, setRole] = useStateP4("ae");
   useReveal4("resume");
@@ -401,7 +419,7 @@ function ResumePage4({ go, pal }) {
               </button>
             ))}
           </div>
-          <button onClick={() => window.print()}
+          <button onClick={() => downloadCV(CV_VARIANTS[role].label)}
             className="mt-1 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-white text-[13.5px] font-medium hover:opacity-88 transition-opacity">
             Download PDF <span className="text-[12px]">↓</span>
           </button>

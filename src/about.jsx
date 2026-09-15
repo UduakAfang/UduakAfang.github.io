@@ -13,8 +13,8 @@ const COPY4 = {
 /* Selected work reads in two groups. "Case study" was never a category —
    it's the depth of the page, so it's the link label, not a heading. */
 const GROUPS4 = [
-  { id: "dashboards", label: "Dashboards & analytics", note: "Civic and personal data viz \u2014 one pinned piece, then the rest of the board.", ids: ["09", "03"] },
-  { id: "products", label: "AI projects, products & web apps", note: "Client builds, shipped — I own the data model and the interface.", ids: ["01", "02"] },
+  { id: "dashboards", label: "Dashboards & Analytics", note: "Civic and personal data visualisations, built in Tableau.", ids: ["09", "03"] },
+  { id: "products", label: "Products & Web Apps", note: "Client builds, shipped — I own the data model and the interface.", ids: ["01", "02"] },
 ];
 
 const FOCUS4 = [
@@ -683,7 +683,7 @@ function HomePage4({ go, pal, band, cards, heroPanel }) {
           return (
             <div key={g.id}>
               <GroupHead g={g} n={String((g.id === "dashboards" ? (window.VIZ_ITEMS || []).length : items.length)).padStart(2, "0")} />
-              {g.id === "dashboards" ? <VizBoard go={go} pal={pal} /> : (
+              {g.id === "dashboards" ? <VizBoard go={go} pal={pal} pinned={false} /> : (
                 <div className="card-grid">
                   {items.map((w, k) => (
                     <ProjectCard key={w.id} work={w} tint={pal.cards[SELECTED_WORKS.indexOf(w) % pal.cards.length]} go={go} cards={cards}

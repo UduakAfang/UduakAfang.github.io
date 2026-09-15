@@ -303,8 +303,10 @@ html[data-dark="1"] .case-fig img{border-color:rgb(var(--c-ink)/.06)}
 
 /* Project card — image-forward: a big rounded image filling the card with a
    slight frame, title + tags beneath. Used on the homepage and works grids. */
-.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,380px));justify-content:center;gap:22px}
-@media(min-width:768px){.card-grid{gap:26px}}
+.card-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+@media(min-width:560px){.card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:960px){.card-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}}
+@media(min-width:1360px){.card-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .pcard2{background:rgb(var(--c-card));border:1px solid rgb(var(--c-ink)/.09);border-radius:18px;padding:10px 10px 6px;cursor:pointer;height:100%;box-shadow:0 18px 40px -30px rgba(0,0,0,.42);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
 .pcard2:hover{transform:translateY(-5px);box-shadow:0 46px 76px -44px rgba(0,0,0,.55)}
 .pcard2-img{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:rgb(var(--c-card))}
@@ -349,7 +351,9 @@ html[data-dark="1"] .case-fig img{border-color:rgb(var(--c-ink)/.06)}
    the "Download résumé (PDF)" button prints. Modelled on Uduak's own CV:
    serif name on a cream band, maroon rules and labels, dash bullets, a
    sidebar with a thin divider. Kept independent of the site palette. */
-.cv-sheet{display:none}
+/* Rendered off-screen (not display:none, so it has layout for html2pdf to
+   capture), then exported to a one-page PDF by the download button. */
+.cv-sheet{position:fixed;left:-10000px;top:0;width:820px;background:#fff}
 .cv-sheet,.cv-sheet *{color:#232323;font-family:Satoshi,system-ui,sans-serif;box-sizing:border-box}
 .cv-head{text-align:center;background:#efeae1;padding:26px 24px 20px;border-bottom:2px solid #6e1616}
 .cv-name{font-family:"Libre Caslon Text",Georgia,serif;font-size:31px;letter-spacing:.01em;color:#1c1c1c;line-height:1.05}
@@ -382,12 +386,3 @@ html[data-dark="1"] .case-fig img{border-color:rgb(var(--c-ink)/.06)}
 .cv-link b{display:block;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a}
 .cv-link span{font-size:10px;color:#2f5aa8}
 
-@media print{
-  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  header,footer,.curtain,.loader4,#boot,.resume-dl,.scroll-cue{display:none!important}
-  html,body{background:#fff!important}
-  .grain{background-image:none!important}
-  .resume-doc>section{display:none!important}
-  .cv-sheet{display:block!important}
-  @page{margin:12mm}
-}
