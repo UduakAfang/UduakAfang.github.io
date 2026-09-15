@@ -90,7 +90,7 @@ function VizBoard({ go, pinId = PINNED_ID, pinned = true, pal }) {
   return (
     <div className="vb">
       {pin && <VizPin go={go} id={pin} />}
-      <div className={"grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 items-stretch " + (pin ? "mt-6 md:mt-7" : "")}>
+      <div className={"card-grid " + (pin ? "mt-6 md:mt-7" : "")}>
         {tiles.map((t, i) => <VizTile key={t.id} t={t} go={go} tint={tints.length ? tints[(i + 1) % tints.length] : null} />)}
       </div>
     </div>

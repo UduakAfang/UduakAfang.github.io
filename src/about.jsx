@@ -684,7 +684,7 @@ function HomePage4({ go, pal, band, cards, heroPanel }) {
             <div key={g.id}>
               <GroupHead g={g} n={String((g.id === "dashboards" ? (window.VIZ_ITEMS || []).length : items.length)).padStart(2, "0")} />
               {g.id === "dashboards" ? <VizBoard go={go} pal={pal} /> : (
-                <div className="grid sm:grid-cols-2 gap-5 md:gap-6 items-stretch">
+                <div className="card-grid">
                   {items.map((w, k) => (
                     <ProjectCard key={w.id} work={w} tint={pal.cards[SELECTED_WORKS.indexOf(w) % pal.cards.length]} go={go} cards={cards}
                       order={SELECTED_WORKS.indexOf(w) >= 0 ? SELECTED_WORKS.indexOf(w) : k} />

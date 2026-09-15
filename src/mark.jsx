@@ -96,10 +96,12 @@ PAL4.studiosnow = {
     paper: "252 252 252", paper2: "237 235 226", ink: "46 44 37",
     accent: "211 69 48", accent2: "47 82 68",
     cards: [{ bg: "#1e3a31", fg: "light" }, { bg: "#f8e2c5", fg: "dark" }, { bg: "#d34530", fg: "light" },
-            { bg: "#e7ecdf", fg: "dark" }, { bg: "#3b2b26", fg: "light" }, { bg: "#f6643e", fg: "light" }],
+            { bg: "#e7ecdf", fg: "dark" }, { bg: "#3b2b26", fg: "light" }, { bg: "#f6643e", fg: "light" },
+            { bg: "#dbe4ef", fg: "dark" }, { bg: "#2b4a54", fg: "light" }, { bg: "#e9b153", fg: "dark" },
+            { bg: "#e7e2f1", fg: "dark" }],
     soft: ["#e9efe8", "#f4ecdd"],
   },
-  dark: { ...PAL4.studio.dark, cards: [{ bg: "#1b2a24", fg: "light" }, { bg: "#242219", fg: "light" }, { bg: "#b8351f", fg: "light" }, { bg: "#22271f", fg: "light" }, { bg: "#2c211c", fg: "light" }, { bg: "#4a3a1c", fg: "light" }] },
+  dark: { ...PAL4.studio.dark, cards: [{ bg: "#1b2a24", fg: "light" }, { bg: "#242219", fg: "light" }, { bg: "#b8351f", fg: "light" }, { bg: "#22271f", fg: "light" }, { bg: "#2c211c", fg: "light" }, { bg: "#4a3a1c", fg: "light" }, { bg: "#1a2430", fg: "light" }, { bg: "#1f3036", fg: "light" }, { bg: "#3a2f18", fg: "light" }, { bg: "#272233", fg: "light" }] },
 };
 
 function resolvePal(key, dark) {
