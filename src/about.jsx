@@ -189,15 +189,20 @@ function ProjectCard({ work, tint, go, cards = "Tinted", order = 0 }) {
   const tags = (work.stack && work.stack.length
     ? work.stack
     : String(work.tag || "").split("·").map((s) => s.trim()).filter(Boolean)).slice(0, 6);
+  const light = cards !== "Paper" && tint && tint.fg === "light";
+  const cardStyle = cards === "Paper"
+    ? undefined
+    : { background: (tint && tint.bg) || "rgb(var(--c-card))", color: light ? "#fff" : "rgb(var(--c-ink))" };
   return (
     <div className="reveal h-full" style={{ transitionDelay: (order % 3) * 80 + "ms" }}>
       <div onClick={open} role="link" tabIndex="0"
            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}
-           className="pcard2">
+           className="pcard2" style={cardStyle}>
         <div className="pcard2-img"><img src={work.image} alt={work.title} loading="lazy" /></div>
         <div className="pcard2-body">
           <h3 className="pcard2-title">{work.title}</h3>
           <div className="pcard2-tags">{tags.map((t, i) => <span key={i} className="pcard2-tag">{t}</span>)}</div>
+          <span className="pcard2-cta">Case study →</span>
         </div>
       </div>
     </div>
@@ -678,7 +683,7 @@ function HomePage4({ go, pal, band, cards, heroPanel }) {
           return (
             <div key={g.id}>
               <GroupHead g={g} n={String((g.id === "dashboards" ? (window.VIZ_ITEMS || []).length : items.length)).padStart(2, "0")} />
-              {g.id === "dashboards" ? <VizBoard go={go} /> : (
+              {g.id === "dashboards" ? <VizBoard go={go} pal={pal} /> : (
                 <div className="grid sm:grid-cols-2 gap-5 md:gap-6 items-stretch">
                   {items.map((w, k) => (
                     <ProjectCard key={w.id} work={w} tint={pal.cards[SELECTED_WORKS.indexOf(w) % pal.cards.length]} go={go} cards={cards}

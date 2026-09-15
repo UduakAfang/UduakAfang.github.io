@@ -182,7 +182,7 @@ function WorksPage4({ go, pal, cards }) {
           return (
             <div key={g.id}>
               <GroupHead g={g} n={String((g.id === "viz" ? (window.VIZ_ITEMS || []).length : items.length)).padStart(2, "0")} />
-              {g.id === "viz" ? <VizBoard go={go} pinned={false} /> : (
+              {g.id === "viz" ? <VizBoard go={go} pinned={false} pal={pal} /> : (
                 <div className="grid sm:grid-cols-2 gap-5 md:gap-6 items-stretch">
                   {items.map((w, i) => (
                     <ProjectCard key={w.id} work={w} tint={pal.cards[(i + 2) % pal.cards.length]} go={go} cards={cards} order={i} />

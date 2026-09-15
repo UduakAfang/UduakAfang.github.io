@@ -60,37 +60,38 @@ function VizPin({ go, id }) {
 
 /* Every visualisation is clickable. Where a case study exists the tile opens
    it; the rest open the viz itself until their write-ups are in. */
-function VizTile({ t, go }) {
+function VizTile({ t, go, tint }) {
   const hasCase = (window.VIZ_CASES || []).includes(t.id) || (typeof CASE_COPY !== "undefined" && CASE_COPY[t.id]);
   const open = hasCase
     ? () => go("case:" + t.id)
     : () => window.open(vizUrl(t.id), "_blank", "noopener");
   const tags = String(t.label || "").split("·").map((s) => s.trim()).filter(Boolean);
+  const light = tint && tint.fg === "light";
+  const cardStyle = { background: (tint && tint.bg) || "rgb(var(--c-card))", color: light ? "#fff" : "rgb(var(--c-ink))" };
   return (
     <div className="reveal h-full">
-      <div className="pcard2" onClick={open} role="link" tabIndex="0"
+      <div className="pcard2" onClick={open} role="link" tabIndex="0" style={cardStyle}
            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}>
         <div className="pcard2-img"><img src={t.image} alt={t.title} loading="lazy" /></div>
         <div className="pcard2-body">
           <h3 className="pcard2-title">{t.title}</h3>
-          <div className="pcard2-tags">
-            {tags.map((x, i) => <span key={i} className="pcard2-tag">{x}</span>)}
-            <span className="pcard2-tag" style={{ color: "rgb(var(--c-accent))" }}>{hasCase ? "Case study →" : "View live ↗"}</span>
-          </div>
+          <div className="pcard2-tags">{tags.map((x, i) => <span key={i} className="pcard2-tag">{x}</span>)}</div>
+          <span className="pcard2-cta">{hasCase ? "Case study →" : "View live ↗"}</span>
         </div>
       </div>
     </div>
   );
 }
 
-function VizBoard({ go, pinId = PINNED_ID, pinned = true }) {
+function VizBoard({ go, pinId = PINNED_ID, pinned = true, pal }) {
   const pin = pinned && VIZ_ITEMS.some((t) => t.id === pinId) ? pinId : null;
   const tiles = VIZ_ITEMS.filter((t) => t.id !== pin);
+  const tints = (pal && pal.cards) || [];
   return (
     <div className="vb">
       {pin && <VizPin go={go} id={pin} />}
       <div className={"grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 items-stretch " + (pin ? "mt-6 md:mt-7" : "")}>
-        {tiles.map((t) => <VizTile key={t.id} t={t} go={go} />)}
+        {tiles.map((t, i) => <VizTile key={t.id} t={t} go={go} tint={tints.length ? tints[(i + 1) % tints.length] : null} />)}
       </div>
     </div>
   );
