@@ -68,7 +68,7 @@ function VizTile({ t, go }) {
   const tags = String(t.label || "").split("·").map((s) => s.trim()).filter(Boolean);
   return (
     <div className="reveal h-full">
-      <div className="pcard2 pcard2-sm" onClick={open} role="link" tabIndex="0"
+      <div className="pcard2" onClick={open} role="link" tabIndex="0"
            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}>
         <div className="pcard2-img"><img src={t.image} alt={t.title} loading="lazy" /></div>
         <div className="pcard2-body">
