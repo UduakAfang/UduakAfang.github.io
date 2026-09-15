@@ -303,15 +303,23 @@ html[data-dark="1"] .case-fig img{border-color:rgb(var(--c-ink)/.06)}
 
 /* Project card — image-forward: a big rounded image filling the card with a
    slight frame, title + tags beneath. Used on the homepage and works grids. */
-.pcard2{background:rgb(var(--c-paper2));border:1px solid rgb(var(--c-ink)/.08);border-radius:18px;padding:10px 10px 6px;cursor:pointer;height:100%;box-shadow:0 18px 40px -32px rgba(0,0,0,.4);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.pcard2{background:#f2f1ed;border:1px solid rgb(var(--c-ink)/.08);border-radius:18px;padding:10px 10px 4px;cursor:pointer;height:100%;box-shadow:0 18px 40px -32px rgba(0,0,0,.4);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+html[data-dark="1"] .pcard2{background:rgb(var(--c-card))}
 .pcard2:hover{transform:translateY(-5px);box-shadow:0 46px 76px -44px rgba(0,0,0,.55)}
 .pcard2-img{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1/1;background:rgb(var(--c-card))}
 .pcard2-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 6%;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
 .pcard2:hover .pcard2-img img{transform:scale(1.05)}
-.pcard2-body{padding:15px 8px 12px}
-.pcard2-title{font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
-.pcard2-tags{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:9px}
+.pcard2-body{padding:20px 10px 16px}
+.pcard2-title{font-size:19px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.pcard2-tags{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:11px}
 .pcard2-tag{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.06em;color:rgb(var(--c-ink)/.5)}
+/* Compact variant — non-pinned visualisation tiles */
+.pcard2-sm{padding:8px 8px 4px;border-radius:15px}
+.pcard2-sm .pcard2-img{aspect-ratio:4/3;border-radius:10px}
+.pcard2-sm .pcard2-body{padding:14px 8px 12px}
+.pcard2-sm .pcard2-title{font-size:15.5px}
+.pcard2-sm .pcard2-tags{margin-top:8px}
+.pcard2-sm .pcard2-tag{font-size:9px}
 .mw{will-change:opacity}
 [data-spin]{will-change:transform}
 .curtain-type{display:inline-block}
