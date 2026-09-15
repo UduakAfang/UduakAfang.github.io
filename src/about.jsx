@@ -189,10 +189,10 @@ function ProjectCard({ work, tint, go, cards = "Tinted", order = 0 }) {
   const tags = (work.stack && work.stack.length
     ? work.stack
     : String(work.tag || "").split("·").map((s) => s.trim()).filter(Boolean)).slice(0, 6);
-  const light = cards !== "Paper" && tint && tint.fg === "light";
-  const cardStyle = cards === "Paper"
-    ? undefined
-    : { background: (tint && tint.bg) || "rgb(var(--c-card))", color: light ? "#fff" : "rgb(var(--c-ink))" };
+  const light = tint && tint.fg === "light";
+  const cardStyle = tint
+    ? { "--pc-hover": tint.bg, "--pc-hover-fg": light ? "#fff" : "rgb(var(--c-ink))" }
+    : undefined;
   return (
     <div className="reveal h-full" style={{ transitionDelay: (order % 3) * 80 + "ms" }}>
       <div onClick={open} role="link" tabIndex="0"

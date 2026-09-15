@@ -8,7 +8,7 @@ const PINNED_ID = "09";
    where to go and look at it. tableauUrl stays empty until the real Tableau
    Public URL arrives, and falls back to the profile. */
 const VIZ_ITEMS = [
-  { id: "09", title: "The Same Countries, Different Rules", label: "Data viz · Tableau", image: "images/leaders.png", cardBg: "#f3f4f4", tableauUrl: "https://public.tableau.com/views/AfricanHeadsofStateEarliestandLatest/SameCountryDifferentRules?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" },
+  { id: "09", title: "The Same Countries, Different Rules", label: "Data viz · Tableau", image: "images/leaders.png", tableauUrl: "https://public.tableau.com/views/AfricanHeadsofStateEarliestandLatest/SameCountryDifferentRules?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" },
   { id: "03", title: "NYC 311 Service Requests", label: "Civic data viz · Tableau", image: "images/nyc.png", tableauUrl: "https://public.tableau.com/views/RWFDNYCCitizenRequestsServices/NYCCSRDashboard?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" },
   { id: "05", title: "CFC Player Performance Insights", label: "Sports science · Tableau", image: "images/player.png", tableauUrl: "https://public.tableau.com/views/CFCPlayerPerformanceInsights/PlayerInfo?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" },
   { id: "04", title: "Podcast Analytics", label: "Creator analytics · Tableau", image: "images/podcast.png", tableauUrl: "https://public.tableau.com/views/PodcastAnalytics/PodcastCreators?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" },
@@ -66,9 +66,10 @@ function VizTile({ t, go, tint }) {
     ? () => go("case:" + t.id)
     : () => window.open(vizUrl(t.id), "_blank", "noopener");
   const tags = String(t.label || "").split("·").map((s) => s.trim()).filter(Boolean);
-  const eff = t.cardBg ? { bg: t.cardBg, fg: "dark" } : tint;
-  const light = eff && eff.fg === "light";
-  const cardStyle = { background: (eff && eff.bg) || "rgb(var(--c-card))", color: light ? "#fff" : "rgb(var(--c-ink))" };
+  const light = tint && tint.fg === "light";
+  const cardStyle = tint
+    ? { "--pc-hover": tint.bg, "--pc-hover-fg": light ? "#fff" : "rgb(var(--c-ink))" }
+    : undefined;
   return (
     <div className="reveal h-full">
       <div className="pcard2" onClick={open} role="link" tabIndex="0" style={cardStyle}
