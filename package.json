@@ -1,0 +1,15 @@
+{
+  "name": "uduakafang-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build:js": "node scripts/build-js.mjs",
+    "build:css": "tailwindcss -c tailwind.config.js -i src/tw.input.css -o dist/tw.css --minify",
+    "build": "npm run build:js && npm run build:css"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-react": "^7.27.1",
+    "tailwindcss": "^3.4.14"
+  }
+}
