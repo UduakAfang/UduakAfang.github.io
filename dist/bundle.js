@@ -7685,8 +7685,13 @@ function downloadCV(label) {
   const run = () => {
     const el = document.querySelector(".cv-sheet");
     if (!el || !window.html2pdf) return;
+    const prevLeft = el.style.left;
+    el.style.left = "0px";
     const w = el.offsetWidth || 820;
     const h = Math.ceil(el.scrollHeight || el.offsetHeight);
+    const restore = () => {
+      el.style.left = prevLeft || "-10000px";
+    };
     window.html2pdf().set({
       margin: 0,
       filename: "Uduak Afang - " + label + ".pdf",
@@ -7698,14 +7703,16 @@ function downloadCV(label) {
         scale: 2,
         backgroundColor: "#ffffff",
         useCORS: true,
-        windowWidth: w
+        windowWidth: w,
+        scrollX: 0,
+        scrollY: 0
       },
       jsPDF: {
         unit: "px",
         format: [w, h],
         orientation: h >= w ? "portrait" : "landscape"
       }
-    }).from(el).save();
+    }).from(el).save().then(restore, restore);
   };
   if (window.html2pdf) return run();
   const s = document.createElement("script");
