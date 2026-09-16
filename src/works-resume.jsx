@@ -382,18 +382,25 @@ function CVSheet({ v }) {
    directly — no print dialog, and the page format matches the sheet so it
    never splits across pages. */
 function downloadCV(label) {
-  const el = document.querySelector(".cv-sheet");
-  if (!el) return;
-  if (!window.html2pdf) { window.print(); return; }
-  const w = el.offsetWidth || 820;
-  const h = Math.ceil(el.scrollHeight || el.offsetHeight);
-  window.html2pdf().set({
-    margin: 0,
-    filename: "Uduak Afang - " + label + ".pdf",
-    image: { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 2, backgroundColor: "#ffffff", useCORS: true, windowWidth: w },
-    jsPDF: { unit: "px", format: [w, h], orientation: h >= w ? "portrait" : "landscape" },
-  }).from(el).save();
+  const run = () => {
+    const el = document.querySelector(".cv-sheet");
+    if (!el || !window.html2pdf) return;
+    const w = el.offsetWidth || 820;
+    const h = Math.ceil(el.scrollHeight || el.offsetHeight);
+    window.html2pdf().set({
+      margin: 0,
+      filename: "Uduak Afang - " + label + ".pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2, backgroundColor: "#ffffff", useCORS: true, windowWidth: w },
+      jsPDF: { unit: "px", format: [w, h], orientation: h >= w ? "portrait" : "landscape" },
+    }).from(el).save();
+  };
+  if (window.html2pdf) return run();
+  // Loaded on demand so it isn't part of the initial mobile payload.
+  const s = document.createElement("script");
+  s.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.3/html2pdf.bundle.min.js";
+  s.onload = run;
+  document.head.appendChild(s);
 }
 
 function ResumePage4({ go, pal }) {
