@@ -520,9 +520,9 @@ function BuiltWith() {
       <div className="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-10 gap-x-3 gap-y-6 mt-14 max-w-[820px]">
         {TOOLS4.map((t, i) => (
           <div key={t.name} className="reveal" style={{ transitionDelay: (i % 10) * 45 + "ms" }}>
-            <div className="aspect-square rounded-[3px] border border-ink/12 flex items-center justify-center"
+            <div className="w-full max-w-[56px] aspect-square mx-auto rounded-[8px] border border-ink/12 flex items-center justify-center"
                  style={{ background: "rgb(var(--c-paper2))" }}>
-              <ToolIcon name={t.ico} slug={t.slug} file={t.file} invert={t.invert} size={32} />
+              <ToolIcon name={t.ico} slug={t.slug} file={t.file} invert={t.invert} size={28} />
             </div>
             <div className="mono text-[7.5px] tracking-[.12em] uppercase text-center mt-2 leading-[1.35]" style={{ opacity: .55 }}>{t.name}</div>
           </div>

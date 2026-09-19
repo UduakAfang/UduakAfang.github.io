@@ -6039,7 +6039,7 @@ function BuiltWith() {
       transitionDelay: i % 10 * 45 + "ms"
     }
   }, React.createElement("div", {
-    className: "aspect-square rounded-[3px] border border-ink/12 flex items-center justify-center",
+    className: "w-full max-w-[56px] aspect-square mx-auto rounded-[8px] border border-ink/12 flex items-center justify-center",
     style: {
       background: "rgb(var(--c-paper2))"
     }
@@ -6048,7 +6048,7 @@ function BuiltWith() {
     slug: t.slug,
     file: t.file,
     invert: t.invert,
-    size: 32
+    size: 28
   })), React.createElement("div", {
     className: "mono text-[7.5px] tracking-[.12em] uppercase text-center mt-2 leading-[1.35]",
     style: {
