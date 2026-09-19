@@ -226,7 +226,7 @@ const CV_VARIANTS = {
   ae: {
     label: "Analytics Engineer",
     title: "Analytics Engineer",
-    overview: "Analytics engineer with 3+ years turning messy, multi-source data into tested, trustworthy models and the dashboards on top of them. Strong SQL and Python, hands-on with dbt, Databricks and Azure Data Factory, and a daily habit of using AI tools to move faster through modelling, testing and debugging. I own the line end-to-end — raw ingestion, a governed semantic layer, and the screen a stakeholder actually decides on — working independently in a remote environment.",
+    overview: "Analytics engineer with 4+ years turning messy, multi-source data into tested, trustworthy models and the dashboards on top of them. Strong SQL and Python, hands-on with dbt, Databricks and Azure Data Factory, and a daily habit of using AI tools to move faster through modelling, testing and debugging. I own the line end-to-end — raw ingestion, a governed semantic layer, and the screen a stakeholder actually decides on — working independently in a remote environment.",
     experience: [
       { role: "BI Analyst", org: "SessionHub Softswitch Limited", meta: "Lagos, Nigeria · Mar 2023 – Present", bullets: [
         "Designed and built the company's invoice and financial reporting data model from scratch, consolidating scattered, untracked records into one governed, queryable semantic layer.",
@@ -259,7 +259,7 @@ const CV_VARIANTS = {
   da: {
     label: "Data Analyst",
     title: "Data Analyst — BI and AI",
-    overview: "BI Analyst with 3+ years building dashboards and reporting that hold up under scrutiny, backed by hands-on SQL, cloud data pipeline experience (Azure Data Factory, Databricks), and a daily habit of using AI tools to accelerate analysis and automate repeatable work rather than treating them as a novelty. Comfortable turning ambiguous business questions into structured analyses, and translating findings for stakeholders who aren't looking at the data every day.",
+    overview: "BI Analyst with 4+ years building dashboards and reporting that hold up under scrutiny, backed by hands-on SQL, cloud data pipeline experience (Azure Data Factory, Databricks), and a daily habit of using AI tools to accelerate analysis and automate repeatable work rather than treating them as a novelty. Comfortable turning ambiguous business questions into structured analyses, and translating findings for stakeholders who aren't looking at the data every day.",
     experience: [
       { role: "BI Analyst", org: "SessionHub Softswitch Limited", meta: "Lagos, Nigeria · Mar 2023 – Present", bullets: [
         "Built the company's invoice and financial reporting web dashboard and database from scratch, consolidating scattered, untracked records into one structured, queryable system.",
@@ -291,7 +291,7 @@ const CV_VARIANTS = {
   bi: {
     label: "BI Developer",
     title: "Business Intelligence Developer",
-    overview: "BI Developer with 3+ years designing dashboards, data models, and reporting pipelines that hold up under scrutiny. Strong SQL and Power BI experience, hands-on with Azure-based data platforms (Data Factory, Databricks), and a daily habit of using AI tools to move faster through analysis and automation. Comfortable owning a data problem end-to-end, from raw ingestion to a dashboard a non-technical stakeholder trusts, while working independently in a remote environment.",
+    overview: "BI Developer with 4+ years designing dashboards, data models, and reporting pipelines that hold up under scrutiny. Strong SQL and Power BI experience, hands-on with Azure-based data platforms (Data Factory, Databricks), and a daily habit of using AI tools to move faster through analysis and automation. Comfortable owning a data problem end-to-end, from raw ingestion to a dashboard a non-technical stakeholder trusts, while working independently in a remote environment.",
     experience: [
       { role: "BI Analyst", org: "SessionHub Softswitch Limited", meta: "Lagos, Nigeria · Mar 2023 – Present", bullets: [
         "Designed and built the company's invoice and financial reporting data model and dashboard from scratch, consolidating scattered, untracked records into one governed, queryable system.",

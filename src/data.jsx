@@ -9,7 +9,7 @@ const PROFILE = {
   github:   "https://github.com/UduakAfang",
   tableau:  "https://public.tableau.com",
   blurb:
-    "BI Analyst with 3+ years building dashboards and pipelines that finance, operations and commercial teams actually trust. I own the work end-to-end — from the raw SQL pull to the design of the screen a stakeholder opens on a Monday morning.",
+    "BI Analyst with 4+ years building dashboards and pipelines that finance, operations and commercial teams actually trust. I own the work end-to-end — from the raw SQL pull to the design of the screen a stakeholder opens on a Monday morning.",
 };
 
 // Selected works — the home page only shows these, grouped by category

@@ -5,8 +5,8 @@ const { useState: useStateH4, useEffect: useEffectH4 } = React;
 const COPY4 = {
   line1: "I build data models, pipelines",
   line2: "and the dashboards on top of them",
-  blurb: "Three years on ~dbt, Databricks and Azure Data Factory~, designing the Tableau and Power BI surfaces teams decide on. Built ^TrackPerform^ and ^DrillCal^ for clients — both launched.",
-  blurb2: "Three years modelling data in dbt and Databricks, and designing the Tableau and Power BI surfaces teams decide on every week.",
+  blurb: "Four years on ~dbt, Databricks and Azure Data Factory~, designing the Tableau and Power BI surfaces teams decide on. Built ^TrackPerform^ and ^DrillCal^ for clients — both launched.",
+  blurb2: "Four years modelling data in dbt and Databricks, and designing the Tableau and Power BI surfaces teams decide on every week.",
   role: "Analytics Engineer · Data Analyst · Business Intelligence Analyst",
 };
 
@@ -27,7 +27,7 @@ const FOCUS4 = [
 ];
 
 const ABOUT_COPY = [
-  "A dashboard is only as trustworthy as the pull underneath it, so I do ~both halves~ \u2014 the SQL, the models, the tests, and then the screen someone makes a decision on. Three years of that for finance, operations and commercial teams.",
+  "A dashboard is only as trustworthy as the pull underneath it, so I do ~both halves~ \u2014 the SQL, the models, the tests, and then the screen someone makes a decision on. Four years of that for finance, operations and commercial teams.",
   "I work as an ^analytics engineer, data analyst and BI analyst^ — and, increasingly, I build the product on top. Right now I'm most interested in the modern data stack: dbt, lakehouse architecture, and putting a real interface on the data instead of another spreadsheet.",
   "Currently at ~SessionHub~ in Lagos. I built ~TrackPerform~ and ~DrillCal~ for clients, both launched. Tableau Viz of the Day, twice, and longlisted for the Vizzies.",
   "I also write up what I break along the way \u2014 ^GitHub^ and ^LinkedIn^ are the honest record.",

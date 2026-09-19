@@ -10,7 +10,7 @@ const PROFILE = {
   linkedin: "https://linkedin.com/in/uduakafang",
   github: "https://github.com/UduakAfang",
   tableau: "https://public.tableau.com",
-  blurb: "BI Analyst with 3+ years building dashboards and pipelines that finance, operations and commercial teams actually trust. I own the work end-to-end — from the raw SQL pull to the design of the screen a stakeholder opens on a Monday morning."
+  blurb: "BI Analyst with 4+ years building dashboards and pipelines that finance, operations and commercial teams actually trust. I own the work end-to-end — from the raw SQL pull to the design of the screen a stakeholder opens on a Monday morning."
 };
 const SELECTED_WORKS = [{
   id: "09",
@@ -4862,9 +4862,9 @@ function Hero5({
   return React.createElement("section", {
     className: "shell-pad pt-[86px] md:pt-[110px]"
   }, React.createElement("div", {
-    className: "hero5 relative overflow-hidden shellbox md:min-h-[84svh] flex flex-col justify-end pt-20 md:pt-24 pb-12 md:pb-16 " + (bare ? "is-bare px-1 md:px-10 lg:px-14" : "rounded-[32px] px-6 md:px-12")
+    className: "hero5 relative overflow-hidden shellbox md:min-h-[84svh] flex flex-col justify-end pt-24 md:pt-28 pb-16 md:pb-20 " + (bare ? "is-bare px-4 sm:px-6 md:px-12 lg:px-16" : "rounded-[32px] px-6 md:px-12")
   }, React.createElement("div", {
-    className: "grid grid-cols-12 gap-y-12 gap-x-8 md:gap-x-14 items-end relative"
+    className: "grid grid-cols-12 gap-y-14 gap-x-8 md:gap-x-16 items-end relative"
   }, React.createElement("div", {
     className: "col-span-12 md:col-span-7"
   }, React.createElement("span", {
@@ -4893,17 +4893,17 @@ function Hero5({
     style: {
       opacity: .86
     }
-  }, "Three years modelling data in dbt and Databricks, and designing the Tableau and Power BI surfaces teams decide on every week."), React.createElement("div", {
-    className: "flex flex-wrap items-center gap-x-7 gap-y-3 mt-9 pt-7 border-t border-ink/12"
-  }, [["2×", "Tableau Viz of the Day"], ["4×", "Vizzies nominated"], ["3 yrs", "building BI"], ["2", "products shipped"]].map(([v, l]) => React.createElement("div", {
+  }, "Four years modelling data in dbt and Databricks, and designing the Tableau and Power BI surfaces teams decide on every week."), React.createElement("div", {
+    className: "flex flex-wrap items-center gap-x-8 gap-y-4 mt-10 pt-8 border-t border-ink/12"
+  }, [["4+ yrs", "in BI & analytics"], ["2×", "Tableau Viz of the Day"], ["4×", "Vizzies nominated"], ["2", "products shipped"]].map(([v, l]) => React.createElement("div", {
     key: l,
-    className: "flex items-baseline gap-1.5"
+    className: "flex items-baseline gap-2"
   }, React.createElement("span", {
-    className: "text-[16px] font-black tracking-[-.03em] text-accent leading-none"
+    className: "text-[17px] font-black tracking-[-.03em] text-accent leading-none"
   }, v), React.createElement("span", {
     className: "mono text-[9px] tracking-[.13em] uppercase",
     style: {
-      opacity: .6
+      opacity: .62
     }
   }, l))))), React.createElement("div", {
     className: "col-span-12 md:col-span-5 md:pl-6"
@@ -4992,8 +4992,8 @@ const {
 const COPY4 = {
   line1: "I build data models, pipelines",
   line2: "and the dashboards on top of them",
-  blurb: "Three years on ~dbt, Databricks and Azure Data Factory~, designing the Tableau and Power BI surfaces teams decide on. Built ^TrackPerform^ and ^DrillCal^ for clients — both launched.",
-  blurb2: "Three years modelling data in dbt and Databricks, and designing the Tableau and Power BI surfaces teams decide on every week.",
+  blurb: "Four years on ~dbt, Databricks and Azure Data Factory~, designing the Tableau and Power BI surfaces teams decide on. Built ^TrackPerform^ and ^DrillCal^ for clients — both launched.",
+  blurb2: "Four years modelling data in dbt and Databricks, and designing the Tableau and Power BI surfaces teams decide on every week.",
   role: "Analytics Engineer · Data Analyst · Business Intelligence Analyst"
 };
 const GROUPS4 = [{
@@ -5023,7 +5023,7 @@ const FOCUS4 = [{
   d: "TrackPerform and DrillCal — client builds, both launched and used by coaches to plan and read a week of training.",
   pop: [["products live", "2"], ["read time", "3 min → 3s"], ["metrics auto-mapped", "40+"]]
 }];
-const ABOUT_COPY = ["A dashboard is only as trustworthy as the pull underneath it, so I do ~both halves~ \u2014 the SQL, the models, the tests, and then the screen someone makes a decision on. Three years of that for finance, operations and commercial teams.", "I work as an ^analytics engineer, data analyst and BI analyst^ — and, increasingly, I build the product on top. Right now I'm most interested in the modern data stack: dbt, lakehouse architecture, and putting a real interface on the data instead of another spreadsheet.", "Currently at ~SessionHub~ in Lagos. I built ~TrackPerform~ and ~DrillCal~ for clients, both launched. Tableau Viz of the Day, twice, and longlisted for the Vizzies.", "I also write up what I break along the way \u2014 ^GitHub^ and ^LinkedIn^ are the honest record."];
+const ABOUT_COPY = ["A dashboard is only as trustworthy as the pull underneath it, so I do ~both halves~ \u2014 the SQL, the models, the tests, and then the screen someone makes a decision on. Four years of that for finance, operations and commercial teams.", "I work as an ^analytics engineer, data analyst and BI analyst^ — and, increasingly, I build the product on top. Right now I'm most interested in the modern data stack: dbt, lakehouse architecture, and putting a real interface on the data instead of another spreadsheet.", "Currently at ~SessionHub~ in Lagos. I built ~TrackPerform~ and ~DrillCal~ for clients, both launched. Tableau Viz of the Day, twice, and longlisted for the Vizzies.", "I also write up what I break along the way \u2014 ^GitHub^ and ^LinkedIn^ are the honest record."];
 const CARD_COPY = {
   "09": {
     kicker: "Analyst · Data viz",
@@ -7524,7 +7524,7 @@ const CV_VARIANTS = {
   ae: {
     label: "Analytics Engineer",
     title: "Analytics Engineer",
-    overview: "Analytics engineer with 3+ years turning messy, multi-source data into tested, trustworthy models and the dashboards on top of them. Strong SQL and Python, hands-on with dbt, Databricks and Azure Data Factory, and a daily habit of using AI tools to move faster through modelling, testing and debugging. I own the line end-to-end — raw ingestion, a governed semantic layer, and the screen a stakeholder actually decides on — working independently in a remote environment.",
+    overview: "Analytics engineer with 4+ years turning messy, multi-source data into tested, trustworthy models and the dashboards on top of them. Strong SQL and Python, hands-on with dbt, Databricks and Azure Data Factory, and a daily habit of using AI tools to move faster through modelling, testing and debugging. I own the line end-to-end — raw ingestion, a governed semantic layer, and the screen a stakeholder actually decides on — working independently in a remote environment.",
     experience: [{
       role: "BI Analyst",
       org: "SessionHub Softswitch Limited",
@@ -7553,7 +7553,7 @@ const CV_VARIANTS = {
   da: {
     label: "Data Analyst",
     title: "Data Analyst — BI and AI",
-    overview: "BI Analyst with 3+ years building dashboards and reporting that hold up under scrutiny, backed by hands-on SQL, cloud data pipeline experience (Azure Data Factory, Databricks), and a daily habit of using AI tools to accelerate analysis and automate repeatable work rather than treating them as a novelty. Comfortable turning ambiguous business questions into structured analyses, and translating findings for stakeholders who aren't looking at the data every day.",
+    overview: "BI Analyst with 4+ years building dashboards and reporting that hold up under scrutiny, backed by hands-on SQL, cloud data pipeline experience (Azure Data Factory, Databricks), and a daily habit of using AI tools to accelerate analysis and automate repeatable work rather than treating them as a novelty. Comfortable turning ambiguous business questions into structured analyses, and translating findings for stakeholders who aren't looking at the data every day.",
     experience: [{
       role: "BI Analyst",
       org: "SessionHub Softswitch Limited",
@@ -7582,7 +7582,7 @@ const CV_VARIANTS = {
   bi: {
     label: "BI Developer",
     title: "Business Intelligence Developer",
-    overview: "BI Developer with 3+ years designing dashboards, data models, and reporting pipelines that hold up under scrutiny. Strong SQL and Power BI experience, hands-on with Azure-based data platforms (Data Factory, Databricks), and a daily habit of using AI tools to move faster through analysis and automation. Comfortable owning a data problem end-to-end, from raw ingestion to a dashboard a non-technical stakeholder trusts, while working independently in a remote environment.",
+    overview: "BI Developer with 4+ years designing dashboards, data models, and reporting pipelines that hold up under scrutiny. Strong SQL and Power BI experience, hands-on with Azure-based data platforms (Data Factory, Databricks), and a daily habit of using AI tools to move faster through analysis and automation. Comfortable owning a data problem end-to-end, from raw ingestion to a dashboard a non-technical stakeholder trusts, while working independently in a remote environment.",
     experience: [{
       role: "BI Analyst",
       org: "SessionHub Softswitch Limited",
@@ -7896,7 +7896,7 @@ const CURTAIN_SUB = {
   home: "Data models, dashboards and the products around them",
   work: "Three builds in full, plus the archive",
   stack: "How a question becomes a dashboard",
-  resume: "Three years of modelling, shipping and support"
+  resume: "Four years of modelling, shipping and support"
 };
 function curtainSub(p) {
   const [kind] = String(p).split(":");

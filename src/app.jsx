@@ -24,7 +24,7 @@ const CURTAIN_SUB = {
   home: "Data models, dashboards and the products around them",
   work: "Three builds in full, plus the archive",
   stack: "How a question becomes a dashboard",
-  resume: "Three years of modelling, shipping and support",
+  resume: "Four years of modelling, shipping and support",
 };
 function curtainSub(p) {
   const [kind] = String(p).split(":");

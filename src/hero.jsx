@@ -12,9 +12,9 @@ function Hero5({ go, panel = "Panel" }) {
   const bare = panel === "Bare";
   return (
     <section className="shell-pad pt-[86px] md:pt-[110px]">
-      <div className={"hero5 relative overflow-hidden shellbox md:min-h-[84svh] flex flex-col justify-end pt-20 md:pt-24 pb-12 md:pb-16 " +
-        (bare ? "is-bare px-1 md:px-10 lg:px-14" : "rounded-[32px] px-6 md:px-12")}>
-        <div className="grid grid-cols-12 gap-y-12 gap-x-8 md:gap-x-14 items-end relative">
+      <div className={"hero5 relative overflow-hidden shellbox md:min-h-[84svh] flex flex-col justify-end pt-24 md:pt-28 pb-16 md:pb-20 " +
+        (bare ? "is-bare px-4 sm:px-6 md:px-12 lg:px-16" : "rounded-[32px] px-6 md:px-12")}>
+        <div className="grid grid-cols-12 gap-y-14 gap-x-8 md:gap-x-16 items-end relative">
           <div className="col-span-12 md:col-span-7">
             <span className="inline-block px-4 py-2 rounded-[7px] border border-ink/20 mono text-[9px] tracking-[.2em] uppercase" style={{ background: bare ? "transparent" : "rgb(var(--c-paper) / .55)" }}>
               Available for work
@@ -28,14 +28,14 @@ function Hero5({ go, panel = "Panel" }) {
               ))}
             </div>
             <p className="text-[15px] md:text-[15.5px] leading-[1.7] max-w-[440px]" style={{ opacity: .86 }}>
-              Three years modelling data in dbt and Databricks, and designing the Tableau and
+              Four years modelling data in dbt and Databricks, and designing the Tableau and
               Power BI surfaces teams decide on every week.
             </p>
-            <div className="flex flex-wrap items-center gap-x-7 gap-y-3 mt-9 pt-7 border-t border-ink/12">
-              {[["2×", "Tableau Viz of the Day"], ["4×", "Vizzies nominated"], ["3 yrs", "building BI"], ["2", "products shipped"]].map(([v, l]) => (
-                <div key={l} className="flex items-baseline gap-1.5">
-                  <span className="text-[16px] font-black tracking-[-.03em] text-accent leading-none">{v}</span>
-                  <span className="mono text-[9px] tracking-[.13em] uppercase" style={{ opacity: .6 }}>{l}</span>
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-10 pt-8 border-t border-ink/12">
+              {[["4+ yrs", "in BI & analytics"], ["2×", "Tableau Viz of the Day"], ["4×", "Vizzies nominated"], ["2", "products shipped"]].map(([v, l]) => (
+                <div key={l} className="flex items-baseline gap-2">
+                  <span className="text-[17px] font-black tracking-[-.03em] text-accent leading-none">{v}</span>
+                  <span className="mono text-[9px] tracking-[.13em] uppercase" style={{ opacity: .62 }}>{l}</span>
                 </div>
               ))}
             </div>
