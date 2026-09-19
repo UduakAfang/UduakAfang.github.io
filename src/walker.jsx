@@ -124,7 +124,7 @@ function SkillBars({ items = [] }) {
             <div className="mono text-[9px] tracking-[.14em] uppercase mt-2 hidden sm:block" style={{ opacity: .45 }}>{s.note}</div>
           </div>
           <div className="col-span-3 text-right">
-            <span className="mono text-[12px] font-semibold" style={{ opacity: .7 }}>{s.pct}<span style={{ opacity: .5 }}>%</span></span>
+            <span className="mono text-[12px] font-semibold" style={{ opacity: .86 }}>{s.pct}<span style={{ opacity: .5 }}>%</span></span>
           </div>
         </div>
       ))}
@@ -355,7 +355,7 @@ function ToolsRow({ title, sub }) {
     <section className="shell py-24 md:py-28">
       <div className="max-w-[620px]">
         <h2 className="claim text-[10vw] md:text-[46px]">{title}</h2>
-        <p className="text-[16px] leading-[1.65] mt-5" style={{ opacity: .78 }}><T>{sub}</T></p>
+        <p className="text-[16px] leading-[1.65] mt-5" style={{ opacity: .86 }}><T>{sub}</T></p>
       </div>
       <div className="grid grid-cols-3 md:grid-cols-6 gap-y-10 gap-x-4 mt-16">
         {TOOLS4.map((t, i) => (

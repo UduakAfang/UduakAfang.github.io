@@ -429,7 +429,7 @@ function WorkBench({ go }) {
         <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(520px,1.15fr)] gap-10 lg:gap-14 items-stretch">
           <div>
             <span className="inline-block px-4 py-2 rounded-lg border border-ink/15 mono text-[9.5px] tracking-[.18em] uppercase"
-                  style={{ background: "rgb(var(--c-paper))", opacity: .8 }}>How I work</span>
+                  style={{ background: "rgb(var(--c-paper))", opacity: .86 }}>How I work</span>
             <h2 data-fill className="claim text-[8.5vw] md:text-[44px] mt-6 max-w-[440px]">The three lanes I work in</h2>
             <div className="mt-9">
               {BENCH_KEYS.map((k) => {

@@ -2392,7 +2392,7 @@ function SkillBars({
   }, React.createElement("span", {
     className: "mono text-[12px] font-semibold",
     style: {
-      opacity: .7
+      opacity: .86
     }
   }, s.pct, React.createElement("span", {
     style: {
@@ -3129,7 +3129,7 @@ function ToolsRow({
   }, title), React.createElement("p", {
     className: "text-[16px] leading-[1.65] mt-5",
     style: {
-      opacity: .78
+      opacity: .86
     }
   }, React.createElement(T, null, sub))), React.createElement("div", {
     className: "grid grid-cols-3 md:grid-cols-6 gap-y-10 gap-x-4 mt-16"
@@ -4262,7 +4262,7 @@ function WorkBench({
     className: "inline-block px-4 py-2 rounded-lg border border-ink/15 mono text-[9.5px] tracking-[.18em] uppercase",
     style: {
       background: "rgb(var(--c-paper))",
-      opacity: .8
+      opacity: .86
     }
   }, "How I work"), React.createElement("h2", {
     "data-fill": true,
@@ -4891,9 +4891,21 @@ function Hero5({
   }, d))), React.createElement("p", {
     className: "text-[15px] md:text-[15.5px] leading-[1.7] max-w-[440px]",
     style: {
-      opacity: .7
+      opacity: .86
     }
-  }, "Three years modelling data in dbt and Databricks, and designing the Tableau and Power BI surfaces teams decide on every week.")), React.createElement("div", {
+  }, "Three years modelling data in dbt and Databricks, and designing the Tableau and Power BI surfaces teams decide on every week."), React.createElement("div", {
+    className: "flex flex-wrap items-center gap-x-7 gap-y-3 mt-9 pt-7 border-t border-ink/12"
+  }, [["2×", "Tableau Viz of the Day"], ["4×", "Vizzies nominated"], ["3 yrs", "building BI"], ["2", "products shipped"]].map(([v, l]) => React.createElement("div", {
+    key: l,
+    className: "flex items-baseline gap-1.5"
+  }, React.createElement("span", {
+    className: "text-[16px] font-black tracking-[-.03em] text-accent leading-none"
+  }, v), React.createElement("span", {
+    className: "mono text-[9px] tracking-[.13em] uppercase",
+    style: {
+      opacity: .6
+    }
+  }, l))))), React.createElement("div", {
     className: "col-span-12 md:col-span-5 md:pl-6"
   }, React.createElement("div", {
     className: "grid sm:grid-cols-2 md:grid-cols-1 gap-y-7 gap-x-8"
@@ -5226,7 +5238,7 @@ function StatTable({
   }, k), React.createElement("span", {
     className: "mono text-[12.5px] whitespace-nowrap",
     style: {
-      opacity: .8
+      opacity: .86
     }
   }, v))));
 }
@@ -5397,7 +5409,7 @@ function SelectedList({
     }, React.createElement("p", {
       className: "text-[15px] leading-[1.6] max-w-md",
       style: {
-        opacity: .75
+        opacity: .86
       }
     }, m.outcome || w.blurb)), React.createElement("div", {
       className: "col-span-12 md:col-span-2 md:text-right"
@@ -5461,7 +5473,7 @@ function Hero4({
   }, React.createElement("p", {
     className: "text-[16px] md:text-[17px] leading-[1.55] max-w-[400px]",
     style: {
-      opacity: .72
+      opacity: .86
     }
   }, COPY4.blurb2), React.createElement("div", {
     className: "flex flex-wrap items-center gap-3 mt-8"
@@ -5935,7 +5947,7 @@ function FocusRow() {
     className: "inline-block px-4 py-2 rounded-lg border border-ink/15 mono text-[9.5px] tracking-[.18em] uppercase",
     style: {
       background: "rgb(var(--c-paper))",
-      opacity: .8
+      opacity: .86
     }
   }, "What I do"), React.createElement("h2", {
     "data-fill": true,
@@ -5961,7 +5973,7 @@ function FocusRow() {
   }, f.t), React.createElement("p", {
     className: "text-[14.5px] leading-[1.6] mt-3 mx-auto max-w-[300px]",
     style: {
-      opacity: .7
+      opacity: .86
     }
   }, f.d), React.createElement("div", {
     className: "pop rounded-2xl p-5 border border-ink/12 shadow-[0_26px_50px_-26px_rgba(0,0,0,.4)] text-left",
@@ -6016,7 +6028,7 @@ function BuiltWith() {
   }, "tech stack"), "."), React.createElement("p", {
     className: "text-[15.5px] md:text-[16.5px] leading-[1.6] max-w-[520px] mt-6",
     style: {
-      opacity: .7
+      opacity: .86
     }
   }, "AI is part of what I do, every day \u2014 not a novelty. These are the tools that take a question from a raw source table to a dashboard someone opens on Monday."), React.createElement("div", {
     className: "grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-10 gap-x-3 gap-y-6 mt-14 max-w-[820px]"
@@ -6104,7 +6116,7 @@ function WorkflowHome({
   }, React.createElement("p", {
     className: "text-[15.5px] leading-[1.65] max-w-[330px]",
     style: {
-      opacity: .78
+      opacity: .86
     }
   }, tr.note), React.createElement("button", {
     onClick: () => go("stack"),
@@ -6208,7 +6220,7 @@ function SoonGrid({
   }, s.title), React.createElement("p", {
     className: "text-[14.5px] leading-[1.6] mt-3",
     style: {
-      opacity: .75
+      opacity: .86
     }
   }, s.blurb), React.createElement("div", {
     className: "mt-auto pt-6 flex items-center gap-2 mono text-[9px] tracking-[.16em] uppercase",
@@ -6263,7 +6275,7 @@ function HomePage4({
     panel: heroPanel
   }) : React.createElement(Hero4, {
     go: go
-  }), React.createElement(FocusRow, null), React.createElement(SelectedHead, {
+  }), React.createElement(SelectedHead, {
     go: go
   }), React.createElement("div", {
     id: "work-start",
@@ -6292,9 +6304,7 @@ function HomePage4({
       cards: cards,
       order: SELECTED_WORKS.indexOf(w) >= 0 ? SELECTED_WORKS.indexOf(w) : k
     }))));
-  })), React.createElement(WorkBench, {
-    go: go
-  }), React.createElement(SkillsHome, null), React.createElement(BuiltWith, null), React.createElement(About4, null), React.createElement(Contact4, {
+  })), React.createElement(FocusRow, null), React.createElement(SkillsHome, null), React.createElement(BuiltWith, null), React.createElement(About4, null), React.createElement(Contact4, {
     go: go
   }), React.createElement("div", {
     className: "shell-pad pb-8"
@@ -6530,7 +6540,7 @@ function CaseStudy4({
   }, work.title), React.createElement("p", {
     className: "text-[16.5px] md:text-[18px] leading-[1.55] max-w-[560px] mt-5",
     style: {
-      opacity: .78
+      opacity: .86
     }
   }, React.createElement(T, null, cc.lede)), React.createElement("div", {
     className: "case-meta"
@@ -6555,12 +6565,12 @@ function CaseStudy4({
   }, cc.heads[i])), React.createElement("div", null, React.createElement("p", {
     className: "text-[15.5px] md:text-[16.5px] leading-[1.7]",
     style: {
-      opacity: .82
+      opacity: .86
     }
   }, body), cc.extra && cc.extra[i] && React.createElement("p", {
     className: "text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5",
     style: {
-      opacity: .82
+      opacity: .86
     }
   }, React.createElement(T, null, cc.extra[i])), i === 3 && id === "01" && React.createElement("div", {
     className: "mt-8"
@@ -6914,7 +6924,7 @@ function CaseViz5({
   }, work.title), React.createElement("p", {
     className: "text-[16.5px] md:text-[18px] leading-[1.55] max-w-[600px] mt-5",
     style: {
-      opacity: .78
+      opacity: .86
     }
   }, React.createElement(T, null, cc.lede)), cc.pub && React.createElement("div", {
     className: "viz-pub"
@@ -6945,22 +6955,22 @@ function CaseViz5({
   }, s.h)), React.createElement("div", null, React.createElement("p", {
     className: "text-[15.5px] md:text-[16.5px] leading-[1.7]",
     style: {
-      opacity: .82
+      opacity: .86
     }
   }, React.createElement(T, null, s.b)), s.b2 && React.createElement("p", {
     className: "text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5",
     style: {
-      opacity: .82
+      opacity: .86
     }
   }, React.createElement(T, null, s.b2)), s.b3 && React.createElement("p", {
     className: "text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5",
     style: {
-      opacity: .82
+      opacity: .86
     }
   }, React.createElement(T, null, s.b3)), s.b4 && React.createElement("p", {
     className: "text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5",
     style: {
-      opacity: .82
+      opacity: .86
     }
   }, React.createElement(T, null, s.b4)))), figsFor(i).map((fg, k) => React.createElement(VizFigure, {
     key: k,
@@ -7104,7 +7114,7 @@ function VizPin({
   }, w.title), React.createElement("p", {
     className: "text-[14px] leading-[1.55] mt-3.5",
     style: {
-      opacity: .78
+      opacity: .86
     }
   }, w.blurb), React.createElement(VizLink, {
     id: w.id
@@ -7345,7 +7355,7 @@ function StackPage4({
   }, c.t), React.createElement("p", {
     className: "text-[14.5px] leading-[1.6] mt-2",
     style: {
-      opacity: .72
+      opacity: .86
     }
   }, c.d)))))), React.createElement("section", {
     className: "shell py-14 md:py-20"
@@ -7369,7 +7379,7 @@ function StackPage4({
   }, row.claim), React.createElement("p", {
     className: "text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5 max-w-[640px]",
     style: {
-      opacity: .82
+      opacity: .86
     }
   }, row.d), React.createElement("div", {
     className: "pipeflow mt-9"
@@ -7395,7 +7405,7 @@ function StackPage4({
   }, row.claim), React.createElement("p", {
     className: "text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5",
     style: {
-      opacity: .82
+      opacity: .86
     }
   }, row.d)), React.createElement("figure", {
     className: "md:col-span-6"
@@ -7430,7 +7440,7 @@ function StackPage4({
   }, v), React.createElement("div", {
     className: "text-[13.5px] leading-[1.5] mt-3",
     style: {
-      opacity: .7
+      opacity: .86
     }
   }, l)))), React.createElement("p", {
     className: "text-[16px] md:text-[18px] leading-[1.6] max-w-[680px] mt-10 md:mt-12"
@@ -7790,7 +7800,7 @@ function ResumePage4({
     key: i,
     className: "flex gap-3 text-[15.5px] leading-[1.65]",
     style: {
-      opacity: .82
+      opacity: .86
     }
   }, React.createElement("span", {
     className: "text-accent mono text-[10px] pt-1.5"
@@ -7823,7 +7833,7 @@ function ResumePage4({
     key: a.id,
     className: "flex gap-3 text-[14.5px]",
     style: {
-      opacity: .82
+      opacity: .86
     }
   }, React.createElement("span", {
     className: "mono text-[10px] pt-1",

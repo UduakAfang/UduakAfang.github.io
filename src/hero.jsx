@@ -27,10 +27,18 @@ function Hero5({ go, panel = "Panel" }) {
                 <span key={d} className={"mono text-[9.5px] tracking-[.18em] uppercase px-5 first:pl-0 " + (i ? "border-l border-ink/20" : "")} style={{ opacity: .6 }}>{d}</span>
               ))}
             </div>
-            <p className="text-[15px] md:text-[15.5px] leading-[1.7] max-w-[440px]" style={{ opacity: .7 }}>
+            <p className="text-[15px] md:text-[15.5px] leading-[1.7] max-w-[440px]" style={{ opacity: .86 }}>
               Three years modelling data in dbt and Databricks, and designing the Tableau and
               Power BI surfaces teams decide on every week.
             </p>
+            <div className="flex flex-wrap items-center gap-x-7 gap-y-3 mt-9 pt-7 border-t border-ink/12">
+              {[["2×", "Tableau Viz of the Day"], ["4×", "Vizzies nominated"], ["3 yrs", "building BI"], ["2", "products shipped"]].map(([v, l]) => (
+                <div key={l} className="flex items-baseline gap-1.5">
+                  <span className="text-[16px] font-black tracking-[-.03em] text-accent leading-none">{v}</span>
+                  <span className="mono text-[9px] tracking-[.13em] uppercase" style={{ opacity: .6 }}>{l}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="col-span-12 md:col-span-5 md:pl-6">

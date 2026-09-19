@@ -163,7 +163,7 @@ function StatTable({ stats, light }) {
         <div key={k} className="flex items-baseline justify-between gap-6 py-2.5 border-b"
              style={{ borderColor: light ? "rgba(255,255,255,.26)" : "rgb(var(--c-ink) / .16)" }}>
           <span className="text-[13.5px] font-bold tracking-tight">{k}</span>
-          <span className="mono text-[12.5px] whitespace-nowrap" style={{ opacity: .8 }}>{v}</span>
+          <span className="mono text-[12.5px] whitespace-nowrap" style={{ opacity: .86 }}>{v}</span>
         </div>
       ))}
     </div>
@@ -260,7 +260,7 @@ function SelectedList({ go, pal, cards = "Tinted" }) {
                       <div className="mono text-[9.5px] tracking-[.16em] uppercase mt-3" style={{ opacity: .5 }}>{w.client} · {w.year}</div>
                     </div>
                     <div className="col-span-12 md:col-span-4">
-                      <p className="text-[15px] leading-[1.6] max-w-md" style={{ opacity: .75 }}>{m.outcome || w.blurb}</p>
+                      <p className="text-[15px] leading-[1.6] max-w-md" style={{ opacity: .86 }}>{m.outcome || w.blurb}</p>
                     </div>
                     <div className="col-span-12 md:col-span-2 md:text-right">
                       <div className="mono text-[8.5px] tracking-[.18em] uppercase" style={{ opacity: .45 }}>{w.metric.label}</div>
@@ -304,7 +304,7 @@ function Hero4({ go }) {
           {COPY4.line1}<br /><span style={{ opacity: .42 }}>{COPY4.line2}</span>
         </h1>
         <div className="col-span-12 md:col-span-5 md:pt-3">
-          <p className="text-[16px] md:text-[17px] leading-[1.55] max-w-[400px]" style={{ opacity: .72 }}>
+          <p className="text-[16px] md:text-[17px] leading-[1.55] max-w-[400px]" style={{ opacity: .86 }}>
             {COPY4.blurb2}
           </p>
           <div className="flex flex-wrap items-center gap-3 mt-8">
@@ -465,7 +465,7 @@ function FocusRow() {
       <div className="shellbox rounded-[32px] border border-ink/10 px-6 md:px-12 py-16 md:py-24" style={{ background: "rgb(var(--c-card))" }}>
         <div className="text-center">
           <span className="inline-block px-4 py-2 rounded-lg border border-ink/15 mono text-[9.5px] tracking-[.18em] uppercase"
-                style={{ background: "rgb(var(--c-paper))", opacity: .8 }}>What I do</span>
+                style={{ background: "rgb(var(--c-paper))", opacity: .86 }}>What I do</span>
           <h2 data-fill className="claim text-[8.5vw] md:text-[52px] max-w-[760px] mx-auto mt-7">Here’s what I can help you with</h2>
           <p className="text-[14px] md:text-[15px] leading-[1.65] max-w-[540px] mx-auto mt-7" style={{ opacity: .62 }}>I care how a dashboard looks as much as what it says. The model gets the same care as the chart — to me that's one job, not two.</p>
         </div>
@@ -475,7 +475,7 @@ function FocusRow() {
                  style={{ transitionDelay: i * 90 + "ms" }} tabIndex="0">
               <DoArt n={i + 1} />
               <h3 className="text-[20px] md:text-[22px] font-bold tracking-[-.03em] leading-[1.2] mt-7 mx-auto max-w-[260px]">{f.t}</h3>
-              <p className="text-[14.5px] leading-[1.6] mt-3 mx-auto max-w-[300px]" style={{ opacity: .7 }}>{f.d}</p>
+              <p className="text-[14.5px] leading-[1.6] mt-3 mx-auto max-w-[300px]" style={{ opacity: .86 }}>{f.d}</p>
               <div className="pop rounded-2xl p-5 border border-ink/12 shadow-[0_26px_50px_-26px_rgba(0,0,0,.4)] text-left"
                    style={{ background: "rgb(var(--c-paper))" }}>
                 {f.pop.map(([k, v]) => (
@@ -513,7 +513,7 @@ function BuiltWith() {
       <h2 className="claim max-w-[900px]" style={{ fontSize: "clamp(30px, 4.4vw, 52px)" }}>
         My <span style={{ opacity: .42 }}>tech stack</span>.
       </h2>
-      <p className="text-[15.5px] md:text-[16.5px] leading-[1.6] max-w-[520px] mt-6" style={{ opacity: .7 }}>
+      <p className="text-[15.5px] md:text-[16.5px] leading-[1.6] max-w-[520px] mt-6" style={{ opacity: .86 }}>
         AI is part of what I do, every day — not a novelty. These are the tools that take a
         question from a raw source table to a dashboard someone opens on Monday.
       </p>
@@ -571,7 +571,7 @@ function WorkflowHome({ go }) {
         <div className="grid grid-cols-12 gap-6 md:gap-10 pt-9">
           <h2 className="col-span-12 md:col-span-7 claim text-[9.5vw] md:text-[52px]">{tr.claim}</h2>
           <div className="col-span-12 md:col-span-5 md:pt-2">
-            <p className="text-[15.5px] leading-[1.65] max-w-[330px]" style={{ opacity: .78 }}>{tr.note}</p>
+            <p className="text-[15.5px] leading-[1.65] max-w-[330px]" style={{ opacity: .86 }}>{tr.note}</p>
             <button onClick={() => go("stack")} className="ul mono text-[10px] tracking-[.2em] uppercase mt-5 inline-block" style={{ opacity: .6 }}>Walk it in full →</button>
           </div>
         </div>
@@ -634,7 +634,7 @@ function SoonGrid({ soft }) {
               <span className="mono text-[9px] tracking-[.16em] uppercase" style={{ opacity: .45 }}>{s.tag}</span>
             </div>
             <h3 className="text-[24px] font-black tracking-[-.04em] leading-[1.1] mt-6">{s.title}</h3>
-            <p className="text-[14.5px] leading-[1.6] mt-3" style={{ opacity: .75 }}>{s.blurb}</p>
+            <p className="text-[14.5px] leading-[1.6] mt-3" style={{ opacity: .86 }}>{s.blurb}</p>
             <div className="mt-auto pt-6 flex items-center gap-2 mono text-[9px] tracking-[.16em] uppercase" style={{ opacity: .45 }}>
               <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" /> in progress
             </div>
@@ -675,7 +675,6 @@ function HomePage4({ go, pal, band, cards, heroPanel }) {
   return (
     <main className="grain">
       {window.__V5 && typeof Hero5 !== "undefined" ? <Hero5 go={go} panel={heroPanel} /> : <Hero4 go={go} />}
-      <FocusRow />
       <SelectedHead go={go} />
       <div id="work-start" className="shell" style={{ overflowX: "clip" }}>
         {GROUPS4.map((g) => {
@@ -695,7 +694,7 @@ function HomePage4({ go, pal, band, cards, heroPanel }) {
           );
         })}
       </div>
-      <WorkBench go={go} />
+      <FocusRow />
       <SkillsHome />
       <BuiltWith />
       <About4 />

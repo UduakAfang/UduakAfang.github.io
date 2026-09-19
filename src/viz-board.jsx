@@ -45,7 +45,7 @@ function VizPin({ go, id }) {
       <div className="vb-pin-txt">
         <div className="mono text-[9.5px] tracking-[.2em] uppercase text-accent">Pinned</div>
         <h3 className="text-[27px] md:text-[34px] font-black tracking-[-.045em] leading-[1] mt-3">{w.title}</h3>
-        <p className="text-[14px] leading-[1.55] mt-3.5" style={{ opacity: .78 }}>{w.blurb}</p>
+        <p className="text-[14px] leading-[1.55] mt-3.5" style={{ opacity: .86 }}>{w.blurb}</p>
         <VizLink id={w.id} />
         <button onClick={(e) => { e.stopPropagation(); open(); }}
           className="mt-5 self-start inline-flex items-center gap-2 pl-3.5 pr-4 py-2.5 rounded-full mono text-[10.5px] font-semibold tracking-[.12em] uppercase transition-transform duration-300"

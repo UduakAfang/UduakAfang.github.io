@@ -236,7 +236,7 @@ function CaseViz5({ id, go, pal }) {
       <section className="shell pt-32 md:pt-36">
         <button onClick={() => go("work")} className="mono text-[9px] tracking-[.2em] uppercase" style={{ opacity: .5 }}>← All work</button>
         <h1 className="claim text-[12vw] md:text-[58px] max-w-[820px] mt-7">{work.title}</h1>
-        <p className="text-[16.5px] md:text-[18px] leading-[1.55] max-w-[600px] mt-5" style={{ opacity: .78 }}><T>{cc.lede}</T></p>
+        <p className="text-[16.5px] md:text-[18px] leading-[1.55] max-w-[600px] mt-5" style={{ opacity: .86 }}><T>{cc.lede}</T></p>
         {cc.pub && (
           <div className="viz-pub">
             {cc.pub.map(([v, l]) => <div key={l}><b>{v}</b><span>{l}</span></div>)}
@@ -263,10 +263,10 @@ function CaseViz5({ id, go, pal }) {
                 <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[-.025em] leading-[1.2] mt-3 max-w-[280px]">{s.h}</h2>
               </div>
               <div>
-                <p className="text-[15.5px] md:text-[16.5px] leading-[1.7]" style={{ opacity: .82 }}><T>{s.b}</T></p>
-                {s.b2 && <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .82 }}><T>{s.b2}</T></p>}
-                {s.b3 && <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .82 }}><T>{s.b3}</T></p>}
-                {s.b4 && <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .82 }}><T>{s.b4}</T></p>}
+                <p className="text-[15.5px] md:text-[16.5px] leading-[1.7]" style={{ opacity: .86 }}><T>{s.b}</T></p>
+                {s.b2 && <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .86 }}><T>{s.b2}</T></p>}
+                {s.b3 && <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .86 }}><T>{s.b3}</T></p>}
+                {s.b4 && <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .86 }}><T>{s.b4}</T></p>}
               </div>
             </div>
             {figsFor(i).map((fg, k) => <VizFigure key={k} fig={fg} />)}

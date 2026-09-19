@@ -79,7 +79,7 @@ function StackPage4({ go, pal }) {
               <span className="mono text-[11px] text-accent pt-1">{String(i + 1).padStart(2, "0")}</span>
               <div>
                 <h3 className="text-[17px] md:text-[19px] font-bold tracking-[-.02em] leading-snug">{c.t}</h3>
-                <p className="text-[14.5px] leading-[1.6] mt-2" style={{ opacity: .72 }}>{c.d}</p>
+                <p className="text-[14.5px] leading-[1.6] mt-2" style={{ opacity: .86 }}>{c.d}</p>
               </div>
             </div>
           ))}
@@ -103,7 +103,7 @@ function StackPage4({ go, pal }) {
         {row.flow ? (
           <div>
             <h3 className="claim text-[8vw] md:text-[34px] leading-[1.08] max-w-[640px]">{row.claim}</h3>
-            <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5 max-w-[640px]" style={{ opacity: .82 }}>{row.d}</p>
+            <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5 max-w-[640px]" style={{ opacity: .86 }}>{row.d}</p>
             <div className="pipeflow mt-9">
               {row.flow.map((s, k) => (
                 <React.Fragment key={s.k}>
@@ -121,7 +121,7 @@ function StackPage4({ go, pal }) {
           <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
             <div className="md:col-span-6">
               <h3 className="claim text-[8vw] md:text-[34px] leading-[1.08]">{row.claim}</h3>
-              <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .82 }}>{row.d}</p>
+              <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .86 }}>{row.d}</p>
             </div>
             <figure className="md:col-span-6">
               <div className="rounded-[16px] overflow-hidden border border-ink/12" style={{ background: "rgb(var(--c-paper2))" }}>
@@ -139,7 +139,7 @@ function StackPage4({ go, pal }) {
             {[["2", "products shipped for clients (TrackPerform, DrillCal)"], ["×2", "Tableau Viz of the Day"], ["1", "person owning the data, the pipeline and the screen"]].map(([v, l]) => (
               <div key={l}>
                 <div className="claim text-[12vw] md:text-[46px] text-accent leading-none">{v}</div>
-                <div className="text-[13.5px] leading-[1.5] mt-3" style={{ opacity: .7 }}>{l}</div>
+                <div className="text-[13.5px] leading-[1.5] mt-3" style={{ opacity: .86 }}>{l}</div>
               </div>
             ))}
           </div>
@@ -447,7 +447,7 @@ function ResumePage4({ go, pal }) {
             <div className="mono text-[10px] tracking-[.16em] uppercase mt-2" style={{ opacity: .5 }}>{e.company} · {e.location}</div>
             <ul className="mt-6 space-y-3">
               {e.bullets.map((b, i) => (
-                <li key={i} className="flex gap-3 text-[15.5px] leading-[1.65]" style={{ opacity: .82 }}>
+                <li key={i} className="flex gap-3 text-[15.5px] leading-[1.65]" style={{ opacity: .86 }}>
                   <span className="text-accent mono text-[10px] pt-1.5">0{i + 1}</span><span>{b}</span>
                 </li>
               ))}
@@ -465,7 +465,7 @@ function ResumePage4({ go, pal }) {
             <div className="eyebrow opacity-45 mb-4">Recognition</div>
             <div className="space-y-2">
               {AWARDS.map((a) => (
-                <div key={a.id} className="flex gap-3 text-[14.5px]" style={{ opacity: .82 }}>
+                <div key={a.id} className="flex gap-3 text-[14.5px]" style={{ opacity: .86 }}>
                   <span className="mono text-[10px] pt-1" style={{ opacity: .5 }}>{a.year}</span><span>{a.title}</span>
                 </div>
               ))}

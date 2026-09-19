@@ -155,7 +155,7 @@ function CaseStudy4({ id, go, pal }) {
       <section className="shell pt-32 md:pt-36">
         <button onClick={() => go("work")} className="mono text-[9px] tracking-[.2em] uppercase" style={{ opacity: .5 }}>← All work</button>
         <h1 className="claim text-[12vw] md:text-[58px] max-w-[820px] mt-7">{work.title}</h1>
-        <p className="text-[16.5px] md:text-[18px] leading-[1.55] max-w-[560px] mt-5" style={{ opacity: .78 }}>
+        <p className="text-[16.5px] md:text-[18px] leading-[1.55] max-w-[560px] mt-5" style={{ opacity: .86 }}>
           <T>{cc.lede}</T>
         </p>
         <div className="case-meta">
@@ -179,9 +179,9 @@ function CaseStudy4({ id, go, pal }) {
                 <h2 className="text-[24px] md:text-[27px] font-semibold tracking-[-.025em] leading-[1.2] mt-3 max-w-[280px]">{cc.heads[i]}</h2>
               </div>
               <div>
-                <p className="text-[15.5px] md:text-[16.5px] leading-[1.7]" style={{ opacity: .82 }}>{body}</p>
+                <p className="text-[15.5px] md:text-[16.5px] leading-[1.7]" style={{ opacity: .86 }}>{body}</p>
                 {cc.extra && cc.extra[i] && (
-                  <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .82 }}><T>{cc.extra[i]}</T></p>
+                  <p className="text-[15.5px] md:text-[16.5px] leading-[1.7] mt-5" style={{ opacity: .86 }}><T>{cc.extra[i]}</T></p>
                 )}
                 {i === 3 && id === "01" && (
                   <div className="mt-8"><QueryCard lines={CASE_SQL["01"]} name={CASE_SQL_NAME["01"]} /></div>
