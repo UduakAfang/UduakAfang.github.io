@@ -11,6 +11,11 @@ node_modules
 dist-ssr
 *.local
 
+# Build output: track only the two files GitHub Pages serves.
+dist/*
+!dist/bundle.js
+!dist/tw.css
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
