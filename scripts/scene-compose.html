@@ -1,0 +1,49 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  html,body{margin:0}
+  body{width:1600px;height:1100px;overflow:hidden}
+  .set{position:relative;width:1600px;height:1100px;overflow:hidden}
+  /* bold diagonal bands, the "photo set" */
+  .bands{position:absolute;inset:-40%;transform:rotate(-18deg)}
+  .bands i{display:block;height:64px}
+  .light{position:absolute;inset:0;background:radial-gradient(1100px 700px at 30% 10%,rgba(255,255,255,.28),transparent 60%),radial-gradient(900px 600px at 90% 100%,rgba(0,0,0,.28),transparent 60%)}
+  .stage{position:absolute;left:50%;top:50%;width:0;height:0;perspective:2600px}
+  .rig{position:absolute;transform-style:preserve-3d}
+  /* laptop */
+  .lid{position:absolute;left:-560px;top:-360px;width:1120px;height:720px;border-radius:28px;background:#0d0d0f;padding:18px;box-shadow:inset 0 0 0 2px #2c2c31,60px 90px 90px -20px rgba(0,0,0,.45),20px 30px 30px -10px rgba(0,0,0,.25)}
+  .lid .scr{width:100%;height:100%;border-radius:8px;overflow:hidden;background:#000;background-repeat:no-repeat;background-size:cover;background-position:50% 0}
+  .lid::after{content:"";position:absolute;inset:0;border-radius:26px;background:linear-gradient(115deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 38%);pointer-events:none}
+  .deck{position:absolute;left:-590px;top:80px;width:1180px;height:760px;border-radius:0 0 34px 34px;transform-origin:50% 0;transform:rotateX(90deg);background:linear-gradient(#c9ccd1,#aeb2b8);box-shadow:inset 0 2px 0 rgba(255,255,255,.6)}
+  .deck .keys{position:absolute;left:70px;right:70px;top:46px;height:340px;border-radius:10px;background:repeating-linear-gradient(90deg,#26282c 0 64px,#3a3d42 64px 70px),#26282c;opacity:.9}
+  .deck .pad{position:absolute;left:50%;top:420px;width:440px;height:250px;margin-left:-220px;border-radius:14px;background:rgba(0,0,0,.07);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+  .shadow{position:absolute;left:-760px;top:60px;width:1520px;height:900px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.42),transparent);filter:blur(30px);transform:rotateX(90deg) translateZ(-4px)}
+  /* phone */
+  .phone{position:absolute;width:300px;height:620px;border-radius:46px;background:#0d0d0f;padding:12px;box-shadow:0 60px 80px -30px rgba(0,0,0,.6),inset 0 0 0 2px #2a2a2e}
+  .phone .scr{width:100%;height:100%;border-radius:36px;background-repeat:no-repeat;background-size:100% auto;background-position:50% 0;background-color:#fff}
+  .tag{position:absolute;font:600 15px/1 'Liberation Sans',Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:12px 18px;border-radius:999px;box-shadow:0 20px 40px -16px rgba(0,0,0,.5)}
+</style></head>
+<body><div class="set" id="set"><div class="bands" id="bands"></div><div class="light"></div>
+<div class="stage"><div class="rig" id="rig"><div class="lid"><div class="scr" id="scr"></div></div></div></div>
+</div>
+<script>
+const Q = Object.fromEntries(location.search.slice(1).split("&").map(kv => kv.split("=").map(decodeURIComponent)));
+const ROOT = Q.root;
+const P = {
+  leaders: { bands: ["#5d7a3c", "#e7dfc4"], img: "leaders.png", pos: "50% 34%", size: "118% auto", rig: "translate(-10px,20px) rotateX(16deg) rotateY(-24deg) rotateZ(5deg) scale(.86)" },
+  nyc: { bands: ["#2f7ad1", "#dbe9f7"], img: "nyc.png", pos: "0 0", size: "100% auto", rig: "translate(10px,20px) rotateX(16deg) rotateY(24deg) rotateZ(-5deg) scale(.86)" },
+  trackperform: { bands: ["#1e8f4e", "#0d1a12"], img: "trackperform/daily-metrics-dark.png", pos: "0 4%", size: "100% auto", rig: "translate(-10px,-70px) rotateX(16deg) rotateY(-24deg) rotateZ(5deg) scale(.86)" },
+  drillcal: { bands: ["#3d5fd1", "#e4e9f6"], img: "drillcal/tactical-board.png", pos: "60% 0", size: "122% auto", rig: "translate(-140px,10px) rotateX(16deg) rotateY(22deg) rotateZ(-5deg) scale(.8)", phone: "drillcal/attendance.png" },
+}[Q.p];
+const b = document.getElementById("bands");
+for (let i = 0; i < 60; i++) { const s = document.createElement("i"); s.style.background = P.bands[i % 2]; b.appendChild(s); }
+const scr = document.getElementById("scr");
+scr.style.backgroundImage = `url(${ROOT}/${P.img})`; scr.style.backgroundPosition = P.pos; scr.style.backgroundSize = P.size;
+document.getElementById("rig").style.transform = P.rig;
+if (P.phone) {
+  const ph = document.createElement("div"); ph.className = "phone";
+  ph.style.cssText = "left:1160px;top:330px;transform:rotate(7deg)";
+  ph.innerHTML = `<div class="scr" style="background-image:url(${ROOT}/${P.phone})"></div>`;
+  document.getElementById("set").appendChild(ph);
+}
+</script></body></html>
