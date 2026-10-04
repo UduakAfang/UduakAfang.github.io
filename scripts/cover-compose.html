@@ -1,0 +1,75 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  html,body{margin:0}
+  body{width:1600px;height:1000px;overflow:hidden;font-family:'Liberation Sans',Arial,sans-serif}
+  .stage{position:relative;width:1600px;height:1000px;overflow:hidden}
+  .glow{position:absolute;inset:0;pointer-events:none}
+  .win{position:absolute;border-radius:16px;overflow:hidden;box-shadow:0 50px 90px -30px rgba(10,20,15,.45),0 0 0 1px rgba(0,0,0,.08)}
+  .bar{height:38px;display:flex;align-items:center;gap:8px;padding:0 16px}
+  .bar i{width:11px;height:11px;border-radius:50%;display:block}
+  .url{margin-left:18px;height:22px;border-radius:6px;padding:0 12px;display:flex;align-items:center;font:500 12px/1 'Liberation Sans',Arial,sans-serif;letter-spacing:.01em}
+  .crop{background-repeat:no-repeat}
+  .card{position:absolute;border-radius:14px;overflow:hidden;box-shadow:0 40px 70px -24px rgba(10,20,15,.5),0 0 0 1px rgba(0,0,0,.08)}
+  .tag{position:absolute;font:500 13px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;padding:10px 14px;border-radius:999px;box-shadow:0 14px 30px -12px rgba(0,0,0,.35)}
+</style></head>
+<body><div class="stage" id="s"></div>
+<script>
+const IMG = location.search.slice(1).split("&").reduce((a,kv)=>{const [k,v]=kv.split("=");a[k]=decodeURIComponent(v);return a},{});
+const ROOT = IMG.root;
+// crop helper: show region [x,y,w,h] of an image (natural size nw x nh) at display width W
+function crop(src, nw, x, y, w, h, W){
+  const s = W / w, el = document.createElement("div");
+  el.className = "crop";
+  el.style.cssText += `width:${W}px;height:${Math.round(h*s)}px;background-image:url(${ROOT}/${src});background-size:${nw*s}px auto;background-position:${-x*s}px ${-y*s}px`;
+  return el;
+}
+function win(opts){
+  const d = document.createElement("div"); d.className = "win";
+  d.style.left = opts.l+"px"; d.style.top = opts.t+"px"; d.style.background = opts.chrome;
+  const bar = document.createElement("div"); bar.className = "bar";
+  bar.innerHTML = `<i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="url" style="background:${opts.urlBg};color:${opts.urlFg}">${opts.url}</span>`;
+  d.appendChild(bar); d.appendChild(opts.body); return d;
+}
+function card(el, l, t, extra){ const c=document.createElement("div"); c.className="card"; c.style.left=l+"px"; c.style.top=t+"px"; if(extra) c.style.cssText+=extra; c.appendChild(el); return c; }
+function tag(text, l, t, bg, fg){ const g=document.createElement("div"); g.className="tag"; g.textContent=text; g.style.cssText+=`left:${l}px;top:${t}px;background:${bg};color:${fg}`; return g; }
+
+const S = document.getElementById("s");
+const which = IMG.p;
+
+if (which === "leaders") {
+  S.style.background = "#dcdcc6";
+  S.innerHTML = '<div class="glow" style="background:radial-gradient(900px 600px at 70% 30%,rgba(255,255,255,.55),transparent 70%)"></div>';
+  S.appendChild(win({ l: 470, t: 90, chrome: "#1a2619", urlBg: "#24331f", urlFg: "#a9b59a", url: "public.tableau.com · The Same Countries, Different Rules",
+    body: crop("leaders.png", 1440, 345, 400, 745, 1000, 720) }));
+  S.appendChild(card(crop("leaders.png", 1440, 600, 66, 784, 292, 560), 110, 560));
+  S.appendChild(card(crop("leaders.png", 1440, 1098, 468, 290, 104, 420), 1060, 250));
+  S.appendChild(card(crop("leaders.png", 1440, 38, 904, 290, 102, 380), 140, 250));
+  S.appendChild(tag("54 countries · 108 leaders", 1160, 820, "#1a2619", "#e8e3cf"));
+}
+if (which === "nyc") {
+  S.style.background = "#d7e6f4";
+  S.innerHTML = '<div class="glow" style="background:radial-gradient(900px 700px at 65% 20%,rgba(255,255,255,.7),transparent 70%)"></div>';
+  S.appendChild(win({ l: 330, t: 120, chrome: "#f4f5f7", urlBg: "#e6e9ee", urlFg: "#5a6472", url: "public.tableau.com · NYC Citizen Service Requests",
+    body: crop("nyc.png", 1399, 0, 0, 1399, 949, 1150) }));
+  S.appendChild(card(crop("nyc.png", 1399, 32, 117, 324, 300, 420), 110, 470, "background:#fff"));
+  S.appendChild(tag("★ Tableau Viz of the Day", 1150, 60, "#1b1f24", "#ffffff"));
+}
+if (which === "trackperform") {
+  S.style.background = "#0e1a13";
+  S.innerHTML = '<div class="glow" style="background:radial-gradient(800px 600px at 60% 25%,rgba(52,199,89,.22),transparent 70%)"></div>';
+  S.appendChild(win({ l: 260, t: 90, chrome: "#141a17", urlBg: "#1d2521", urlFg: "#8fa197", url: "trackperform.com · Daily metrics",
+    body: crop("trackperform/daily-metrics-dark.png", 1440, 0, 60, 1440, 1040, 1080) }));
+  S.appendChild(card(crop("trackperform/team-load-dark.png", 1440, 34, 66, 458, 204, 640), 860, 640, "background:#0f1512"));
+  S.appendChild(tag("First chart in ~2 s", 120, 860, "#34c759", "#08130c"));
+}
+if (which === "drillcal") {
+  S.style.background = "#e3e8f4";
+  S.innerHTML = '<div class="glow" style="background:radial-gradient(900px 700px at 30% 20%,rgba(255,255,255,.7),transparent 70%)"></div>';
+  S.appendChild(win({ l: 120, t: 120, chrome: "#111", urlBg: "#1e1e1e", urlFg: "#9a9a9a", url: "drillcal.com · Tactical board",
+    body: crop("drillcal/tactical-board.png", 1440, 160, 40, 1280, 643, 1130) }));
+  S.appendChild(card(crop("drillcal/attendance.png", 418, 0, 0, 418, 560, 330), 1150, 260, "background:#fff"));
+  S.appendChild(tag("Launched 1 Aug 2026", 1150, 160, "#1f6feb", "#ffffff"));
+}
+</script></body></html>
