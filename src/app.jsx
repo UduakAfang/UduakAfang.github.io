@@ -259,6 +259,7 @@ function App4() {
     return () => window.removeEventListener("hashchange", onHash);
   }, [page]);
 
+  useMotion(page);
   const [kind, arg] = page.split(":");
 
   return (

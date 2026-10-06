@@ -66,15 +66,12 @@ function VizTile({ t, go, tint }) {
     ? () => go("case:" + t.id)
     : () => window.open(vizUrl(t.id), "_blank", "noopener");
   const tags = String(t.label || "").split("·").map((s) => s.trim()).filter(Boolean);
-  const light = tint && tint.fg === "light";
-  const cardStyle = tint
-    ? { "--pc-hover": tint.bg, "--pc-hover-fg": light ? "#fff" : "rgb(var(--c-ink))" }
-    : undefined;
+  const cardStyle = hoverStyle(t.id, tint);
   return (
     <div className="reveal h-full">
       <div className="pcard2" onClick={open} role="link" tabIndex="0" style={cardStyle}
            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}>
-        <div className="pcard2-img"><img src={t.image} alt={t.title} loading="lazy" /></div>
+        <ShotPanel id={t.id} image={t.image} alt={t.title} />
         <div className="pcard2-body">
           <h3 className="pcard2-title">{t.title}</h3>
           <div className="pcard2-tags">{tags.map((x, i) => <span key={i} className="pcard2-tag">{x}</span>)}</div>

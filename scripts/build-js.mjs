@@ -4,7 +4,7 @@ import fs from "fs";
 // Same order as the old index.html script tags; __V5__ marks the flag.
 const order = ["data", "tweaks", "charts", "worklist", "mark", "robot", "walker",
   "bench", "board", "__V5__", "word", "hero", "about", "case-study", "case-viz",
-  "viz-board", "works-resume", "app"];
+  "viz-board", "works-resume", "motion", "app"];
 
 let out = "";
 for (const name of order) {

@@ -253,6 +253,45 @@ const AWARDS = [{
   title: "Upwork Top Rated",
   body: "Top 1% freelancer for BI work"
 }];
+const WORK_TINT = {
+  "09": {
+    soft: "#dfe7d6",
+    bold: "#2f6b4f",
+    fg: "light"
+  },
+  "03": {
+    soft: "#dbe6f4",
+    bold: "#2f55c8",
+    fg: "light"
+  },
+  "05": {
+    soft: "#f3e5c8",
+    bold: "#d9a23a",
+    fg: "dark"
+  },
+  "04": {
+    soft: "#f5dbe3",
+    bold: "#c94a6a",
+    fg: "light"
+  },
+  "01": {
+    soft: "#f6dccd",
+    bold: "#d9572f",
+    fg: "light"
+  },
+  "02": {
+    soft: "#e2ddf3",
+    bold: "#6a4fd0",
+    fg: "light"
+  }
+};
+const WORK_DEVICE = {
+  "09": "images/devices/leaders.webp",
+  "03": "images/devices/nyc.webp",
+  "01": "images/devices/trackperform.webp",
+  "02": "images/devices/drillcal.webp"
+};
+const workKind = id => id === "01" || id === "02" ? "product" : "tableau";
 Object.assign(window, {
   PROFILE,
   SELECTED_WORKS,
@@ -261,7 +300,10 @@ Object.assign(window, {
   TOOLS,
   EXPERIENCE,
   EDUCATION,
-  AWARDS
+  AWARDS,
+  WORK_TINT,
+  WORK_DEVICE,
+  workKind
 });
 
 /* ===== tweaks ===== */
@@ -5262,6 +5304,42 @@ function Sticker({
     }
   }, label));
 }
+function ShotPanel({
+  id,
+  image,
+  alt
+}) {
+  const dev = (window.WORK_DEVICE || {})[id];
+  const t = (window.WORK_TINT || {})[id] || {};
+  return React.createElement("div", {
+    className: "pshot",
+    style: {
+      "--tint": t.soft || "rgb(var(--c-card2))"
+    }
+  }, React.createElement("span", {
+    className: "pshot-in"
+  }, dev ? React.createElement("img", {
+    className: "pshot-dev",
+    src: dev,
+    alt: alt,
+    loading: "lazy"
+  }) : React.createElement("img", {
+    className: "pshot-scr",
+    src: image,
+    alt: alt,
+    loading: "lazy"
+  })));
+}
+function hoverStyle(id, tint) {
+  const t = (window.WORK_TINT || {})[id];
+  const bg = t ? t.bold : tint && tint.bg;
+  if (!bg) return undefined;
+  const light = t ? t.fg === "light" : tint.fg === "light";
+  return {
+    "--pc-hover": bg,
+    "--pc-hover-fg": light ? "#fff" : "rgb(var(--c-ink))"
+  };
+}
 function ProjectCard({
   work,
   tint,
@@ -5271,11 +5349,7 @@ function ProjectCard({
 }) {
   const open = () => go("case:" + work.id);
   const tags = (work.stack && work.stack.length ? work.stack : String(work.tag || "").split("·").map(s => s.trim()).filter(Boolean)).slice(0, 6);
-  const light = tint && tint.fg === "light";
-  const cardStyle = tint ? {
-    "--pc-hover": tint.bg,
-    "--pc-hover-fg": light ? "#fff" : "rgb(var(--c-ink))"
-  } : undefined;
+  const cardStyle = hoverStyle(work.id, tint);
   return React.createElement("div", {
     className: "reveal h-full",
     style: {
@@ -5293,13 +5367,11 @@ function ProjectCard({
     },
     className: "pcard2",
     style: cardStyle
-  }, React.createElement("div", {
-    className: "pcard2-img"
-  }, React.createElement("img", {
-    src: work.image,
-    alt: work.title,
-    loading: "lazy"
-  })), React.createElement("div", {
+  }, React.createElement(ShotPanel, {
+    id: work.id,
+    image: work.image,
+    alt: work.title
+  }), React.createElement("div", {
     className: "pcard2-body"
   }, React.createElement("h3", {
     className: "pcard2-title"
@@ -5932,6 +6004,7 @@ function DoArt({
     className: "h-[150px] w-full object-contain"
   });
 }
+const FOCUS_WORK = ["01", "03", "02"];
 function FocusRow() {
   return React.createElement("section", {
     id: "what-i-do",
@@ -5966,8 +6039,10 @@ function FocusRow() {
       transitionDelay: i * 90 + "ms"
     },
     tabIndex: "0"
-  }, React.createElement(DoArt, {
-    n: i + 1
+  }, React.createElement(ShotPanel, {
+    id: FOCUS_WORK[i],
+    image: (ALL_WORKS.find(w => w.id === FOCUS_WORK[i]) || {}).image,
+    alt: f.t
   }), React.createElement("h3", {
     className: "text-[20px] md:text-[22px] font-bold tracking-[-.03em] leading-[1.2] mt-7 mx-auto max-w-[260px]"
   }, f.t), React.createElement("p", {
@@ -6313,6 +6388,9 @@ function HomePage4({
   }, React.createElement(CircuitBand, null))));
 }
 Object.assign(window, {
+  ShotPanel,
+  hoverStyle,
+  FOCUS_WORK,
   HomePage4,
   Contact4,
   ProjectCard,
@@ -7141,11 +7219,7 @@ function VizTile({
   const hasCase = (window.VIZ_CASES || []).includes(t.id) || typeof CASE_COPY !== "undefined" && CASE_COPY[t.id];
   const open = hasCase ? () => go("case:" + t.id) : () => window.open(vizUrl(t.id), "_blank", "noopener");
   const tags = String(t.label || "").split("·").map(s => s.trim()).filter(Boolean);
-  const light = tint && tint.fg === "light";
-  const cardStyle = tint ? {
-    "--pc-hover": tint.bg,
-    "--pc-hover-fg": light ? "#fff" : "rgb(var(--c-ink))"
-  } : undefined;
+  const cardStyle = hoverStyle(t.id, tint);
   return React.createElement("div", {
     className: "reveal h-full"
   }, React.createElement("div", {
@@ -7160,13 +7234,11 @@ function VizTile({
         open();
       }
     }
-  }, React.createElement("div", {
-    className: "pcard2-img"
-  }, React.createElement("img", {
-    src: t.image,
-    alt: t.title,
-    loading: "lazy"
-  })), React.createElement("div", {
+  }, React.createElement(ShotPanel, {
+    id: t.id,
+    image: t.image,
+    alt: t.title
+  }), React.createElement("div", {
     className: "pcard2-body"
   }, React.createElement("h3", {
     className: "pcard2-title"
@@ -7462,16 +7534,133 @@ const WORK_GROUPS5 = [{
   note: "Client builds — I own the data model, the pipeline and the interface.",
   ids: ["01", "02"]
 }];
+const WORK_FILTERS = [{
+  k: "all",
+  label: "All work"
+}, {
+  k: "tableau",
+  label: "Tableau dashboards"
+}, {
+  k: "product",
+  label: "Products"
+}];
+function WorkCard({
+  w,
+  go
+}) {
+  const hasCase = (window.VIZ_CASES || []).includes(w.id) || typeof CASE_COPY !== "undefined" && CASE_COPY[w.id];
+  const open = hasCase ? () => go("case:" + w.id) : () => window.open(vizUrl(w.id), "_blank", "noopener");
+  const kind = workKind(w.id);
+  const t = (window.WORK_TINT || {})[w.id] || {};
+  return React.createElement("div", {
+    className: "pcard2 wk-card-in",
+    onClick: open,
+    role: "link",
+    tabIndex: "0",
+    style: hoverStyle(w.id),
+    onKeyDown: e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        open();
+      }
+    }
+  }, React.createElement(ShotPanel, {
+    id: w.id,
+    image: w.image,
+    alt: w.title
+  }), React.createElement("div", {
+    className: "pcard2-body"
+  }, React.createElement("div", {
+    className: "flex items-center justify-between gap-3"
+  }, React.createElement("span", {
+    className: "wk-kind",
+    style: {
+      "--k": t.bold || "rgb(var(--c-accent))"
+    }
+  }, kind === "product" ? "Product" : "Tableau"), React.createElement("span", {
+    className: "mono text-[10px] tracking-[.12em]",
+    style: {
+      opacity: .55
+    }
+  }, w.year)), React.createElement("h3", {
+    className: "pcard2-title mt-3.5"
+  }, w.title), React.createElement("p", {
+    className: "wk-blurb"
+  }, w.blurb), w.metric && React.createElement("div", {
+    className: "wk-metric"
+  }, React.createElement("b", null, w.metric.value), React.createElement("span", null, w.metric.label)), React.createElement("span", {
+    className: "pcard2-cta"
+  }, hasCase ? "Case study →" : "View live ↗")));
+}
 function WorksPage4({
   go,
   pal,
   cards
 }) {
+  const {
+    useRef
+  } = React;
+  const [f, setF] = useStateP4("all");
+  const grid = useRef(null);
   useReveal4("works");
+  const items = ALL_WORKS.slice().sort((a, b) => parseInt(b.year, 10) - parseInt(a.year, 10));
+  const count = k => k === "all" ? items.length : items.filter(w => workKind(w.id) === k).length;
+  const shown = items.filter(w => f === "all" || workKind(w.id) === f).length;
+  const pick = k => {
+    if (k === f) return;
+    const g = window.gsap,
+      F = window.Flip;
+    const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const els = grid.current ? Array.from(grid.current.children) : [];
+    if (g) g.set(grid.current.querySelectorAll(".pcard2"), {
+      clearProps: "opacity,transform"
+    });
+    const state = g && F && !reduce ? F.getState(els) : null;
+    ReactDOM.flushSync(() => setF(k));
+    if (window.ScrollTrigger) setTimeout(() => window.ScrollTrigger.refresh(), 700);
+    if (!state) return;
+    F.from(state, {
+      duration: .65,
+      ease: "power3.inOut",
+      scale: true,
+      absolute: true,
+      onEnter: el => g.fromTo(el, {
+        opacity: 0,
+        scale: .85,
+        y: 30
+      }, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: .55,
+        delay: .15,
+        ease: "back.out(1.5)"
+      }),
+      onLeave: el => g.to(el, {
+        opacity: 0,
+        scale: .85,
+        duration: .3
+      })
+    });
+  };
+  const kpis = [{
+    v: items.length,
+    l: "Projects in the archive"
+  }, {
+    v: count("tableau"),
+    l: "Tableau dashboards"
+  }, {
+    v: count("product"),
+    l: "Products live for clients"
+  }, {
+    v: 2,
+    s: "×",
+    l: "Tableau Viz of the Day"
+  }];
   return React.createElement("main", {
     className: "grain"
   }, React.createElement("section", {
-    className: "pt-32 md:pt-40 pb-14 text-center px-6"
+    className: "pt-32 md:pt-40 pb-12 text-center px-6"
   }, React.createElement("div", {
     className: "eyebrow opacity-50"
   }, "Archive \xB7 ", ALL_WORKS.length, " projects"), React.createElement("h1", {
@@ -7483,28 +7672,48 @@ function WorksPage4({
     }
   }, React.createElement(T, null, LEDES[1]))), React.createElement("div", {
     className: "shell"
-  }, WORK_GROUPS5.map(g => {
-    const items = g.ids.map(id => SELECTED_WORKS.find(w => w.id === id)).filter(Boolean);
-    return React.createElement("div", {
-      key: g.id
-    }, React.createElement(GroupHead, {
-      g: g,
-      n: String(g.id === "viz" ? (window.VIZ_ITEMS || []).length : items.length).padStart(2, "0")
-    }), g.id === "viz" ? React.createElement(VizBoard, {
-      go: go,
-      pinned: false,
-      pal: pal
-    }) : React.createElement("div", {
-      className: "card-grid"
-    }, items.map((w, i) => React.createElement(ProjectCard, {
-      key: w.id,
-      work: w,
-      tint: pal.cards[(i + 2) % pal.cards.length],
-      go: go,
-      cards: cards,
-      order: i
-    }))));
-  })), React.createElement("div", {
+  }, React.createElement("div", {
+    className: "wk-kpis"
+  }, kpis.map((k, i) => React.createElement("div", {
+    key: k.l,
+    className: "wk-kpi reveal",
+    style: {
+      transitionDelay: i * 70 + "ms"
+    }
+  }, React.createElement("b", {
+    "data-count": k.v,
+    "data-suffix": k.s || ""
+  }, k.v, k.s || ""), React.createElement("span", null, k.l)))), React.createElement("div", {
+    className: "wk-bar",
+    role: "toolbar",
+    "aria-label": "Filter work"
+  }, React.createElement("div", {
+    className: "wk-seg"
+  }, WORK_FILTERS.map(x => React.createElement("button", {
+    key: x.k,
+    type: "button",
+    onClick: () => pick(x.k),
+    "aria-pressed": f === x.k,
+    className: f === x.k ? "on" : ""
+  }, x.label, React.createElement("span", null, count(x.k))))), React.createElement("span", {
+    className: "mono text-[10px] tracking-[.14em] uppercase",
+    style: {
+      opacity: .5
+    }
+  }, "Showing ", shown, " of ", items.length)), React.createElement("div", {
+    className: "wk-grid",
+    ref: grid
+  }, items.map(w => React.createElement("div", {
+    key: w.id,
+    className: "wk-cell",
+    "data-flip-id": w.id,
+    style: {
+      display: f === "all" || workKind(w.id) === f ? "" : "none"
+    }
+  }, React.createElement(WorkCard, {
+    w: w,
+    go: go
+  }))))), React.createElement("div", {
     className: "pt-24"
   }), React.createElement(SoonGrid, {
     soft: pal.soft
@@ -7730,6 +7939,31 @@ function downloadCV(label) {
   s.onload = run;
   document.head.appendChild(s);
 }
+const RS_SPAN = [2018, 2027];
+const rsPct = y => (y - RS_SPAN[0]) / (RS_SPAN[1] - RS_SPAN[0]) * 100;
+const rsNow = () => {
+  const d = new Date();
+  return d.getFullYear() + d.getMonth() / 12;
+};
+const RS_TIMELINE = [{
+  t: "BI Analyst",
+  at: "SessionHub Softswitch",
+  from: 2023 + 2 / 12,
+  to: null,
+  c: "#d9572f"
+}, {
+  t: "Data Analyst",
+  at: "Demsco Travels & Tours",
+  from: 2022 + 2 / 12,
+  to: 2023 + 1 / 12,
+  c: "#2f55c8"
+}, {
+  t: "B.Sc.",
+  at: "University of Lagos",
+  from: 2018,
+  to: 2022,
+  c: "#2f6b4f"
+}];
 function ResumePage4({
   go,
   pal
@@ -7776,9 +8010,51 @@ function ResumePage4({
   }, "Download PDF ", React.createElement("span", {
     className: "text-[12px]"
   }, "\u2193")))), React.createElement("section", {
+    className: "max-w-[820px] mx-auto px-6 md:px-10 pb-6"
+  }, React.createElement("div", {
+    className: "wk-kpis rs-kpis"
+  }, [[4, "+", "Years in BI and analytics"], [2, "", "Data roles held"], [2, "×", "Tableau Viz of the Day"], [4, "×", "Vizzies nominations"]].map(([v, sfx, l], i) => React.createElement("div", {
+    key: l,
+    className: "wk-kpi reveal",
+    style: {
+      transitionDelay: i * 70 + "ms"
+    }
+  }, React.createElement("b", {
+    "data-count": v,
+    "data-suffix": sfx
+  }, v, sfx), React.createElement("span", null, l)))), React.createElement("div", {
+    className: "rs-time reveal"
+  }, React.createElement("div", {
+    className: "flex items-baseline justify-between gap-4 mb-5"
+  }, React.createElement("div", {
+    className: "eyebrow opacity-45"
+  }, "Timeline"), React.createElement("div", {
+    className: "mono text-[9px] tracking-[.16em] uppercase",
+    style: {
+      opacity: .35
+    }
+  }, "2018 \u2013 today")), RS_TIMELINE.map(r => React.createElement("div", {
+    key: r.t,
+    className: "rs-row"
+  }, React.createElement("div", {
+    className: "rs-lab"
+  }, React.createElement("b", null, r.t), React.createElement("span", null, r.at)), React.createElement("div", {
+    className: "rs-track"
+  }, React.createElement("i", {
+    "data-grow": true,
+    style: {
+      left: rsPct(r.from) + "%",
+      width: Math.min(100, rsPct(r.to || rsNow())) - rsPct(r.from) + "%",
+      background: r.c
+    }
+  })))), React.createElement("div", {
+    className: "rs-axis mono"
+  }, ["2018", "2021", "2024", "2027"].map(y => React.createElement("span", {
+    key: y
+  }, y))))), React.createElement("section", {
     className: "max-w-[820px] mx-auto px-6 md:px-10 pb-20"
   }, React.createElement("div", {
-    className: "eyebrow opacity-45 mb-8"
+    className: "eyebrow opacity-45 mb-8 mt-10"
   }, "Experience"), EXPERIENCE.map(e => React.createElement("div", {
     key: e.company,
     className: "reveal py-9 border-t border-ink/12"
@@ -7864,6 +8140,139 @@ Object.assign(window, {
   WorksPage4,
   ResumePage4,
   STAGES4
+});
+
+/* ===== motion ===== */
+function useMotion(page) {
+  const {
+    useEffect
+  } = React;
+  useEffect(() => {
+    const g = window.gsap,
+      ST = window.ScrollTrigger;
+    if (!g || !ST) return;
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    g.registerPlugin(ST);
+    if (window.Flip) g.registerPlugin(window.Flip);
+    let ctx;
+    const start = setTimeout(() => {
+      ctx = g.context(() => {
+        const hero = document.querySelector(".hero5");
+        const heroInner = hero && hero.querySelector(":scope > .grid");
+        if (heroInner) {
+          g.to(heroInner, {
+            yPercent: -14,
+            opacity: .35,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: true
+            }
+          });
+        }
+        const cards = g.utils.toArray(".pcard2, .popwrap, .wk-kpi, .rs-time, .impact-card");
+        const fold = window.innerHeight * .92;
+        const later = cards.filter(c => c.getBoundingClientRect().top > fold);
+        g.set(later, {
+          opacity: 0,
+          y: 70,
+          rotation: i => i % 2 ? 2.5 : -2.5
+        });
+        ST.batch(later, {
+          start: "top 90%",
+          once: true,
+          onEnter: batch => g.to(batch, {
+            opacity: 1,
+            y: 0,
+            rotation: 0,
+            duration: .95,
+            ease: "back.out(1.4)",
+            stagger: .09,
+            onComplete: function () {
+              g.set(this.targets(), {
+                clearProps: "transform,opacity"
+              });
+            }
+          })
+        });
+        g.utils.toArray(".pshot-in").forEach(el => {
+          g.fromTo(el, {
+            yPercent: 7
+          }, {
+            yPercent: -7,
+            ease: "none",
+            scrollTrigger: {
+              trigger: el.parentElement,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true
+            }
+          });
+        });
+        g.utils.toArray("[data-count]").forEach(el => {
+          const n = +el.dataset.count,
+            sfx = el.dataset.suffix || "",
+            o = {
+              v: 0
+            };
+          el.textContent = "0" + sfx;
+          g.to(o, {
+            v: n,
+            duration: 1.1,
+            ease: "power2.out",
+            onUpdate: () => {
+              el.textContent = Math.round(o.v) + sfx;
+            },
+            scrollTrigger: {
+              trigger: el,
+              start: "top 92%",
+              once: true
+            }
+          });
+        });
+        g.utils.toArray("[data-grow]").forEach((el, i) => {
+          g.fromTo(el, {
+            scaleX: 0
+          }, {
+            scaleX: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 92%",
+              end: "top 60%",
+              scrub: .6
+            }
+          });
+        });
+        g.utils.toArray("h2.claim:not([data-fill]), main h1.claim").forEach(h => {
+          if (h.closest(".hero5") || h.getBoundingClientRect().top < fold) return;
+          g.from(h, {
+            y: 46,
+            opacity: 0,
+            duration: .9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: h,
+              start: "top 90%",
+              once: true
+            }
+          });
+        });
+      });
+      ST.refresh();
+    }, 80);
+    const late = setTimeout(() => ST.refresh(), 1200);
+    return () => {
+      clearTimeout(start);
+      clearTimeout(late);
+      if (ctx) ctx.revert();
+    };
+  }, [page]);
+}
+Object.assign(window, {
+  useMotion
 });
 
 /* ===== app ===== */
@@ -8243,6 +8652,7 @@ function App4() {
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, [page]);
+  useMotion(page);
   const [kind, arg] = page.split(":");
   return React.createElement("div", null, React.createElement(Loader4, null), React.createElement(Nav4, {
     page: page,

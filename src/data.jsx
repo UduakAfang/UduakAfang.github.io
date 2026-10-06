@@ -247,8 +247,32 @@ const AWARDS = [
   { id: "4", year: "2024", title: "Upwork Top Rated",        body: "Top 1% freelancer for BI work" },
 ];
 
+/* Per-project colour: a soft tint behind the work, and a bold tint the card
+   takes on hover. One hue per project, so the site carries more colour without
+   any single section getting loud. */
+const WORK_TINT = {
+  "09": { soft: "#dfe7d6", bold: "#2f6b4f", fg: "light" },
+  "03": { soft: "#dbe6f4", bold: "#2f55c8", fg: "light" },
+  "05": { soft: "#f3e5c8", bold: "#d9a23a", fg: "dark" },
+  "04": { soft: "#f5dbe3", bold: "#c94a6a", fg: "light" },
+  "01": { soft: "#f6dccd", bold: "#d9572f", fg: "light" },
+  "02": { soft: "#e2ddf3", bold: "#6a4fd0", fg: "light" },
+};
+
+/* Tilted laptop renders, where one exists; other projects use their screenshot
+   in a matching tilted frame (see .pshot in styles.css). */
+const WORK_DEVICE = {
+  "09": "images/devices/leaders.webp",
+  "03": "images/devices/nyc.webp",
+  "01": "images/devices/trackperform.webp",
+  "02": "images/devices/drillcal.webp",
+};
+
+const workKind = (id) => (id === "01" || id === "02" ? "product" : "tableau");
+
 /* ---- expose globally for other Babel scripts ---- */
 Object.assign(window, {
   PROFILE, SELECTED_WORKS, ALL_WORKS,
   SKILLS, TOOLS, EXPERIENCE, EDUCATION, AWARDS,
+  WORK_TINT, WORK_DEVICE, workKind,
 });

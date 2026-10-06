@@ -181,24 +181,47 @@ function Sticker({ label, rot, pos, light }) {
   );
 }
 
+/* The picture on a card: the project's tilted laptop render on its own soft
+   tint, or, where there is no render, its screenshot in a matching tilted
+   frame. The inner span is what scroll parallax moves, so hover can still
+   transform the image itself. */
+function ShotPanel({ id, image, alt }) {
+  const dev = (window.WORK_DEVICE || {})[id];
+  const t = (window.WORK_TINT || {})[id] || {};
+  return (
+    <div className="pshot" style={{ "--tint": t.soft || "rgb(var(--c-card2))" }}>
+      <span className="pshot-in">
+        {dev
+          ? <img className="pshot-dev" src={dev} alt={alt} loading="lazy" />
+          : <img className="pshot-scr" src={image} alt={alt} loading="lazy" />}
+      </span>
+    </div>
+  );
+}
+
+/* Hover takes on the project's own bold colour where it has one. */
+function hoverStyle(id, tint) {
+  const t = (window.WORK_TINT || {})[id];
+  const bg = t ? t.bold : tint && tint.bg;
+  if (!bg) return undefined;
+  const light = t ? t.fg === "light" : tint.fg === "light";
+  return { "--pc-hover": bg, "--pc-hover-fg": light ? "#fff" : "rgb(var(--c-ink))" };
+}
+
 /* Product cards read like the viz board: a light cell, the shot floating in the
-   middle of it, then centred title, one mono line of what it is, and the link.
-   No tint, no hover takeover — the work is the only thing on the card. */
+   middle of it, then centred title, one mono line of what it is, and the link. */
 function ProjectCard({ work, tint, go, cards = "Tinted", order = 0 }) {
   const open = () => go("case:" + work.id);
   const tags = (work.stack && work.stack.length
     ? work.stack
     : String(work.tag || "").split("·").map((s) => s.trim()).filter(Boolean)).slice(0, 6);
-  const light = tint && tint.fg === "light";
-  const cardStyle = tint
-    ? { "--pc-hover": tint.bg, "--pc-hover-fg": light ? "#fff" : "rgb(var(--c-ink))" }
-    : undefined;
+  const cardStyle = hoverStyle(work.id, tint);
   return (
     <div className="reveal h-full" style={{ transitionDelay: (order % 3) * 80 + "ms" }}>
       <div onClick={open} role="link" tabIndex="0"
            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}
            className="pcard2" style={cardStyle}>
-        <div className="pcard2-img"><img src={work.image} alt={work.title} loading="lazy" /></div>
+        <ShotPanel id={work.id} image={work.image} alt={work.title} />
         <div className="pcard2-body">
           <h3 className="pcard2-title">{work.title}</h3>
           <div className="pcard2-tags">{tags.map((t, i) => <span key={i} className="pcard2-tag">{t}</span>)}</div>
@@ -459,6 +482,10 @@ function DoArt({ n }) {
   return <img src={src} alt="" className="h-[150px] w-full object-contain" />;
 }
 
+/* Each "what I do" column shows a real piece of that kind of work, not a
+   drawing of it: the TrackPerform model, the NYC 311 dashboard, DrillCal. */
+const FOCUS_WORK = ["01", "03", "02"];
+
 function FocusRow() {
   return (
     <section id="what-i-do" className="shell-pad pb-4 pt-4">
@@ -473,7 +500,7 @@ function FocusRow() {
           {FOCUS4.map((f, i) => (
             <div key={f.k} className="popwrap reveal relative rounded-[20px] border border-ink/15 p-7 md:p-8 text-center transition-colors duration-300 hover:border-ink/35"
                  style={{ transitionDelay: i * 90 + "ms" }} tabIndex="0">
-              <DoArt n={i + 1} />
+              <ShotPanel id={FOCUS_WORK[i]} image={(ALL_WORKS.find((w) => w.id === FOCUS_WORK[i]) || {}).image} alt={f.t} />
               <h3 className="text-[20px] md:text-[22px] font-bold tracking-[-.03em] leading-[1.2] mt-7 mx-auto max-w-[260px]">{f.t}</h3>
               <p className="text-[14.5px] leading-[1.6] mt-3 mx-auto max-w-[300px]" style={{ opacity: .86 }}>{f.d}</p>
               <div className="pop rounded-2xl p-5 border border-ink/12 shadow-[0_26px_50px_-26px_rgba(0,0,0,.4)] text-left"
@@ -708,4 +735,4 @@ function HomePage4({ go, pal, band, cards, heroPanel }) {
   );
 }
 
-Object.assign(window, { HomePage4, Contact4, ProjectCard, StatTable, SoonGrid, FocusRow, BuiltWith, GroupHead, HoverImage, SkillsHome, SelectedList, WorkflowHome, COPY4, CARD_COPY, FOCUS4, GROUPS4 });
+Object.assign(window, { ShotPanel, hoverStyle, FOCUS_WORK, HomePage4, Contact4, ProjectCard, StatTable, SoonGrid, FocusRow, BuiltWith, GroupHead, HoverImage, SkillsHome, SelectedList, WorkflowHome, COPY4, CARD_COPY, FOCUS4, GROUPS4 });

@@ -164,11 +164,78 @@ const WORK_GROUPS5 = [
   { id: "products", label: "Products & Web Apps", note: "Client builds — I own the data model, the pipeline and the interface.", ids: ["01", "02"] },
 ];
 
+/* The works page is a small dashboard: a KPI strip, one filter (all, Tableau,
+   products), and every project as a card. Filtering reflows the grid with
+   GSAP Flip when it is loaded; without it the cards simply show and hide. */
+const WORK_FILTERS = [
+  { k: "all", label: "All work" },
+  { k: "tableau", label: "Tableau dashboards" },
+  { k: "product", label: "Products" },
+];
+
+function WorkCard({ w, go }) {
+  const hasCase = (window.VIZ_CASES || []).includes(w.id) || (typeof CASE_COPY !== "undefined" && CASE_COPY[w.id]);
+  const open = hasCase ? () => go("case:" + w.id) : () => window.open(vizUrl(w.id), "_blank", "noopener");
+  const kind = workKind(w.id);
+  const t = (window.WORK_TINT || {})[w.id] || {};
+  return (
+    <div className="pcard2 wk-card-in" onClick={open} role="link" tabIndex="0" style={hoverStyle(w.id)}
+         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}>
+      <ShotPanel id={w.id} image={w.image} alt={w.title} />
+      <div className="pcard2-body">
+        <div className="flex items-center justify-between gap-3">
+          <span className="wk-kind" style={{ "--k": t.bold || "rgb(var(--c-accent))" }}>{kind === "product" ? "Product" : "Tableau"}</span>
+          <span className="mono text-[10px] tracking-[.12em]" style={{ opacity: .55 }}>{w.year}</span>
+        </div>
+        <h3 className="pcard2-title mt-3.5">{w.title}</h3>
+        <p className="wk-blurb">{w.blurb}</p>
+        {w.metric && (
+          <div className="wk-metric"><b>{w.metric.value}</b><span>{w.metric.label}</span></div>
+        )}
+        <span className="pcard2-cta">{hasCase ? "Case study →" : "View live ↗"}</span>
+      </div>
+    </div>
+  );
+}
+
 function WorksPage4({ go, pal, cards }) {
+  const { useRef } = React;
+  const [f, setF] = useStateP4("all");
+  const grid = useRef(null);
   useReveal4("works");
+  const items = ALL_WORKS.slice().sort((a, b) => parseInt(b.year, 10) - parseInt(a.year, 10));
+  const count = (k) => (k === "all" ? items.length : items.filter((w) => workKind(w.id) === k).length);
+  const shown = items.filter((w) => f === "all" || workKind(w.id) === f).length;
+
+  const pick = (k) => {
+    if (k === f) return;
+    const g = window.gsap, F = window.Flip;
+    const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const els = grid.current ? Array.from(grid.current.children) : [];
+    // Cards still waiting for their scroll entrance would stay hidden after the
+    // reflow, so show every card in full before filtering.
+    if (g) g.set(grid.current.querySelectorAll(".pcard2"), { clearProps: "opacity,transform" });
+    const state = g && F && !reduce ? F.getState(els) : null;
+    ReactDOM.flushSync(() => setF(k));
+    if (window.ScrollTrigger) setTimeout(() => window.ScrollTrigger.refresh(), 700);
+    if (!state) return;
+    F.from(state, {
+      duration: .65, ease: "power3.inOut", scale: true, absolute: true,
+      onEnter: (el) => g.fromTo(el, { opacity: 0, scale: .85, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: .55, delay: .15, ease: "back.out(1.5)" }),
+      onLeave: (el) => g.to(el, { opacity: 0, scale: .85, duration: .3 }),
+    });
+  };
+
+  const kpis = [
+    { v: items.length, l: "Projects in the archive" },
+    { v: count("tableau"), l: "Tableau dashboards" },
+    { v: count("product"), l: "Products live for clients" },
+    { v: 2, s: "×", l: "Tableau Viz of the Day" },
+  ];
+
   return (
     <main className="grain">
-      <section className="pt-32 md:pt-40 pb-14 text-center px-6">
+      <section className="pt-32 md:pt-40 pb-12 text-center px-6">
         <div className="eyebrow opacity-50">Archive · {ALL_WORKS.length} projects</div>
         <h1 className="claim text-[12vw] md:text-[64px] mt-6">All work</h1>
         <p className="text-[17px] leading-[1.6] max-w-[520px] mx-auto mt-6" style={{ opacity: .85 }}>
@@ -177,21 +244,35 @@ function WorksPage4({ go, pal, cards }) {
       </section>
 
       <div className="shell">
-        {WORK_GROUPS5.map((g) => {
-          const items = g.ids.map((id) => SELECTED_WORKS.find((w) => w.id === id)).filter(Boolean);
-          return (
-            <div key={g.id}>
-              <GroupHead g={g} n={String((g.id === "viz" ? (window.VIZ_ITEMS || []).length : items.length)).padStart(2, "0")} />
-              {g.id === "viz" ? <VizBoard go={go} pinned={false} pal={pal} /> : (
-                <div className="card-grid">
-                  {items.map((w, i) => (
-                    <ProjectCard key={w.id} work={w} tint={pal.cards[(i + 2) % pal.cards.length]} go={go} cards={cards} order={i} />
-                  ))}
-                </div>
-              )}
+        <div className="wk-kpis">
+          {kpis.map((k, i) => (
+            <div key={k.l} className="wk-kpi reveal" style={{ transitionDelay: i * 70 + "ms" }}>
+              <b data-count={k.v} data-suffix={k.s || ""}>{k.v}{k.s || ""}</b>
+              <span>{k.l}</span>
             </div>
-          );
-        })}
+          ))}
+        </div>
+
+        <div className="wk-bar" role="toolbar" aria-label="Filter work">
+          <div className="wk-seg">
+            {WORK_FILTERS.map((x) => (
+              <button key={x.k} type="button" onClick={() => pick(x.k)} aria-pressed={f === x.k}
+                      className={f === x.k ? "on" : ""}>
+                {x.label}<span>{count(x.k)}</span>
+              </button>
+            ))}
+          </div>
+          <span className="mono text-[10px] tracking-[.14em] uppercase" style={{ opacity: .5 }}>Showing {shown} of {items.length}</span>
+        </div>
+
+        <div className="wk-grid" ref={grid}>
+          {items.map((w) => (
+            <div key={w.id} className="wk-cell" data-flip-id={w.id}
+                 style={{ display: f === "all" || workKind(w.id) === f ? "" : "none" }}>
+              <WorkCard w={w} go={go} />
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="pt-24" />
@@ -408,6 +489,17 @@ function downloadCV(label) {
   document.head.appendChild(s);
 }
 
+/* The résumé timeline: one bar per chapter on a 2018–2027 axis. Positions are
+   percentages of those nine years; the current role runs to today. */
+const RS_SPAN = [2018, 2027];
+const rsPct = (y) => ((y - RS_SPAN[0]) / (RS_SPAN[1] - RS_SPAN[0])) * 100;
+const rsNow = () => { const d = new Date(); return d.getFullYear() + d.getMonth() / 12; };
+const RS_TIMELINE = [
+  { t: "BI Analyst", at: "SessionHub Softswitch", from: 2023 + 2 / 12, to: null, c: "#d9572f" },
+  { t: "Data Analyst", at: "Demsco Travels & Tours", from: 2022 + 2 / 12, to: 2023 + 1 / 12, c: "#2f55c8" },
+  { t: "B.Sc.", at: "University of Lagos", from: 2018, to: 2022, c: "#2f6b4f" },
+];
+
 function ResumePage4({ go, pal }) {
   const [role, setRole] = useStateP4("ae");
   useReveal4("resume");
@@ -438,8 +530,31 @@ function ResumePage4({ go, pal }) {
         </div>
       </section>
 
+      <section className="max-w-[820px] mx-auto px-6 md:px-10 pb-6">
+        <div className="wk-kpis rs-kpis">
+          {[[4, "+", "Years in BI and analytics"], [2, "", "Data roles held"], [2, "×", "Tableau Viz of the Day"], [4, "×", "Vizzies nominations"]].map(([v, sfx, l], i) => (
+            <div key={l} className="wk-kpi reveal" style={{ transitionDelay: i * 70 + "ms" }}>
+              <b data-count={v} data-suffix={sfx}>{v}{sfx}</b><span>{l}</span>
+            </div>
+          ))}
+        </div>
+        <div className="rs-time reveal">
+          <div className="flex items-baseline justify-between gap-4 mb-5">
+            <div className="eyebrow opacity-45">Timeline</div>
+            <div className="mono text-[9px] tracking-[.16em] uppercase" style={{ opacity: .35 }}>2018 – today</div>
+          </div>
+          {RS_TIMELINE.map((r) => (
+            <div key={r.t} className="rs-row">
+              <div className="rs-lab"><b>{r.t}</b><span>{r.at}</span></div>
+              <div className="rs-track"><i data-grow style={{ left: rsPct(r.from) + "%", width: Math.min(100, rsPct(r.to || rsNow())) - rsPct(r.from) + "%", background: r.c }} /></div>
+            </div>
+          ))}
+          <div className="rs-axis mono">{["2018", "2021", "2024", "2027"].map((y) => <span key={y}>{y}</span>)}</div>
+        </div>
+      </section>
+
       <section className="max-w-[820px] mx-auto px-6 md:px-10 pb-20">
-        <div className="eyebrow opacity-45 mb-8">Experience</div>
+        <div className="eyebrow opacity-45 mb-8 mt-10">Experience</div>
         {EXPERIENCE.map((e) => (
           <div key={e.company} className="reveal py-9 border-t border-ink/12">
             <div className="mono text-[10px] tracking-[.16em] uppercase" style={{ opacity: .5 }}>{e.period}</div>
