@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Uduak Afang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the portfolio is a dashboard. One 12-column grid of rounded tiles,
+   each with a small mono label and one job. Colour appears only on the four
+   project tiles and one accent; everything else is ink on warm paper.
+   Motion has one rule: tiles drop into place and settle, like a dashboard loading. */
+:root {
+  --ground: #efebe3;
+  --tile: #faf8f4;
+  --ink: #18160f;
+  --muted: #706b60;
+  --line: rgba(24, 22, 15, .1);
+  --accent: #e8592f;
+  --p1: #2f8a58;
+  --p2: #3c63d6;
+  --p3: #e05a3d;
+  --p4: #7656dc;
+
+  --f-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --f-sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  --r: 26px;
+  --gap: 14px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ground); color: var(--ink); font: 400 16px/1.55 var(--f-sans); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--p2); outline-offset: 3px; border-radius: 8px; }
+.page { max-width: 1240px; margin: 0 auto; padding: 18px clamp(16px, 3vw, 28px) 28px; }
+.lab { font: 500 10.5px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.it { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
+
+/* ---------- header: like a dashboard toolbar ---------- */
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 4px 6px 18px; }
+.who { font: 400 26px/1 var(--f-serif); white-space: nowrap; }
+.filters { display: flex; gap: 6px; padding: 4px; border-radius: 999px; background: var(--tile); box-shadow: inset 0 0 0 1px var(--line); }
+.filters button { border: 0; background: none; padding: 8px 14px; border-radius: 999px; cursor: pointer; font: 500 11px/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: background .25s, color .25s; }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--tile); }
+.right { display: flex; align-items: center; gap: 16px; }
+.refresh { display: inline-flex; align-items: center; gap: 8px; border: 0; background: none; cursor: pointer; font: 500 11px/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.refresh i { font-style: normal; display: inline-block; transition: transform .6s; }
+.refresh:hover { color: var(--ink); }
+.refresh:hover i { transform: rotate(180deg); }
+.pill { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--ink); color: var(--tile); font-weight: 500; font-size: 14px; white-space: nowrap; transition: transform .2s; }
+.pill:hover { transform: translateY(-2px); }
+.pill.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+@media (max-width: 900px) { .refresh span { display: none; } }
+@media (max-width: 640px) { .bar { flex-wrap: wrap; } .filters { order: 3; width: 100%; justify-content: space-between; } .filters button { flex: 1; padding: 9px 6px; } }
+
+/* ---------- the grid ---------- */
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); perspective: 1600px; }
+.tile { position: relative; border-radius: var(--r); background: var(--tile); box-shadow: inset 0 0 0 1px var(--line); padding: 22px; min-width: 0; transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .3s, opacity .4s, filter .4s; transform-style: preserve-3d; }
+.tile.lift { box-shadow: inset 0 0 0 1px var(--line), 0 30px 50px -34px rgba(24,22,15,.45); }
+.c8 { grid-column: span 8; } .c4 { grid-column: span 4; } .c3 { grid-column: span 3; } .c6 { grid-column: span 6; }
+
+/* intro */
+.intro { display: flex; flex-direction: column; min-height: 440px; }
+.intro h1 { margin: auto 0 0; font: 400 clamp(46px, 5.4vw, 80px)/.98 var(--f-serif); letter-spacing: -.02em; text-wrap: balance; max-width: 15ch; }
+.intro .foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); }
+.roles { font: 500 11px/1.6 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.acts { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* me */
+.me { display: flex; flex-direction: column; padding: 10px; }
+.me .photo { position: relative; flex: 1; min-height: 300px; border-radius: 18px; overflow: hidden; background: #e8e1d5; }
+.me .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.me .photo .cap { position: absolute; left: 0; right: 0; top: 18px; text-align: center; }
+.me .photo .cap b { display: block; font: 500 22px/1.1 var(--f-sans); letter-spacing: -.02em; }
+.me .photo .cap span { display: inline-flex; align-items: center; gap: 7px; margin-top: 6px; font-size: 13px; color: #3b372e; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--p1); display: inline-block; animation: pulse 2.2s infinite; }
+@keyframes pulse { 50% { opacity: .3; } }
+.me .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 8px 4px; }
+.me .row small { display: block; color: var(--muted); font-size: 12.5px; }
+.me .row strong { font-weight: 600; font-size: 14.5px; }
+
+/* projects */
+.proj { display: flex; flex-direction: column; aspect-ratio: 3 / 3.7; padding: 16px; background: var(--c); color: #fff; box-shadow: none; cursor: pointer; }
+.proj .lab { color: rgba(255,255,255,.78); }
+.proj h3 { margin: 14px 0 0; font: 600 clamp(18px, 1.55vw, 22px)/1.15 var(--f-sans); letter-spacing: -.02em; text-wrap: balance; }
+.proj .k { margin-top: 6px; font-size: 13px; opacity: .85; line-height: 1.4; }
+.proj .shot { margin-top: auto; height: 50%; border-radius: 16px; background: rgba(255,255,255,.94); display: grid; place-items: center; overflow: hidden; }
+.proj .shot img { width: 90%; height: 90%; object-fit: contain; transform: translateY(8%); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.proj:hover .shot img { transform: translateY(0) scale(1.04); }
+.proj .go { position: absolute; right: 14px; top: 12px; width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.18); display: grid; place-items: center; font-size: 14px; transition: transform .3s, background .3s; }
+.proj:hover .go { transform: rotate(-45deg); background: #fff; color: var(--ink); }
+.proj.dim { opacity: .22; filter: grayscale(1); }
+
+/* impact */
+.impact { display: grid; grid-template-columns: 44% 1fr; gap: 14px; padding: 10px; }
+.im-num { border-radius: 18px; background: var(--accent); display: flex; flex-direction: column; justify-content: space-between; padding: 16px; color: var(--ink); }
+.im-num .lab { color: rgba(24,22,15,.7); }
+.im-num b { font: 400 clamp(56px, 5vw, 72px)/.9 var(--f-sans); letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+.im-num b sup { font: 500 .32em/1 var(--f-mono); letter-spacing: 0; vertical-align: top; margin-left: 4px; }
+.im-body { display: flex; flex-direction: column; padding: 8px 6px 6px 0; }
+.im-body .nav { display: flex; justify-content: space-between; align-items: center; }
+.im-body .nav span { font: 400 11px/1 var(--f-mono); color: var(--muted); }
+.im-body .nav div { display: flex; gap: 6px; }
+.im-body button { width: 28px; height: 28px; border-radius: 50%; border: 0; background: rgba(24,22,15,.06); cursor: pointer; }
+.im-body button:hover { background: var(--ink); color: var(--tile); }
+.im-t { margin-top: auto; transition: opacity .25s, transform .25s; }
+.im-t.out { opacity: 0; transform: translateY(6px); }
+.im-t h4 { margin: 0; font: 600 18px/1.2 var(--f-sans); letter-spacing: -.015em; }
+.im-t p { margin: 6px 0 0; color: var(--muted); font-size: 13.5px; line-height: 1.45; }
+
+/* experience: a small gantt on a year axis */
+.gantt { margin-top: 20px; display: grid; gap: 14px; }
+.g-row { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.g-row .t { display: flex; justify-content: space-between; gap: 10px; font-size: 13.5px; }
+.g-row .t b { font-weight: 600; }
+.g-row .t span { color: var(--muted); white-space: nowrap; font-size: 12.5px; }
+.track { position: relative; height: 8px; border-radius: 8px; background: rgba(24,22,15,.06); }
+.track i { position: absolute; top: 0; bottom: 0; border-radius: 8px; background: var(--ink); left: var(--a); width: 0; transition: width 1.1s cubic-bezier(.2,.8,.2,1); }
+.track i.on { width: var(--w); }
+.track i.now::after { content: ""; position: absolute; right: -4px; top: -3px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 3px solid var(--tile); }
+.axis { display: flex; justify-content: space-between; font: 400 10px/1 var(--f-mono); color: var(--muted); margin-top: 2px; }
+
+/* stack */
+.tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.tools span { padding: 7px 12px; border-radius: 999px; box-shadow: inset 0 0 0 1.2px rgba(24,22,15,.22); font-size: 13px; }
+.tools span.b { background: var(--ink); color: var(--tile); box-shadow: none; }
+.stack p { margin: 16px 0 0; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+
+/* contact */
+.contact { background: var(--ink); color: var(--tile); box-shadow: none; display: flex; flex-direction: column; min-height: 260px; }
+.contact .lab { color: rgba(250,248,244,.55); }
+.contact h2 { margin: auto 0 0; font: 400 clamp(38px, 4.4vw, 62px)/1 var(--f-serif); letter-spacing: -.015em; }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 22px; }
+.mail .addr { font: 500 15px/1 var(--f-mono); padding: 13px 16px; border-radius: 999px; background: rgba(250,248,244,.08); user-select: all; overflow-wrap: anywhere; }
+.mail button { border: 0; cursor: pointer; padding: 13px 18px; border-radius: 999px; background: var(--tile); color: var(--ink); font-weight: 600; font-size: 14px; }
+.mail a { color: rgba(250,248,244,.7); font: 500 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; margin-left: 8px; }
+.mail a:hover { color: var(--tile); }
+
+/* local time */
+.clock { display: flex; flex-direction: column; }
+.clock .big { margin-top: auto; font: 400 clamp(52px, 5vw, 70px)/1 var(--f-sans); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.clock .big span { animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: .2; } }
+.clock p { margin: 8px 0 0; color: var(--muted); font-size: 13.5px; }
+.sw { display: flex; gap: 6px; margin-top: 16px; }
+.sw i { width: 18px; height: 18px; border-radius: 6px; background: var(--s); }
+
+footer { display: flex; justify-content: space-between; gap: 16px; padding: 22px 6px 0; font: 400 11px/1.4 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+@media (max-width: 1020px) {
+  .c8, .c4.me { grid-column: span 12; }
+  .me .photo { min-height: 380px; }
+  .c3 { grid-column: span 6; }
+  .c4 { grid-column: span 6; }
+  .c4.clock { grid-column: span 12; }
+}
+@media (max-width: 640px) {
+  :root { --r: 22px; --gap: 10px; }
+  .tile { padding: 18px; }
+  .intro { min-height: 360px; }
+  .me .photo { min-height: 320px; }
+  .c3 { grid-column: span 6; }
+  .proj { padding: 12px; aspect-ratio: 3 / 4.1; }
+  .proj .go { display: none; }
+  .c4, .c4.clock { grid-column: span 12; }
+  .impact { grid-template-columns: 42% 1fr; }
+  footer { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tile, .proj .shot img, .track i, .im-t { transition: none !important; }
+  .dot, .clock .big span { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="bar">
+    <a class="who" href="#top">Uduak Afang</a>
+    <div class="filters" role="group" aria-label="Filter work">
+      <button type="button" aria-pressed="true" data-f="all">All</button>
+      <button type="button" aria-pressed="false" data-f="dash">Dashboards</button>
+      <button type="button" aria-pressed="false" data-f="product">Products</button>
+    </div>
+    <div class="right">
+      <button class="refresh" type="button" id="refresh"><i>↻</i><span id="ago">Refreshed just now</span></button>
+      <a class="pill" href="https://uduakafang.github.io/#resume" target="_blank" rel="noopener">Résumé ↗</a>
+    </div>
+  </header>
+
+  <main class="grid" id="top">
+    <section class="tile c8 intro" aria-label="Overview">
+      <div class="lab"><span>Overview</span><span>Lagos · Remote</span></div>
+      <h1>I build the models, pipelines and <span class="it">dashboards</span> teams decide on.</h1>
+      <div class="foot">
+        <span class="roles">Analytics engineer · BI analyst · Data analyst</span>
+        <div class="acts"><a class="pill" href="#work">See the work ↓</a><a class="pill ghost" href="#contact">Say hello</a></div>
+      </div>
+    </section>
+
+    <section class="tile c4 me" aria-label="About me">
+      <div class="photo">
+        <img src="../images/profile.jpg" alt="Portrait of Uduak Afang">
+        <div class="cap"><b>Uduak Afang</b><span><i class="dot"></i>Open to work</span></div>
+      </div>
+      <div class="row"><div><small>Currently</small><strong>BI Analyst, SessionHub</strong></div><a class="pill" href="#contact">+ Connect</a></div>
+    </section>
+
+    <a class="tile c3 proj" id="work" data-kind="dash" style="--c:var(--p1)" href="https://uduakafang.github.io/#case:09" target="_blank" rel="noopener">
+      <div class="lab"><span>01 · Tableau</span></div><span class="go">→</span>
+      <h3>The Same Countries, Different Rules</h3>
+      <div class="k">54 countries and 108 leaders on one hand-built map</div>
+      <div class="shot"><img src="../images/devices/leaders.webp" alt="The Same Countries map"></div>
+    </a>
+    <a class="tile c3 proj" data-kind="dash" style="--c:var(--p2)" href="https://uduakafang.github.io/#case:03" target="_blank" rel="noopener">
+      <div class="lab"><span>02 · Viz of the Day</span></div><span class="go">→</span>
+      <h3>NYC 311 Service Requests</h3>
+      <div class="k">108,238 requests read on one screen</div>
+      <div class="shot"><img src="../images/devices/nyc.webp" alt="NYC 311 dashboard"></div>
+    </a>
+    <a class="tile c3 proj" data-kind="product" style="--c:var(--p3)" href="https://uduakafang.github.io/#case:01" target="_blank" rel="noopener">
+      <div class="lab"><span>03 · Product · live</span></div><span class="go">→</span>
+      <h3>TrackPerform</h3>
+      <div class="k">GPS export in, readiness out, in about two seconds</div>
+      <div class="shot"><img src="../images/devices/trackperform.webp" alt="TrackPerform dashboard"></div>
+    </a>
+    <a class="tile c3 proj" data-kind="product" style="--c:var(--p4)" href="https://uduakafang.github.io/#case:02" target="_blank" rel="noopener">
+      <div class="lab"><span>04 · Product · launched</span></div><span class="go">→</span>
+      <h3>DrillCal</h3>
+      <div class="k">A coaching journal the coach owns, not the club</div>
+      <div class="shot"><img src="../images/devices/drillcal.webp" alt="DrillCal on laptop and phone"></div>
+    </a>
+
+    <section class="tile c4 impact" aria-label="Impact" id="impact">
+      <div class="im-num"><span class="lab">Impact</span><b id="im-n">2<sup>×</sup></b></div>
+      <div class="im-body">
+        <div class="nav"><span id="im-i">1 / 4</span><div><button type="button" id="im-prev" aria-label="Previous">←</button><button type="button" id="im-next" aria-label="Next">→</button></div></div>
+        <div class="im-t" id="im-t"><h4 id="im-h">Tableau Viz of the Day</h4><p id="im-p">Two dashboards picked for Tableau Public's global daily feature.</p></div>
+      </div>
+    </section>
+
+    <section class="tile c4" aria-label="Experience">
+      <div class="lab"><span>Experience</span><span>2018 – now</span></div>
+      <div class="gantt" id="gantt">
+        <div class="g-row"><div class="t"><b>BI Analyst · SessionHub</b><span>2023 – now</span></div><div class="track"><i class="now" style="--a:62.5%;--w:37.5%"></i></div></div>
+        <div class="g-row"><div class="t"><b>Data Analyst · Demsco</b><span>2022</span></div><div class="track"><i style="--a:50%;--w:12.5%"></i></div></div>
+        <div class="g-row"><div class="t"><b>B.Sc. · University of Lagos</b><span>2018 – 22</span></div><div class="track"><i style="--a:0%;--w:50%"></i></div></div>
+        <div class="axis"><span>2018</span><span>2020</span><span>2022</span><span>2024</span><span>2026</span></div>
+      </div>
+    </section>
+
+    <section class="tile c4 stack" aria-label="Stack">
+      <div class="lab"><span>Stack</span><span>Most used first</span></div>
+      <div class="tools"><span class="b">SQL</span><span class="b">dbt</span><span class="b">Tableau</span><span>Databricks</span><span>Python</span><span>Power BI</span><span>Azure Data Factory</span><span>Supabase</span><span>Figma</span></div>
+      <p>Raw lands untouched, staging cleans it, every model carries tests, and the number a team came for is on screen first.</p>
+    </section>
+
+    <section class="tile c8 contact" id="contact" aria-label="Contact">
+      <div class="lab"><span>Contact</span><span>Replies from Lagos</span></div>
+      <h2>Got messy data? Let's make it <span class="it">useful.</span></h2>
+      <div class="mail"><span class="addr" id="addr">uduakafang@gmail.com</span><button type="button" id="copy">Copy</button><a href="https://linkedin.com/in/uduakafang" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/UduakAfang" target="_blank" rel="noopener">GitHub ↗</a></div>
+    </section>
+
+    <section class="tile c4 clock" aria-label="Local time">
+      <div class="lab"><span>Local time</span><span>WAT · UTC+1</span></div>
+      <div class="big" id="clk">--<span>:</span>--</div>
+      <p>Lagos, Nigeria. Fully remote, across any time zone.</p>
+      <div class="sw" aria-hidden="true"><i style="--s:var(--p1)"></i><i style="--s:var(--p2)"></i><i style="--s:var(--p3)"></i><i style="--s:var(--p4)"></i><i style="--s:var(--accent)"></i><i style="--s:var(--ink)"></i></div>
+    </section>
+  </main>
+
+  <footer><span>Uduak Afang · Portfolio</span><span>2× Tableau Viz of the Day · 4× Vizzies nominee</span></footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var tiles = [].slice.call(document.querySelectorAll(".tile"));
+
+  /* ---------- the one motion: tiles drop into place and settle ---------- */
+  function land(t, delay) {
+    if (reduce || !t.animate) return;
+    var r = (Math.random() * 2 - 1) * 3.5;
+    t.animate([
+      { transform: "translateY(-46px) rotate(" + r + "deg)", opacity: 0 },
+      { transform: "translateY(5px) rotate(" + (-r * .35) + "deg)", opacity: 1, offset: .62 },
+      { transform: "translateY(-2px) rotate(" + (r * .12) + "deg)", offset: .82 },
+      { transform: "none", opacity: 1 }
+    ], { duration: 760, delay: delay, easing: "cubic-bezier(.3,.7,.3,1)", fill: "backwards" });
+  }
+  function inView(t) { var r = t.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; }
+  var seen = new WeakSet();
+  function loadVisible() {
+    var k = 0;
+    tiles.forEach(function (t) { if (inView(t) && !seen.has(t)) { seen.add(t); land(t, 80 + k++ * 75); afterLand(t, 80 + k * 75); } });
+  }
+  function afterLand(t, d) { setTimeout(function () { var g = t.querySelectorAll(".track i"); [].forEach.call(g, function (i) { i.classList.add("on"); }); if (t.id === "impact") count(); }, reduce ? 0 : d + 300); }
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      var k = 0;
+      es.forEach(function (e) { if (e.isIntersecting && !seen.has(e.target)) { seen.add(e.target); land(e.target, k * 75); afterLand(e.target, k * 75); k++; } });
+    }, { threshold: .15 });
+    tiles.forEach(function (t) { io.observe(t); });
+  } else tiles.forEach(function (t) { afterLand(t, 0); });
+  loadVisible();
+
+  // Refresh replays the load, like re-running the dashboard.
+  var refreshedAt = Date.now(), ago = document.getElementById("ago");
+  document.getElementById("refresh").addEventListener("click", function () {
+    var k = 0;
+    tiles.forEach(function (t) { if (inView(t)) land(t, k++ * 60); });
+    refreshedAt = Date.now(); ago.textContent = "Refreshed just now";
+  });
+  setInterval(function () { var m = Math.floor((Date.now() - refreshedAt) / 60000); ago.textContent = m < 1 ? "Refreshed just now" : "Refreshed " + m + " min ago"; }, 15000);
+
+  /* ---------- hover: a tile lifts and leans toward the pointer ---------- */
+  if (!reduce && matchMedia("(hover: hover)").matches) {
+    tiles.forEach(function (t) {
+      t.addEventListener("pointermove", function (e) {
+        var r = t.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        t.style.transform = "translateY(-4px) rotateX(" + (-y * 4).toFixed(2) + "deg) rotateY(" + (x * 4).toFixed(2) + "deg)";
+        t.classList.add("lift");
+      });
+      t.addEventListener("pointerleave", function () { t.style.transform = ""; t.classList.remove("lift"); });
+    });
+  }
+
+  /* ---------- filters: a real dashboard filter on the work tiles ---------- */
+  var fbtns = [].slice.call(document.querySelectorAll(".filters button")), projs = [].slice.call(document.querySelectorAll(".proj"));
+  fbtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var f = b.dataset.f;
+      fbtns.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      projs.forEach(function (p, i) {
+        var on = f === "all" || p.dataset.kind === f, was = !p.classList.contains("dim");
+        p.classList.toggle("dim", !on);
+        if (on && !was) land(p, i * 60);
+      });
+    });
+  });
+
+  /* ---------- impact: one number at a time ---------- */
+  var STATS = [
+    { n: 2, u: "×", h: "Tableau Viz of the Day", p: "Two dashboards picked for Tableau Public's global daily feature." },
+    { n: 4, u: "×", h: "Vizzies nominations", p: "Nominated in four categories at the Tableau Public community awards." },
+    { n: 108, u: "k", h: "Requests on one screen", p: "NYC 311: a year of service requests, cleaned in SQL and read in one meeting." },
+    { n: 2, u: "s", h: "To the first chart", p: "TrackPerform went from a three-minute wait to about two seconds." }
+  ];
+  var si = 0, nEl = document.getElementById("im-n"), tEl = document.getElementById("im-t"), imp = document.getElementById("impact"), hov = false;
+  function count() {
+    var s = STATS[si], t0 = performance.now();
+    if (reduce) { nEl.innerHTML = s.n + "<sup>" + s.u + "</sup>"; return; }
+    (function st(now) { var k = Math.min(1, (now - t0) / 650), e = 1 - Math.pow(1 - k, 3); nEl.innerHTML = Math.round(s.n * e) + "<sup>" + s.u + "</sup>"; if (k < 1) requestAnimationFrame(st); })(t0);
+  }
+  function show(i) {
+    si = (i + STATS.length) % STATS.length; var s = STATS[si];
+    tEl.classList.add("out");
+    setTimeout(function () {
+      document.getElementById("im-h").textContent = s.h; document.getElementById("im-p").textContent = s.p;
+      document.getElementById("im-i").textContent = (si + 1) + " / " + STATS.length;
+      tEl.classList.remove("out"); count();
+    }, reduce ? 0 : 200);
+  }
+  document.getElementById("im-prev").addEventListener("click", function () { show(si - 1); });
+  document.getElementById("im-next").addEventListener("click", function () { show(si + 1); });
+  imp.addEventListener("mouseenter", function () { hov = true; }); imp.addEventListener("mouseleave", function () { hov = false; });
+  if (!reduce) setInterval(function () { if (!hov && inView(imp) && !document.hidden) show(si + 1); }, 5500);
+
+  /* ---------- clock and copy ---------- */
+  var clk = document.getElementById("clk");
+  function tick() {
+    try {
+      var p = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Africa/Lagos" }).formatToParts(new Date());
+      var h = p.find(function (x) { return x.type === "hour"; }).value, m = p.find(function (x) { return x.type === "minute"; }).value;
+      clk.innerHTML = h + "<span>:</span>" + m;
+    } catch (e) { clk.textContent = "UTC+1"; }
+  }
+  tick(); setInterval(tick, 20000);
+  var copy = document.getElementById("copy");
+  copy.addEventListener("click", function () {
+    var a = document.getElementById("addr");
+    var ok = function () { copy.textContent = "Copied"; setTimeout(function () { copy.textContent = "Copy"; }, 1500); };
+    var sel = function () { var r = document.createRange(); r.selectNodeContents(a); var s = getSelection(); s.removeAllRanges(); s.addRange(r); copy.textContent = "Selected"; };
+    try { navigator.clipboard.writeText(a.textContent).then(ok, sel); } catch (e) { sel(); }
+  });
+})();
+</script>
+</body>
+</html>

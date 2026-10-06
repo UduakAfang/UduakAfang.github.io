@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Uduak Afang · Screen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one screen, like a real dashboard. Left rail = who + the list of work
+   (the "dimension"); main panel = the selected project's detail (the "measures").
+   Dark ink frame, paper panels, one orange accent; panels drop and settle on change. */
+:root {
+  --frame: #15140f;
+  --panel: #f4f1ea;
+  --panel-2: #e9e5dc;
+  --ink: #15140f;
+  --muted: #736e62;
+  --soft: #a29d90;
+  --line: rgba(21,20,15,.1);
+  --accent: #ef6a2c;
+  --f-serif: "Instrument Serif", Georgia, serif;
+  --f-sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--frame); color: var(--ink); font: 400 15.5px/1.5 var(--f-sans); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+.mono { font: 500 10.5px/1.3 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.it { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
+
+.screen { height: 100vh; height: 100dvh; min-height: 640px; display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 10px; padding: 10px; }
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 4px 8px; color: #e9e5dc; }
+.bar .n { font: 400 22px/1 var(--f-serif); }
+.bar .mid { display: flex; gap: 18px; font: 500 10.5px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+.bar .mid b { color: #e9e5dc; font-weight: 500; }
+.bar a.r { padding: 9px 14px; border-radius: 999px; background: #e9e5dc; color: var(--ink); font-weight: 600; font-size: 13.5px; }
+.body { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 10px; min-height: 0; }
+.panel { background: var(--panel); border-radius: 22px; min-height: 0; }
+
+/* left rail */
+.rail { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 10px; min-height: 0; }
+.me { padding: 16px; display: flex; gap: 14px; align-items: center; }
+.me img { width: 64px; height: 64px; border-radius: 16px; object-fit: cover; object-position: 50% 30%; }
+.me b { display: block; font: 400 26px/1 var(--f-serif); }
+.me span { display: block; font-size: 13px; color: var(--muted); margin-top: 3px; }
+.me span i { width: 7px; height: 7px; border-radius: 50%; background: #3f9d6f; display: inline-block; margin-right: 6px; }
+.list { padding: 14px 10px; overflow: auto; display: flex; flex-direction: column; }
+.list .mono { padding: 0 8px 10px; }
+.row { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 10px; align-items: center; text-align: left; width: 100%; border: 0; background: none; padding: 12px 8px; border-radius: 14px; cursor: pointer; transition: background .25s; }
+.row + .row { border-top: 1px solid var(--line); }
+.row .num { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font: 500 11px/1 var(--f-mono); box-shadow: inset 0 0 0 1.3px rgba(21,20,15,.25); transition: background .25s, color .25s, box-shadow .25s; }
+.row b { display: block; font-weight: 600; font-size: 15px; line-height: 1.25; }
+.row small { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.row em { font: 500 13px/1 var(--f-mono); font-style: normal; color: var(--muted); white-space: nowrap; }
+.row:hover { background: rgba(21,20,15,.04); }
+.row[aria-selected="true"] { background: #fff; box-shadow: 0 10px 24px -18px rgba(0,0,0,.5); }
+.row[aria-selected="true"] .num { background: var(--c); color: #fff; box-shadow: none; }
+.row[aria-selected="true"] em { color: var(--ink); }
+.list .note { margin-top: auto; padding: 14px 8px 4px; font-size: 13px; color: var(--muted); }
+.contact { padding: 16px; display: grid; gap: 10px; }
+.contact .addr { font: 500 13.5px/1 var(--f-mono); user-select: all; overflow-wrap: anywhere; }
+.contact .acts { display: flex; gap: 8px; }
+.contact button, .contact a { flex: 1; text-align: center; padding: 10px 12px; border-radius: 12px; border: 0; background: var(--ink); color: var(--panel); font-weight: 600; font-size: 13.5px; cursor: pointer; }
+.contact a { background: var(--panel-2); color: var(--ink); }
+
+/* detail */
+.detail { display: grid; grid-template-columns: minmax(0, 1fr) 300px; grid-template-rows: minmax(0, 1fr) auto; gap: 10px; min-height: 0; }
+.hero { grid-row: 1 / 3; position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 24px 26px; }
+.hero .top { display: flex; justify-content: space-between; gap: 16px; }
+.hero h1 { margin: 14px 0 0; font: 400 clamp(38px, 4.4vw, 64px)/1 var(--f-serif); letter-spacing: -.015em; max-width: 14ch; text-wrap: balance; }
+.hero p { margin: 12px 0 0; max-width: 46ch; color: #3e3a31; }
+.stage { position: relative; margin-top: auto; flex: 1; min-height: 200px; border-radius: 18px; background: var(--c); display: grid; place-items: center; overflow: hidden; transition: background .5s; }
+.stage img { width: auto; max-width: 86%; max-height: 88%; object-fit: contain; }
+.stage .tag { position: absolute; left: 14px; top: 14px; padding: 7px 11px; border-radius: 999px; background: #fff; font: 500 10px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; }
+.links { display: flex; gap: 8px; margin-top: 14px; }
+.links a { padding: 10px 16px; border-radius: 999px; font-weight: 600; font-size: 14px; background: var(--ink); color: var(--panel); }
+.links a.g { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.kpis { display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 10px; min-height: 0; }
+.kpi { padding: 18px 20px; display: flex; flex-direction: column; justify-content: space-between; }
+.kpi b { font: 500 clamp(36px, 3.4vw, 50px)/1 var(--f-sans); letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
+.kpi span { font-size: 13.5px; color: var(--muted); }
+.kpi.hot { background: var(--accent); }
+.kpi.hot .mono, .kpi.hot span { color: rgba(21,20,15,.72); }
+.about { padding: 18px 20px; }
+.about p { margin: 8px 0 0; font-size: 13.5px; color: #3e3a31; }
+
+@media (max-width: 1100px) { .body { grid-template-columns: 300px minmax(0, 1fr); } .detail { grid-template-columns: minmax(0, 1fr) 240px; } .bar .mid { display: none; } }
+@media (max-width: 860px) {
+  .screen { height: auto; min-height: 0; }
+  .body { grid-template-columns: 1fr; }
+  .rail { grid-template-rows: auto; }
+  .list { flex-direction: row; overflow-x: auto; padding: 8px; gap: 6px; scroll-snap-type: x mandatory; }
+  .list .mono, .list .note { display: none; }
+  .row { flex: 0 0 76%; scroll-snap-align: start; border-top: 0 !important; }
+  .row em { display: none; }
+  .detail { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .hero { grid-row: auto; }
+  .stage { min-height: 260px; flex: none; }
+  .kpis { grid-template-rows: none; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .kpi { padding: 14px; } .kpi b { font-size: 30px; } .kpi span { font-size: 12px; }
+  .body { display: flex; flex-direction: column; }
+  .rail { display: contents; }
+  .rail .me { order: 1; } .rail .list { order: 2; } .detail { order: 3; } .rail .contact { order: 4; }
+}
+@media (max-width: 460px) { .kpis { grid-template-columns: 1fr 1fr; } .kpis .kpi:first-child { grid-column: 1 / -1; } .hero { padding: 18px; } }
+</style>
+</head>
+<body>
+
+<div class="screen">
+  <header class="bar">
+    <span class="n">Uduak Afang</span>
+    <div class="mid"><span>Analytics engineer</span><span>Lagos <b id="clk">--:--</b></span><span>2× <b>Viz of the Day</b></span></div>
+    <a class="r" href="https://uduakafang.github.io/#resume" target="_blank" rel="noopener">Résumé ↗</a>
+  </header>
+
+  <div class="body">
+    <div class="rail">
+      <div class="panel me"><img src="../images/profile.jpg" alt="Uduak Afang"><div><b>Hi, I'm Uduak.</b><span><i></i>Open to work · remote</span></div></div>
+      <div class="panel list" role="tablist" aria-label="Selected work" id="list">
+        <div class="mono">Selected work · 4</div>
+      </div>
+      <div class="panel contact"><div class="mono">Contact</div><div class="addr" id="addr">uduakafang@gmail.com</div><div class="acts"><button type="button" id="copy">Copy email</button><a href="https://linkedin.com/in/uduakafang" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
+    </div>
+
+    <div class="detail" role="tabpanel" id="detail" aria-live="polite">
+      <section class="panel hero" id="hero">
+        <div class="top"><span class="mono" id="d-kind"></span><span class="mono" id="d-year"></span></div>
+        <h1 id="d-title"></h1>
+        <p id="d-desc"></p>
+        <div class="links"><a id="d-case" href="#" target="_blank" rel="noopener">Read the case study ↗</a><a class="g" id="d-live" href="#" target="_blank" rel="noopener"></a></div>
+        <div class="stage" id="stage" style="margin-top:20px"><span class="tag" id="d-tag"></span><img id="d-img" alt=""></div>
+      </section>
+      <div class="kpis" id="kpis">
+        <div class="panel kpi hot"><span class="mono" id="k1l"></span><b id="k1"></b><span id="k1c"></span></div>
+        <div class="panel kpi"><span class="mono" id="k2l"></span><b id="k2"></b><span id="k2c"></span></div>
+        <div class="panel kpi"><span class="mono" id="k3l"></span><b id="k3"></b><span id="k3c"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var W = [
+    { t: "The Same Countries, Different Rules", s: "Tableau · custom map", kind: "Data visualisation · Tableau", year: "2026", c: "#2f8a58", tag: "54 countries · 108 leaders", img: "../images/devices/leaders.webp",
+      d: "Every African country's first head of state after independence and the one in office today, on one map. I built the dataset by hand, and every mark is a calculated coordinate.",
+      cs: "https://uduakafang.github.io/#case:09", live: "https://public.tableau.com/views/AfricanHeadsofStateEarliestandLatest/SameCountryDifferentRules", ll: "View it live ↗",
+      k: [["Heads of state", 108, "", "first and current, side by side"], ["Countries", 54, "", "one hand-placed coordinate each"], ["Map tiles", 0, "", "every mark is a calculation"]], m: "108" },
+    { t: "NYC 311 Service Requests", s: "Tableau · Viz of the Day", kind: "Dashboard · Tableau", year: "2023", c: "#3c63d6", tag: "★ Tableau Viz of the Day", img: "../images/devices/nyc.webp",
+      d: "Where the city's 311 system fails its residents, by neighbourhood, category and priority. A year of requests cleaned in SQL and read on one screen.",
+      cs: "https://uduakafang.github.io/#case:03", live: "https://public.tableau.com/views/RWFDNYCCitizenRequestsServices/NYCCSRDashboard", ll: "View it live ↗",
+      k: [["Requests", 108238, "", "a year of 311 data"], ["Departments", 17, "", "compared on one page"], ["Views", 16462, "", "on Tableau Public"]], m: "108k" },
+    { t: "TrackPerform", s: "Product · live", kind: "Client product · live", year: "2025–26", c: "#e05a3d", tag: "trackperform.com", img: "../images/devices/trackperform.webp",
+      d: "It started as a Chelsea FC data competition entry. Coaches upload a GPS export in any shape; AI maps the columns and a Python service returns each athlete's readiness.",
+      cs: "https://uduakafang.github.io/#case:01", live: "https://trackperform.com", ll: "trackperform.com ↗",
+      k: [["First chart", 2, " s", "down from about three minutes"], ["Metrics mapped", 40, "+", "read from any vendor's file"], ["Early signups", 40, "", "about forty coaches and sport scientists"]], m: "~2 s" },
+    { t: "DrillCal", s: "Product · launched", kind: "Client product · launched", year: "2026", c: "#7656dc", tag: "Launched 1 Aug 2026", img: "../images/devices/drillcal.webp",
+      d: "A coaching journal for planning the week: drill library, calendar, tactical board and attendance. The library belongs to the coach, not the club.",
+      cs: "https://uduakafang.github.io/#case:02", live: "https://drillcal.com", ll: "drillcal.com ↗",
+      k: [["Signups", 30, "+", "since launch"], ["Tools in one", 4, "", "library, calendar, board, attendance"], ["Calendar bugs", 3, "", "fixed by one change to the model"]], m: "30+" }
+  ];
+  var list = document.getElementById("list"), rows = [], cur = -1;
+  W.forEach(function (w, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "row"; b.setAttribute("role", "tab"); b.style.setProperty("--c", w.c);
+    b.innerHTML = '<span class="num">0' + (i + 1) + '</span><span><b>' + w.t + '</b><small>' + w.s + '</small></span><em>' + w.m + '</em>';
+    b.addEventListener("click", function () { pick(i); });
+    b.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") { e.preventDefault(); pick((i + 1) % W.length); rows[(i + 1) % W.length].focus(); }
+      if (e.key === "ArrowUp" || e.key === "ArrowLeft") { e.preventDefault(); pick((i + W.length - 1) % W.length); rows[(i + W.length - 1) % W.length].focus(); }
+    });
+    list.appendChild(b); rows.push(b);
+  });
+  var note = document.createElement("div"); note.className = "note"; note.textContent = "Use ↑ ↓ to move through the work."; list.appendChild(note);
+
+  function land(t, delay) {
+    if (reduce || !t.animate) return;
+    var r = (Math.random() * 2 - 1) * 2.5;
+    t.animate([
+      { transform: "translateY(-34px) rotate(" + r + "deg)", opacity: 0 },
+      { transform: "translateY(4px) rotate(" + (-r * .3) + "deg)", opacity: 1, offset: .65 },
+      { transform: "translateY(-1px)", offset: .85 },
+      { transform: "none", opacity: 1 }
+    ], { duration: 680, delay: delay, easing: "cubic-bezier(.3,.7,.3,1)", fill: "backwards" });
+  }
+  function fmt(n) { return n.toLocaleString("en-GB"); }
+  function count(el, n, suf) {
+    if (reduce) { el.textContent = fmt(n) + suf; return; }
+    var t0 = performance.now();
+    (function st(now) { var k = Math.min(1, (now - t0) / 750); el.textContent = fmt(Math.round(n * (1 - Math.pow(1 - k, 3)))) + suf; if (k < 1) requestAnimationFrame(st); })(t0);
+  }
+  function $(id) { return document.getElementById(id); }
+  function pick(i, first) {
+    if (i === cur) return; cur = i; var w = W[i];
+    rows.forEach(function (r, k) { r.setAttribute("aria-selected", k === i ? "true" : "false"); r.tabIndex = k === i ? 0 : -1; });
+    $("d-kind").textContent = w.kind; $("d-year").textContent = w.year;
+    $("d-title").textContent = w.t; $("d-desc").textContent = w.d; $("d-tag").textContent = w.tag;
+    $("d-case").href = w.cs; $("d-live").href = w.live; $("d-live").textContent = w.ll;
+    $("stage").style.setProperty("--c", w.c);
+    $("d-img").src = w.img; $("d-img").alt = w.t + " shown on a laptop";
+    w.k.forEach(function (k, j) { $("k" + (j + 1) + "l").textContent = k[0]; $("k" + (j + 1) + "c").textContent = k[3]; count($("k" + (j + 1)), k[1], k[2]); });
+    var d0 = first ? 300 : 0;
+    land($("hero"), d0); land($("d-img"), d0 + 120);
+    [].forEach.call($("kpis").children, function (p, j) { land(p, d0 + 80 + j * 80); });
+    if (first) { land(document.querySelector(".me"), 0); land(list, 80); land(document.querySelector(".contact"), 160); }
+  }
+  pick(0, true);
+
+  var clk = $("clk");
+  function tick() { try { clk.textContent = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Africa/Lagos" }).format(new Date()); } catch (e) { clk.textContent = "UTC+1"; } }
+  tick(); setInterval(tick, 20000);
+  var copy = $("copy");
+  copy.addEventListener("click", function () {
+    var a = $("addr");
+    var ok = function () { copy.textContent = "Copied"; setTimeout(function () { copy.textContent = "Copy email"; }, 1500); };
+    var sel = function () { var r = document.createRange(); r.selectNodeContents(a); var s = getSelection(); s.removeAllRanges(); s.addRange(r); copy.textContent = "Selected"; };
+    try { navigator.clipboard.writeText(a.textContent).then(ok, sel); } catch (e) { sel(); }
+  });
+})();
+</script>
+</body>
+</html>
